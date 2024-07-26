@@ -1,9 +1,9 @@
-package com.example.nullshinsaproduct.mapper;
+package com.example.nullshinsaproduct.presentation.mapper;
 
-import com.example.nullshinsaproduct.domain.dto.response.ProductOptionResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
-import com.example.nullshinsaproduct.domain.entity.Product;
-import com.example.nullshinsaproduct.domain.entity.ProductOption;
+import com.example.nullshinsaproduct.domain.product.entity.ProductClothesOption;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductOptionResponse;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductResponse;
+import com.example.nullshinsaproduct.domain.product.entity.Product;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,8 +23,8 @@ public interface ProductMapper {
     @Mapping(target = "manufacturingDate", source = "product.productDetailInfo.manufacturingDate")
     @Mapping(target = "qualityGuarantee", source = "product.productDetailInfo.qualityGuarantee")
     @Mapping(target = "productOptionResponseList", source = "productOptions")
-    ProductResponse toResponseDto(Product product, List<ProductOption> productOptions);
+    ProductResponse toResponseDto(Product product, List<ProductClothesOption> productClothesOptions);
 
     @IterableMapping(qualifiedByName = "toProductOptionResponse")
-    ProductOptionResponse toProductOptionResponse(ProductOption productOption);
+    ProductOptionResponse toProductOptionResponse(ProductClothesOption productClothesOption);
 }

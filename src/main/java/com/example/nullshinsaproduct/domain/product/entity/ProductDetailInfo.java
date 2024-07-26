@@ -1,6 +1,6 @@
-package com.example.nullshinsaproduct.domain.entity;
+package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
+import com.example.nullshinsaproduct.presentation.dto.request.ProductDetailRequest;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.Getter;

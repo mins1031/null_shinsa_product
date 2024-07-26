@@ -1,22 +1,20 @@
 package com.example.nullshinsaproduct.application;
 
-import com.example.nullshinsaproduct.domain.dto.response.ProductOptionResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
-import com.example.nullshinsaproduct.domain.entity.Product;
-import com.example.nullshinsaproduct.domain.entity.ProductOption;
+import com.example.nullshinsaproduct.domain.product.entity.ProductClothesOption;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductOptionStockResponse;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductResponse;
+import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductOptionRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.mapper.ProductMapper;
+import com.example.nullshinsaproduct.presentation.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,9 +30,9 @@ public class ProductFindService {
     @Transactional(readOnly = true)
     public ProductResponse findIntegrationProductById(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
-        List<ProductOption> productOptions = productOptionRepository.findByProductId(productId);
+        List<ProductClothesOption> productClothesOptions = productOptionRepository.findByProductId(productId);
 
-        return ProductMapper.INSTANCE.toResponseDto(product, productOptions);
+        return ProductMapper.INSTANCE.toResponseDto(product, productClothesOptions);
     }
 
     @Transactional(readOnly = true)
@@ -43,12 +41,12 @@ public class ProductFindService {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_REQUEST_PARAMS);
         }
 
-        final List<ProductOption> productOptions = productOptionRepository.findAllById(productOptionIdList);
-        if (productOptionIdList.size() != productOptions.size()) {
+        final List<ProductClothesOption> productClothesOptions = productOptionRepository.findAllById(productOptionIdList);
+        if (productOptionIdList.size() != productClothesOptions.size()) {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT_OPTION);
         }
 
-        return productOptions.stream()
+        return productClothesOptions.stream()
                 .map(productOption -> new ProductOptionStockResponse(productOption.getProductId(), productOption.getStock(), productOption.isSoldOut()))
                 .collect(Collectors.toList());
     }

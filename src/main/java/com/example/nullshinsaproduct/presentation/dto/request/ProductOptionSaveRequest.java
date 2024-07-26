@@ -1,12 +1,17 @@
-package com.example.nullshinsaproduct.domain.dto.response;
+package com.example.nullshinsaproduct.presentation.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
-public class ProductOptionResponse {
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class ProductOptionSaveRequest {
     private String color;
+    @NotBlank(message = "상품옵션중 사이즈는 필수값 입니다.")
     private String size;
     private String length;
     private String shoulder;
@@ -17,9 +22,10 @@ public class ProductOptionResponse {
     private String hip;
     private String thigh;
     private String hem;
+    @NotBlank(message = "상품옵션중 재고정보는 필수값 입니다.")
     private int stock;
 
-    public ProductOptionResponse(
+    public ProductOptionSaveRequest(
             String color,
             String size,
             String length,

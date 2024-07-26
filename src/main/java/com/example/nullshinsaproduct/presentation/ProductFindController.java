@@ -1,8 +1,8 @@
 package com.example.nullshinsaproduct.presentation;
 
 import com.example.nullshinsaproduct.application.ProductFindService;
-import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductOptionStockResponse;
+import com.example.nullshinsaproduct.presentation.dto.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

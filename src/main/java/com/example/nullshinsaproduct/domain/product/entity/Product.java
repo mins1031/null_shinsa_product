@@ -1,22 +1,18 @@
-package com.example.nullshinsaproduct.domain.entity;
+package com.example.nullshinsaproduct.domain.product.entity;
 
 import com.example.nullshinsaproduct.common.domain.BaseEntity;
-import com.example.nullshinsaproduct.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
-@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product extends BaseEntity {
     private String name;
@@ -26,20 +22,23 @@ public class Product extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private CouponApplyPossible couponApplyPossible;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    private long brandId;
 
-    public Product(String name,
-                   int price,
-                   ProductDetailInfo productDetailInfo,
-                   CouponApplyPossible couponApplyPossible,
-                   Seller seller
-    ) {
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "seller_id")
+//    private Brand brand;
+
+
+    private Product(String name, int price, ProductDetailInfo productDetailInfo, CouponApplyPossible couponApplyPossible, long brandId) {
         this.name = name;
         this.price = price;
         this.productDetailInfo = productDetailInfo;
         this.couponApplyPossible = couponApplyPossible;
-        this.seller = seller;
+        this.brandId = brandId;
+    }
+
+    public static Product createProduct(String name, int price, ProductDetailInfo productDetailInfo, CouponApplyPossible couponApplyPossible, long brandId) {
+        return new Product(name, price, productDetailInfo, couponApplyPossible, brandId);
     }
 }
