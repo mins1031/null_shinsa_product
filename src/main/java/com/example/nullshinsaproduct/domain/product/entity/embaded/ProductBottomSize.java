@@ -2,14 +2,14 @@
 package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Embeddable
 @Getter
-@ToString
+@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductBottomSize extends ProductSizeDetail {
     private String sizeName;

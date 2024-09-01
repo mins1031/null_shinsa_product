@@ -1,11 +1,6 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductSizeDetail;
-import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,7 +21,6 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SkuProduct {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @CreatedDate
@@ -39,9 +33,6 @@ public class SkuProduct {
     private int stock;
     private double startPoint;
     private int discountRate;
-
-    @Embedded
-    private ProductSizeDetail productSizeDetail;
 
     @Enumerated(EnumType.STRING)
     private ProductStatus productStatus;

@@ -1,8 +1,9 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductSizeDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import jakarta.persistence.CascadeType;
@@ -31,10 +32,6 @@ import java.util.List;
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @CreatedDate
-    private LocalDateTime createdDate;
-    @LastModifiedDate
-    private LocalDateTime updatedDate;
 
     private String name;
     private int price;
@@ -59,9 +56,15 @@ public class Product {
     private List<SkuProduct> skuProductList;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductImage> productImageList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+    private List<ProductSizeDetail> productSizeDetailList;
 
+    @CreatedDate
+    private LocalDateTime createdDate;
+    @LastModifiedDate
+    private LocalDateTime updatedDate;
 
-    private Product(
+    public Product(
             String name,
             int price,
             ProductDetailInfo productDetailInfo,
@@ -71,7 +74,8 @@ public class Product {
             CouponApplyPossible couponApplyPossible,
             Category category,
             List<SkuProduct> skuProductList,
-            List<ProductImage> productImageList
+            List<ProductImage> productImageList,
+            List<ProductSizeDetail> productSizeDetailList
     ) {
         this.name = name;
         this.price = price;
@@ -83,7 +87,6 @@ public class Product {
         this.category = category;
         this.skuProductList = skuProductList;
         this.productImageList = productImageList;
+        this.productSizeDetailList = productSizeDetailList;
     }
-
-
 }
