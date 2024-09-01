@@ -1,6 +1,6 @@
-package com.example.nullshinsaproduct.domain.dto.request;
+package com.example.nullshinsaproduct.presentation.dto.request;
 
-import com.example.nullshinsaproduct.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

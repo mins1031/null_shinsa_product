@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.entity;
+package com.example.nullshinsaproduct.domain.product.entity;
 
 import com.example.nullshinsaproduct.common.domain.BaseEntity;
 import jakarta.persistence.Entity;
@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Seller extends BaseEntity {
+public class Brand extends BaseEntity {
 
     private String name;
-    private String sellerPhoneNumber;
+    private String brandPhoneNumber;
 
-    public Seller(String name, String sellerPhoneNumber) {
+    public Brand(String name, String brandPhoneNumber) {
         this.name = name;
-        this.sellerPhoneNumber = sellerPhoneNumber;
+        this.brandPhoneNumber = brandPhoneNumber;
     }
 }
