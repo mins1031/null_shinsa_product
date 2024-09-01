@@ -3,7 +3,6 @@ package com.example.nullshinsaproduct.domain.product.entity;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductSizeDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import jakarta.persistence.CascadeType;

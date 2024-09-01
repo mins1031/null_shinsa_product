@@ -1,12 +1,11 @@
 
-package com.example.nullshinsaproduct.domain.product.entity.embaded;
+package com.example.nullshinsaproduct.domain.product.entity;
 
-import jakarta.persistence.Embeddable;
+import com.example.nullshinsaproduct.domain.product.entity.ProductSizeDetail;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Getter
 @Entity

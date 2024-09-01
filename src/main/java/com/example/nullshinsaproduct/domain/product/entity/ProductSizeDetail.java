@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.product.entity.embaded;
+package com.example.nullshinsaproduct.domain.product.entity;
 
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import jakarta.persistence.DiscriminatorColumn;
