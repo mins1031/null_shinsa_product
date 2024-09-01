@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.product.entity;
+package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
@@ -10,13 +10,15 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductClothesTopOption {
+public class ProductTopSize extends ProductSizeDetail {
+    private String sizeName;
     private String length;
     private String shoulder;
     private String chest;
     private String sleeve;
 
-    public ProductClothesTopOption(String length, String shoulder, String chest, String sleeve) {
+    public ProductTopSize(String sizeName, String length, String shoulder, String chest, String sleeve) {
+        this.sizeName = sizeName;
         this.length = length;
         this.shoulder = shoulder;
         this.chest = chest;
