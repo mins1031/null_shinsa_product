@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.dto.request;
+package com.example.nullshinsaproduct.presentation.dto.request;
 
 import lombok.Getter;
 import lombok.ToString;

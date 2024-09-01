@@ -1,8 +1,6 @@
-package com.example.nullshinsaproduct.domain.dto.response;
+package com.example.nullshinsaproduct.presentation.dto.response;
 
-import com.example.nullshinsaproduct.domain.enumeration.CouponApplyPossible;
-import lombok.Getter;
-import lombok.ToString;
+import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 
 import java.util.List;
 
