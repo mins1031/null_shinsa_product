@@ -22,11 +22,18 @@ public class ProductDetailInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fabric; // 원단
-    private String manufacturingCountry; // 제조사
-    private String washCaution; // 세탁시 주의사항
+    // ==== 필수 정보 ====
+    private String manufacturingCountry; // 제조국
+    private String manufacturingCompany; // 제조국
     private String manufacturingDate; // 제조일자
-    private String qualityGuarantee; //
+    private String qualityGuarantee; // 품질보증기준
+
+    // ==== 선택 정보 ====
+    private String fabric; // 원단
+    private String measurement; // 치수
+    private String washCaution; // 세탁시 주의사항
+    private String productInnerItems; // 상품구성 내용
+    private String asOfficerAndTel; // as 담당자 및 번호
     private String detailContent; // 상품상세 알림메모
     private String brandDetailContent; // 브랜드 알림메모
     private String adminDetailContent; // 관리자 알림메모
@@ -36,4 +43,31 @@ public class ProductDetailInfo {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
+    public ProductDetailInfo(
+            String manufacturingCountry,
+            String manufacturingCompany,
+            String manufacturingDate,
+            String qualityGuarantee,
+            String fabric,
+            String measurement,
+            String washCaution,
+            String productInnerItems,
+            String asOfficerAndTel,
+            String detailContent,
+            String brandDetailContent,
+            String adminDetailContent
+    ) {
+        this.manufacturingCountry = manufacturingCountry;
+        this.manufacturingCompany = manufacturingCompany;
+        this.manufacturingDate = manufacturingDate;
+        this.qualityGuarantee = qualityGuarantee;
+        this.fabric = fabric;
+        this.measurement = measurement;
+        this.washCaution = washCaution;
+        this.productInnerItems = productInnerItems;
+        this.asOfficerAndTel = asOfficerAndTel;
+        this.detailContent = detailContent;
+        this.brandDetailContent = brandDetailContent;
+        this.adminDetailContent = adminDetailContent;
+    }
 }

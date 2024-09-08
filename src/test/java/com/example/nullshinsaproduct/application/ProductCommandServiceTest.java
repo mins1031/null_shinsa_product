@@ -4,7 +4,7 @@ import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossi
 import com.example.nullshinsaproduct.presentation.dto.request.ProductDetailRequest;
 import com.example.nullshinsaproduct.presentation.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.presentation.dto.request.ProductOptionSaveRequest;
+import com.example.nullshinsaproduct.presentation.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.infrastructure.repository.SellerRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProductCommandServiceTest {
@@ -34,14 +32,14 @@ class ProductCommandServiceTest {
     @Test
     void 상품등록() {
         //given
-        ProductSaveRequest productSaveRequest = new ProductSaveRequest(
-                "신규상품",
-                1L,
-                50000,
-                CouponApplyPossible.POSSIBLE,
-                new ProductDetailRequest("fabric", "country", "washCaution", "manufacturingDate", "qualityGuarantee"),
-                generateProductOptionSaveRequest()
-        );
+//        ProductSaveRequest productSaveRequest = new ProductSaveRequest(
+//                "신규상품",
+//                1L,
+//                50000,
+//                CouponApplyPossible.POSSIBLE,
+//                new ProductDetailRequest("fabric", "country", "washCaution", "manufacturingDate", "qualityGuarantee"),
+//                generateProductOptionSaveRequest()
+//        );
 
 //        Brand requestBrand = Brand.builder()
 //                .name("seller")
@@ -69,19 +67,19 @@ class ProductCommandServiceTest {
 //        verify(productOptionRepository, atLeast(2)).save(any());
     }
 
-    private List<ProductOptionSaveRequest> generateProductOptionSaveRequest() {
-        ProductOptionSaveRequest productOptionSaveRequest1 = new ProductOptionSaveRequest(
-                "color1", "size1", "length1", "shoulder1", "chest1", "sleeve1", "waist1",
-                "crotch1", "hip1", "thigh1", "hem1", 10
-        );
-
-        ProductOptionSaveRequest productOptionSaveRequest2 = new ProductOptionSaveRequest(
-                "color2", "size2", "length2", "shoulder2", "chest2", "sleeve2", "waist2",
-                "crotch2", "hip2", "thigh2", "hem2", 20
-        );
-
-        return List.of(productOptionSaveRequest1, productOptionSaveRequest2);
-    }
+//    private List<ProductSizeRequest> generateProductOptionSaveRequest() {
+//        ProductSizeRequest productSizeRequest1 = new ProductSizeRequest(
+//                "color1", "size1", "length1", "shoulder1", "chest1", "sleeve1", "waist1",
+//                "crotch1", "hip1", "thigh1", "hem1", 10
+//        );
+//
+//        ProductSizeRequest productSizeRequest2 = new ProductSizeRequest(
+//                "color2", "size2", "length2", "shoulder2", "chest2", "sleeve2", "waist2",
+//                "crotch2", "hip2", "thigh2", "hem2", 20
+//        );
+//
+//        return List.of(productSizeRequest1, productSizeRequest2);
+//    }
 
     @Test
     void 상품매퍼_정상동작_테스트() {

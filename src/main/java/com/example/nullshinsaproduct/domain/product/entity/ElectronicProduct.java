@@ -1,6 +1,7 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
 import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
@@ -40,7 +41,7 @@ public class ElectronicProduct extends Product {
             int price,
             ProductBrandInfo productBrandInfo,
             CategoryInfo category,
-            DiscountApplyPossible discountApplyPossible,
+            DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
             List<ProductImage> productImageList,
             ProductDeliveryInfo productDeliveryInfo,
@@ -48,7 +49,7 @@ public class ElectronicProduct extends Product {
             ProductDetailInfo productDetailInfo,
             List<ProductSizeDetail> productSizeDetailList
     ) {
-        super(name, price, productBrandInfo, discountApplyPossible, couponApplyPossible, productImageList);
+        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productImageList);
         this.category = category;
         this.productDeliveryInfo = productDeliveryInfo;
         this.skuProductList = skuProductList;

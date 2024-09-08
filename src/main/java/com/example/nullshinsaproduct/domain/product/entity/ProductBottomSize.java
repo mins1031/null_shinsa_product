@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductBottomSize extends ProductSizeDetail {
-    private String sizeName;
     private String length;
     private String waist;
     private String crotch;
@@ -19,8 +18,17 @@ public class ProductBottomSize extends ProductSizeDetail {
     private String thigh;
     private String hem;
 
-    public ProductBottomSize(String sizeName, String length, String waist, String crotch, String hip, String thigh, String hem) {
-        this.sizeName = sizeName;
+    public ProductBottomSize(
+            String sizeName,
+            Product product,
+            String length,
+            String waist,
+            String crotch,
+            String hip,
+            String thigh,
+            String hem
+    ) {
+        super(sizeName, product);
         this.length = length;
         this.waist = waist;
         this.crotch = crotch;

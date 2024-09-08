@@ -1,12 +1,8 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
-import com.example.nullshinsaproduct.domain.product.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
@@ -20,7 +16,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,11 +40,11 @@ public abstract class Product {
     // 브랜드는 상품 종류마다 뭔가 따로 로직이 있어야할 필요는 없을것 같아 상위필드에 정의
     @Embedded
     private ProductBrandInfo productBrandInfo;
+    @Embedded
+    private DiscountDetail discountDetail;
 
     // === 이넘 ===
-    // 쿠폰, 할인 가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
-    @Enumerated(EnumType.STRING)
-    private DiscountApplyPossible discountApplyPossible;
+    // 쿠폰가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
     @Enumerated(EnumType.STRING)
     private CouponApplyPossible couponApplyPossible;
 
@@ -66,14 +61,14 @@ public abstract class Product {
             String name,
             int price,
             ProductBrandInfo productBrandInfo,
-            DiscountApplyPossible discountApplyPossible,
+            DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
             List<ProductImage> productImageList
     ) {
         this.name = name;
         this.price = price;
         this.productBrandInfo = productBrandInfo;
-        this.discountApplyPossible = discountApplyPossible;
+        this.discountDetail = discountDetail;
         this.couponApplyPossible = couponApplyPossible;
         this.productImageList = productImageList;
     }
