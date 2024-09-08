@@ -1,42 +1,39 @@
 package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-@Embeddable
+import java.time.LocalDateTime;
+
 @Getter
-@ToString
+@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductDetailInfo {
-    private String fabric;
-    private String manufacturingCountry;
-    private String washCaution;
-    private String manufacturingDate;
-    private String qualityGuarantee;
-    private String detailContent;
-    private String brandDetailContent;
-    private String adminDetailContent;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public ProductDetailInfo(
-            String fabric,
-            String manufacturingCountry,
-            String washCaution,
-            String manufacturingDate,
-            String qualityGuarantee,
-            String detailContent,
-            String brandDetailContent,
-            String adminDetailContent
-    ) {
-        this.fabric = fabric;
-        this.manufacturingCountry = manufacturingCountry;
-        this.washCaution = washCaution;
-        this.manufacturingDate = manufacturingDate;
-        this.qualityGuarantee = qualityGuarantee;
-        this.detailContent = detailContent;
-        this.brandDetailContent = brandDetailContent;
-        this.adminDetailContent = adminDetailContent;
-    }
+    private String fabric; // 원단
+    private String manufacturingCountry; // 제조사
+    private String washCaution; // 세탁시 주의사항
+    private String manufacturingDate; // 제조일자
+    private String qualityGuarantee; //
+    private String detailContent; // 상품상세 알림메모
+    private String brandDetailContent; // 브랜드 알림메모
+    private String adminDetailContent; // 관리자 알림메모
+
+    @CreatedDate
+    private LocalDateTime createdDate;
+    @LastModifiedDate
+    private LocalDateTime updatedDate;
+
 }

@@ -1,6 +1,5 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.ProductSizeDetail;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;

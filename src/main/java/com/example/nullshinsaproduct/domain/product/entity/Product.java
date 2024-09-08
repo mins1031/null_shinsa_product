@@ -20,6 +20,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,16 +42,12 @@ public abstract class Product {
     private String name;
     private int price; // 내려갈거
 
-    @Embedded
-    private ProductDetailInfo productDetailInfo; // 내려갈거
+    // 브랜드는 상품 종류마다 뭔가 따로 로직이 있어야할 필요는 없을것 같아 상위필드에 정의
     @Embedded
     private ProductBrandInfo productBrandInfo;
-    @Embedded
-    private ProductDeliveryInfo productDeliveryInfo; // 내려갈거
-    @Embedded
-    private CategoryInfo category;
 
     // === 이넘 ===
+    // 쿠폰, 할인 가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
     @Enumerated(EnumType.STRING)
     private DiscountApplyPossible discountApplyPossible;
     @Enumerated(EnumType.STRING)
@@ -58,41 +55,26 @@ public abstract class Product {
 
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<SkuProduct> skuProductList; // 내려갈거
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductImage> productImageList;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<ProductSizeDetail> productSizeDetailList; // 내려갈거
 
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    private Product(
+    protected Product(
             String name,
             int price,
-            ProductDetailInfo productDetailInfo,
             ProductBrandInfo productBrandInfo,
-            ProductDeliveryInfo productDeliveryInfo,
             DiscountApplyPossible discountApplyPossible,
             CouponApplyPossible couponApplyPossible,
-            FirstLayerCategory firstLayerCategory,
-            List<SkuProduct> skuProductList,
-            List<ProductImage> productImageList,
-            List<ProductSizeDetail> productSizeDetailList
+            List<ProductImage> productImageList
     ) {
         this.name = name;
         this.price = price;
-        this.productDetailInfo = productDetailInfo;
         this.productBrandInfo = productBrandInfo;
-        this.productDeliveryInfo = productDeliveryInfo;
         this.discountApplyPossible = discountApplyPossible;
         this.couponApplyPossible = couponApplyPossible;
-        this.category = firstLayerCategory;
-        this.skuProductList = skuProductList;
         this.productImageList = productImageList;
-        this.productSizeDetailList = productSizeDetailList;
     }
-
 }
