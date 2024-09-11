@@ -1,10 +1,13 @@
 package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
+import com.example.nullshinsaproduct.domain.product.entity.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +20,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductDetailInfo {
+public class ProductDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,12 +41,15 @@ public class ProductDetailInfo {
     private String brandDetailContent; // 브랜드 알림메모
     private String adminDetailContent; // 관리자 알림메모
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
+
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public ProductDetailInfo(
+    public ProductDetail(
             String manufacturingCountry,
             String manufacturingCompany,
             String manufacturingDate,
@@ -55,7 +61,8 @@ public class ProductDetailInfo {
             String asOfficerAndTel,
             String detailContent,
             String brandDetailContent,
-            String adminDetailContent
+            String adminDetailContent,
+            Product product
     ) {
         this.manufacturingCountry = manufacturingCountry;
         this.manufacturingCompany = manufacturingCompany;
@@ -69,5 +76,6 @@ public class ProductDetailInfo {
         this.detailContent = detailContent;
         this.brandDetailContent = brandDetailContent;
         this.adminDetailContent = adminDetailContent;
+        this.product = product;
     }
 }

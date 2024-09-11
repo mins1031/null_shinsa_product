@@ -4,9 +4,8 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -32,9 +31,9 @@ public class ElectronicProduct extends Product {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<SkuProduct> skuProductList;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private ProductDetailInfo productDetailInfo;
+    private ProductDetail productDetail;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<ProductSizeDetail> productSizeDetailList;
+    private List<ProductSize> productSizeList;
 
     public ElectronicProduct(
             String name,
@@ -43,17 +42,16 @@ public class ElectronicProduct extends Product {
             CategoryInfo category,
             DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
-            List<ProductImage> productImageList,
             ProductDeliveryInfo productDeliveryInfo,
             List<SkuProduct> skuProductList,
-            ProductDetailInfo productDetailInfo,
-            List<ProductSizeDetail> productSizeDetailList
+            ProductDetail productDetail,
+            List<ProductSize> productSizeList
     ) {
-        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productImageList);
+        super(name, price, productBrandInfo, discountDetail, couponApplyPossible);
         this.category = category;
         this.productDeliveryInfo = productDeliveryInfo;
         this.skuProductList = skuProductList;
-        this.productDetailInfo = productDetailInfo;
-        this.productSizeDetailList = productSizeDetailList;
+        this.productDetail = productDetail;
+        this.productSizeList = productSizeList;
     }
 }

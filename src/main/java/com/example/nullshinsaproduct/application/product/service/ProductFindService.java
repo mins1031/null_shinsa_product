@@ -1,12 +1,7 @@
-package com.example.nullshinsaproduct.application;
+package com.example.nullshinsaproduct.application.product.service;
 
-import com.example.nullshinsaproduct.presentation.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.presentation.dto.response.ProductResponse;
-import com.example.nullshinsaproduct.domain.product.entity.Product;
-import com.example.nullshinsaproduct.exception.product.ProductException;
-import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.presentation.mapper.ProductMapper;
+import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

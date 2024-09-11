@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum ProductStatus {
+    TEMP("임시등록"),
     SELLING("판매중"),
     SOLD_OUT("솔드아웃"),
     SELL_END("판매종료"),

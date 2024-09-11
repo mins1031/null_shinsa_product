@@ -5,7 +5,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -33,29 +33,44 @@ public class ClothesProduct extends Product {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<SkuProduct> skuProductList;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private ProductDetailInfo productDetailInfo;
+    private ProductDetail productDetail;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<ProductSizeDetail> productSizeDetailList;
+    private List<ProductSize> productSizeList;
 
 
-    public ClothesProduct(
+    private ClothesProduct(
             String name,
             int price,
             ProductBrandInfo productBrandInfo,
             CategoryInfo category,
             DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
-            List<ProductImage> productImageList,
-            ProductDeliveryInfo productDeliveryInfo,
-            List<SkuProduct> skuProductList,
-            ProductDetailInfo productDetailInfo,
-            List<ProductSizeDetail> productSizeDetailList
+            ProductDeliveryInfo productDeliveryInfo
     ) {
-        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productImageList);
+        super(name, price, productBrandInfo, discountDetail, couponApplyPossible);
         this.category = category;
         this.productDeliveryInfo = productDeliveryInfo;
-        this.skuProductList = skuProductList;
-        this.productDetailInfo = productDetailInfo;
-        this.productSizeDetailList = productSizeDetailList;
     }
+
+
+    public static ClothesProduct createBasicClothesProduct(
+            String name,
+            int price,
+            ProductBrandInfo productBrandInfo,
+            CategoryInfo category,
+            DiscountDetail discountDetail,
+            CouponApplyPossible couponApplyPossible,
+            ProductDeliveryInfo productDeliveryInfo
+    ) {
+        return new ClothesProduct(
+                name,
+                price,
+                productBrandInfo,
+                category,
+                discountDetail,
+                couponApplyPossible,
+                productDeliveryInfo
+        );
+    }
+
 }

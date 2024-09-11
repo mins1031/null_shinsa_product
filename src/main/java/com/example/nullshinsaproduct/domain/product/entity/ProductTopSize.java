@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductTopSize extends ProductSizeDetail {
+public class ProductTopSize extends ProductSize {
     private String length;
     private String shoulder;
     private String chest;

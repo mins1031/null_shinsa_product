@@ -1,11 +1,22 @@
 package com.example.nullshinsaproduct.application;
 
+import com.example.nullshinsaproduct.application.product.service.ProductCommandService;
+import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.presentation.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.presentation.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
+import com.example.nullshinsaproduct.domain.product.enumeration.category.FirstLayerCategory;
+import com.example.nullshinsaproduct.domain.product.enumeration.category.InferiorLayerCategory;
+import com.example.nullshinsaproduct.domain.product.enumeration.category.SecondLayerCategory;
+import com.example.nullshinsaproduct.domain.product.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.presentation.dto.request.ProductSizeRequest;
-import com.example.nullshinsaproduct.infrastructure.repository.SellerRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
+import com.example.nullshinsaproduct.domain.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
+import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.domain.dto.request.SkuProductRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +33,7 @@ class ProductCommandServiceTest {
     @Mock
     private ProductRepository productRepository;
     @Mock
-    private SellerRepository sellerRepository;
+    private BrandRepository brandRepository;
 
     @InjectMocks
     private ProductCommandService productCommandService;
@@ -32,30 +43,69 @@ class ProductCommandServiceTest {
     @Test
     void 상품등록() {
         //given
-//        ProductSaveRequest productSaveRequest = new ProductSaveRequest(
-//                "신규상품",
-//                1L,
-//                50000,
-//                CouponApplyPossible.POSSIBLE,
-//                new ProductDetailRequest("fabric", "country", "washCaution", "manufacturingDate", "qualityGuarantee"),
-//                generateProductOptionSaveRequest()
-//        );
+
+        CategoryInfoRequest categories = new CategoryInfoRequest(
+                FirstLayerCategory.MEN,
+                SecondLayerCategory.CLOTHES,
+                ThirdLayerCategory.KNIT_WEAR,
+                InferiorLayerCategory.TOP
+        );
+
+        ProductDetailRequest detail = new ProductDetailRequest(
+                "manufacturingCountry",
+                "manufacturingCompany",
+                "manufacturingDate",
+                "qualityGuarantee",
+                "fabric",
+                "measurement",
+                "washCaution",
+                "productInnerItems",
+                "asOfficerAndTel",
+                "detailContent",
+                "브랜드 상품알림내용 입니다. ",
+                "adminDetailContent"
+        );
+
+        List<ProductSizeRequest> sizes = List.of(
+                new ProductSizeRequest("sizeName", "length", "shoulder",
+                        "chest", "sleeve", null, null, null, null, null)
+        );
+
+        List<SkuProductRequest> skus = List.of(
+                new SkuProductRequest("블루", "M", 0, 0, ProductStatus.TEMP),
+                new SkuProductRequest("블루", "L", 0, 0, ProductStatus.TEMP),
+                new SkuProductRequest("레드", "M", 0, 0, ProductStatus.TEMP),
+                new SkuProductRequest("레드", "L", 0, 0, ProductStatus.TEMP)
+        );
+
+        ProductSaveRequest productSaveRequest = new ProductSaveRequest(
+                "신규상품",
+                1L,
+                50000,
+                categories,
+                CouponApplyPossible.POSSIBLE,
+                DiscountApplyPossible.POSSIBLE,
+                3,
+                15,
+                detail,
+                sizes,
+                "https://thunbnailList.com",
+                List.of("https://profileImageLinks"),
+                List.of("https://detailImageLinks"),
+                skus,
+                ProductType.CLOTHES
+        );
 
 //        Brand requestBrand = Brand.builder()
-//                .name("seller")
+//                .name("brand")
 //                .brandPhoneNumber("010-1111-2222")
 //                .build();
-//
-//        Product savedProduct = Product.builder()
-//                .name(productSaveRequest.getName())
-//                .price(productSaveRequest.getPrice())
-//                .brand(requestBrand)
-//                .productDetailInfo(ProductDetailInfo.from(productSaveRequest.getProductDetailRequest()))
-//                .couponApplyPossible(productSaveRequest.getCouponApplyPossible())
-//                .build();
-//
-//        //when
-//        when(sellerRepository.findById(1L)).thenReturn(Optional.of(requestBrand));
+
+
+
+
+        //when
+//        when(brandRepository.findById(1L)).thenReturn(Optional.of(requestBrand));
 //        when(productRepository.save(any())).thenReturn(savedProduct);
 //        when(productOptionRepository.save(any())).thenReturn(any());
 //

@@ -1,7 +1,6 @@
 
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.ProductSizeDetail;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductBottomSize extends ProductSizeDetail {
+public class ProductBottomSize extends ProductSize {
     private String length;
     private String waist;
     private String crotch;

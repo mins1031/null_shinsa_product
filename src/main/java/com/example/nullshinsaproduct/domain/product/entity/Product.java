@@ -62,14 +62,12 @@ public abstract class Product {
             int price,
             ProductBrandInfo productBrandInfo,
             DiscountDetail discountDetail,
-            CouponApplyPossible couponApplyPossible,
-            List<ProductImage> productImageList
+            CouponApplyPossible couponApplyPossible
     ) {
         this.name = name;
         this.price = price;
         this.productBrandInfo = productBrandInfo;
         this.discountDetail = discountDetail;
         this.couponApplyPossible = couponApplyPossible;
-        this.productImageList = productImageList;
     }
 }

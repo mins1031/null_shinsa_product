@@ -1,9 +1,8 @@
-package com.example.nullshinsaproduct.presentation.dto.request;
+package com.example.nullshinsaproduct.domain.dto.request;
 
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
 
 public record SkuProductRequest (
-        long productId,
         String color,
         String size,
         int stock,

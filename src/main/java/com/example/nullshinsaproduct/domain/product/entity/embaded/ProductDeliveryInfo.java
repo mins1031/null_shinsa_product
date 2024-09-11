@@ -15,8 +15,17 @@ public class ProductDeliveryInfo {
     private int outboundPossibleDay;
     private DeliveryFee deliveryFee;
 
-    public ProductDeliveryInfo(int outboundPossibleDay, DeliveryFee deliveryFee) {
+    private ProductDeliveryInfo(int outboundPossibleDay, DeliveryFee deliveryFee) {
         this.outboundPossibleDay = outboundPossibleDay;
         this.deliveryFee = deliveryFee;
     }
+
+    public static ProductDeliveryInfo createFreeDelivery() {
+        return new ProductDeliveryInfo(3, DeliveryFee.FREE);
+    }
+
+    public static ProductDeliveryInfo createSpecialDelivery() {
+        return new ProductDeliveryInfo(4, DeliveryFee.NOT_FREE);
+    }
+
 }

@@ -1,7 +1,4 @@
-package com.example.nullshinsaproduct.presentation.dto.request;
-
-import lombok.Getter;
-import lombok.ToString;
+package com.example.nullshinsaproduct.domain.dto.request;
 
 public record ProductDetailRequest (
         String manufacturingCountry, // 제조국
