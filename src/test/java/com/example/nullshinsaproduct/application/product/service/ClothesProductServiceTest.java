@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.application.product.service;
 
+import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
@@ -47,6 +48,7 @@ import java.util.stream.Collectors;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.atLeast;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -56,13 +58,7 @@ class ClothesProductServiceTest {
     @Mock
     private ProductRepository productRepository;
     @Mock
-    private ProductDetailRepository productDetailRepository;
-    @Mock
-    private ProductSizeRepository productSizeRepository;
-    @Mock
-    private ProductImageRepository productImageRepository;
-    @Mock
-    private SkuProductRepository skuProductRepository;
+    private ProductDataCombine productDataCombine;
     @Mock
     private BrandRepository brandRepository;
 
@@ -94,7 +90,7 @@ class ClothesProductServiceTest {
                 "productInnerItems",
                 "asOfficerAndTel",
                 "detailContent",
-                "브랜드 상품알림내용 입니다. ",
+                "브랜드 상품알림내용 입니다.",
                 "adminDetailContent"
         );
 
@@ -215,23 +211,27 @@ class ClothesProductServiceTest {
 
         //when
         when(brandRepository.findById(req.brandId())).thenReturn(Optional.of(requestBrand));
-        when(productRepository.save(any())).thenReturn(clothesProduct);
-        when(productDetailRepository.save(any())).thenReturn(productDetail);
         when(productSizeFactory.createProductSizeDetailByCategory(any(), any(), anyList())).thenReturn(productTopSizes);
-        when(skuProductRepository.saveAll(anyList())).thenReturn(skuProducts);
-        when(productSizeRepository.saveAll(anyList())).thenReturn(productTopSizes);
-        when(productImageRepository.saveAll(anyList())).thenReturn(images);
+        when(productRepository.save(any())).thenReturn(clothesProduct);
+        doNothing().when(productDataCombine).saveProductSubEntities(
+                any(),
+                anyList(),
+                anyList(),
+                anyList()
+        );
 
         clothesProductService.saveClothesProduct(req);
 
         //then
         verify(brandRepository, atLeast(1)).findById(1L);
         verify(productRepository, atLeast(1)).save(any());
-        verify(productDetailRepository, atLeast(1)).save(any());
         verify(productSizeFactory, atLeast(1))
                 .createProductSizeDetailByCategory(any(), any(), anyList());
-        verify(skuProductRepository, atLeast(1)).saveAll(any());
-        verify(productSizeRepository, atLeast(1)).saveAll(any());
-        verify(productImageRepository, atLeast(1)).saveAll(any());
+        verify(productDataCombine, atLeast(1)).saveProductSubEntities(
+                any(),
+                anyList(),
+                anyList(),
+                anyList()
+        );
     }
 }

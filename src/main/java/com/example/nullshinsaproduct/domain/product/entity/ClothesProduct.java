@@ -73,4 +73,15 @@ public class ClothesProduct extends Product {
         );
     }
 
+
+    public void initSkus(List<SkuProduct> skus) {
+        this.skuProductList = skus;
+    }
+    public void initDetail(ProductDetail detail) {
+        this.productDetail = detail;
+    }
+    public void initSizes(List<ProductSize> sizes) {
+        this.productSizeList = sizes;
+    }
+
 }

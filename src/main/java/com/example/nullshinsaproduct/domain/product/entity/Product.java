@@ -70,4 +70,8 @@ public abstract class Product {
         this.discountDetail = discountDetail;
         this.couponApplyPossible = couponApplyPossible;
     }
+
+    public void initImages(List<ProductImage> images) {
+        this.productImageList = images;
+    }
 }

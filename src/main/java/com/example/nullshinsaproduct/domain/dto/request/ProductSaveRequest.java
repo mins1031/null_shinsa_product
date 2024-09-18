@@ -19,8 +19,8 @@ public record ProductSaveRequest (
     DiscountApplyPossible discountApplyPossible,
     int discountMinRate,
     int discountMaxRate,
-    ProductDetailRequest productDetailRequest, // 상품 부가 정보
-    List<ProductSizeRequest> productSizeRequests, // 상품별 사이즈 정보
+    ProductDetailRequest productDetailRequest,
+    List<ProductSizeRequest> productSizeRequests,
     String thumbnailLink,
     List<String> profileImagesLink,
     List<String> detailImageLink,

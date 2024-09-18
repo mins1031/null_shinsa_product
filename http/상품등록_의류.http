@@ -1,0 +1,89 @@
+POST http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "name": "니트상품-1",
+  "brandId": 1,
+  "price": 56000,
+  "categoryInfoRequest": {
+    "firstLayerCategory" : "MEN",
+    "secondLayerCategory" : "CLOTHES",
+    "thirdLayerCategory" : "KNIT_WEAR",
+    "inferiorLayerCategory" : "TOP"
+  },
+  "couponApplyPossible": "POSSIBLE",
+  "discountApplyPossible": "POSSIBLE",
+  "discountMinRate": 0,
+  "discountMaxRate": 20,
+  "productDetailRequest": {
+    "manufacturingCountry": "대한민국",
+    "manufacturingCompany": "민영제조사",
+    "manufacturingDate": "2024-01-01",
+    "qualityGuarantee": "품질보증서",
+    "fabric": "캐시미어 10%, 울 90%",
+    "measurement": "",
+    "washCaution": "드라이클리닝 맡기세요",
+    "productInnerItems": "",
+    "asOfficerAndTel": "010-5534-23123",
+    "detailContent": "상품상세 알림메모",
+    "brandDetailContent": "브랜드 알림메모",
+    "adminDetailContent": "관리자 알림메모"
+  },
+  "productSizeRequests": [
+    {
+      "sizeName": "S",
+      "length": "64",
+      "shoulder": "50.5",
+      "chest": "57",
+      "sleeve": "59",
+      "waist": "",
+      "crotch": "",
+      "hip": "",
+      "thigh": "",
+      "hem": ""
+    },
+    {
+      "sizeName": "M",
+      "length": "66",
+      "shoulder": "52.5",
+      "chest": "59",
+      "sleeve": "61",
+      "waist": "",
+      "crotch": "",
+      "hip": "",
+      "thigh": "",
+      "hem": ""
+    },
+    {
+      "sizeName": "L",
+      "length": "68",
+      "shoulder": "54.5",
+      "chest": "61",
+      "sleeve": "63",
+      "waist": "",
+      "crotch": "",
+      "hip": "",
+      "thigh": "",
+      "hem": ""
+    }
+  ],
+  "thumbnailLink": "http://knit1-thumbnail.com",
+  "profileImagesLink": ["http://knit1-prifile.com"],
+  "detailImageLink": ["http://knit1-detail.com"],
+  "skuProductRequests": [
+    {
+      "color": "gray",
+      "size": "S",
+      "stock": 0,
+      "discountRate": 0,
+      "productStatus": "TEMP"
+    }
+  ],
+  "productType": "CLOTHES"
+}
+
+//res
+//{
+//}
+//
+//Response code: 200; Time: 336ms; Content length: 35531 bytes

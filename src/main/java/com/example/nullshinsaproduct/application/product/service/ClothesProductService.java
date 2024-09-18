@@ -1,36 +1,36 @@
 package com.example.nullshinsaproduct.application.product.service;
 
+import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.application.product.mapper.ProductMapper;
+import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
+import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
+import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
+import com.example.nullshinsaproduct.domain.product.entity.SkuProduct;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
+import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductDetailRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductImageRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductSizeRepository;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.infrastructure.repository.SkuProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ClothesProductService {
     private final ProductRepository productRepository;
-    private final ProductDetailRepository productDetailRepository;
-    private final SkuProductRepository skuProductRepository;
-    private final ProductSizeRepository productSizeRepository;
-    private final ProductImageRepository productImageRepository;
     private final BrandRepository brandRepository;
     private final ProductSizeFactory productSizeFactory;
+    private final ProductDataCombine productDataCombine;
 
     @Transactional
     public void saveClothesProduct(ProductSaveRequest req) {
@@ -64,10 +64,16 @@ public class ClothesProductService {
 
         ClothesProduct savedProduct = productRepository.save(clothesProduct);
 
-        productDetailRepository.save(ProductMapper.mapFromReqToProductDetail(req.productDetailRequest(), savedProduct));
-        productSizeRepository.saveAll(productSizeFactory.createProductSizeDetailByCategory(savedProduct, req.categoryInfoRequest(), req.productSizeRequests()));
-        skuProductRepository.saveAll(ProductMapper.mapFromReqsToSkuProducts(req.skuProductRequests(), savedProduct));
-        productImageRepository.saveAll(ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct));
+        ProductDetail productDetail = ProductMapper.mapFromReqToProductDetail(req.productDetailRequest(), savedProduct);
+        savedProduct.initDetail(productDetail);
+        List<ProductSize> productSizes = productSizeFactory.createProductSizeDetailByCategory(savedProduct, req.categoryInfoRequest(), req.productSizeRequests());
+        savedProduct.initSizes(productSizes);
+        List<SkuProduct> skus = ProductMapper.mapFromReqsToSkuProducts(req.skuProductRequests(), savedProduct);
+        savedProduct.initSkus(skus);
+        List<ProductImage> images = ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct);
+        savedProduct.initImages(images);
+
+        productDataCombine.saveProductSubEntities(productDetail, productSizes, skus, images);
 
         //이벤트 처리
 
