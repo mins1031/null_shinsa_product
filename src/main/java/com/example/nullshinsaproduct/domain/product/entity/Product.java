@@ -1,11 +1,10 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
+import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetailInfo;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,7 +13,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -28,64 +28,50 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Product {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn
+public abstract class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private int price;
+    private int price; // 내려갈거
 
-    @Embedded
-    private ProductDetailInfo productDetailInfo;
+    // 브랜드는 상품 종류마다 뭔가 따로 로직이 있어야할 필요는 없을것 같아 상위필드에 정의
     @Embedded
     private ProductBrandInfo productBrandInfo;
     @Embedded
-    private ProductDeliveryInfo productDeliveryInfo;
+    private DiscountDetail discountDetail;
 
     // === 이넘 ===
-    @Enumerated(EnumType.STRING)
-    private DiscountApplyPossible discountApplyPossible;
+    // 쿠폰가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
     @Enumerated(EnumType.STRING)
     private CouponApplyPossible couponApplyPossible;
 
     // === 연관관계 ===
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<SkuProduct> skuProductList;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductImage> productImageList;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<ProductSizeDetail> productSizeDetailList;
 
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public Product(
+    protected Product(
             String name,
             int price,
-            ProductDetailInfo productDetailInfo,
             ProductBrandInfo productBrandInfo,
-            ProductDeliveryInfo productDeliveryInfo,
-            DiscountApplyPossible discountApplyPossible,
-            CouponApplyPossible couponApplyPossible,
-            Category category,
-            List<SkuProduct> skuProductList,
-            List<ProductImage> productImageList,
-            List<ProductSizeDetail> productSizeDetailList
+            DiscountDetail discountDetail,
+            CouponApplyPossible couponApplyPossible
     ) {
         this.name = name;
         this.price = price;
-        this.productDetailInfo = productDetailInfo;
         this.productBrandInfo = productBrandInfo;
-        this.productDeliveryInfo = productDeliveryInfo;
-        this.discountApplyPossible = discountApplyPossible;
+        this.discountDetail = discountDetail;
         this.couponApplyPossible = couponApplyPossible;
-        this.category = category;
-        this.skuProductList = skuProductList;
-        this.productImageList = productImageList;
-        this.productSizeDetailList = productSizeDetailList;
+    }
+
+    public void initImages(List<ProductImage> images) {
+        this.productImageList = images;
     }
 }

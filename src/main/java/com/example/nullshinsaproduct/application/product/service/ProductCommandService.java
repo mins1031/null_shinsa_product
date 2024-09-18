@@ -1,11 +1,8 @@
-package com.example.nullshinsaproduct.application;
+package com.example.nullshinsaproduct.application.product.service;
 
-import com.example.nullshinsaproduct.presentation.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.domain.product.entity.Brand;
+import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.exception.seller.SellerException;
-import com.example.nullshinsaproduct.exception.seller.SellerExceptionCode;
-import com.example.nullshinsaproduct.infrastructure.repository.SellerRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ProductCommandService {
     private final ProductRepository productRepository;
-    private final SellerRepository sellerRepository;
+    private final BrandRepository brandRepository;
 
     @Transactional
     public void saveProduct(final ProductSaveRequest request) {
-        final Brand brand = sellerRepository.findById(request.getSellerNum()).orElseThrow(() -> new SellerException(SellerExceptionCode.NOT_EXIST_SELLER));
+//        final Brand brand = sellerRepository.findById(request.getSellerNum()).orElseThrow(() -> new SellerException(SellerExceptionCode.NOT_EXIST_SELLER));
 //        final Product savedProduct = productRepository.save(Product.createProduct(
 //                request.getName(),
 //                request.getPrice(),

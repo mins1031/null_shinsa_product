@@ -1,7 +1,6 @@
 
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.ProductSizeDetail;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductBottomSize extends ProductSizeDetail {
-    private String sizeName;
+public class ProductBottomSize extends ProductSize {
     private String length;
     private String waist;
     private String crotch;
@@ -19,8 +17,17 @@ public class ProductBottomSize extends ProductSizeDetail {
     private String thigh;
     private String hem;
 
-    public ProductBottomSize(String sizeName, String length, String waist, String crotch, String hip, String thigh, String hem) {
-        this.sizeName = sizeName;
+    public ProductBottomSize(
+            String sizeName,
+            Product product,
+            String length,
+            String waist,
+            String crotch,
+            String hip,
+            String thigh,
+            String hem
+    ) {
+        super(sizeName, product);
         this.length = length;
         this.waist = waist;
         this.crotch = crotch;

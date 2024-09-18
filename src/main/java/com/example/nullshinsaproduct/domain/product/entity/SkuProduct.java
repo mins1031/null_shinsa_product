@@ -40,6 +40,34 @@ public class SkuProduct {
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
+    private SkuProduct(String color, String size, int stock, double startPoint, int discountRate, ProductStatus productStatus, Product product) {
+        this.color = color;
+        this.size = size;
+        this.stock = stock;
+        this.startPoint = startPoint;
+        this.discountRate = discountRate;
+        this.productStatus = productStatus;
+        this.product = product;
+    }
+
+    public static SkuProduct createSkuProduct(
+            String color,
+            String size,
+            int stock,
+            int discountRate,
+            ProductStatus productStatus,
+            Product product
+    ) {
+        return new SkuProduct(
+                color,
+                size,
+                stock,
+                0,
+                discountRate,
+                productStatus,
+                product
+        );
+    }
 
     public boolean isSoldOut() {
         return this.stock <= 0;
