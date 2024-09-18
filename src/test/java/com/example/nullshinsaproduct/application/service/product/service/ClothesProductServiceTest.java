@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.application.product.service;
+package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
@@ -23,16 +23,12 @@ import com.example.nullshinsaproduct.domain.product.enumeration.category.SecondL
 import com.example.nullshinsaproduct.domain.product.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductDetailRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductImageRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductSizeRepository;
 import com.example.nullshinsaproduct.domain.dto.request.CategoryInfoRequest;
 import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
 import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.domain.dto.request.SkuProductRequest;
-import com.example.nullshinsaproduct.infrastructure.repository.SkuProductRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

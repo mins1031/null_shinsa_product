@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.application.product.service;
+package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
 import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
