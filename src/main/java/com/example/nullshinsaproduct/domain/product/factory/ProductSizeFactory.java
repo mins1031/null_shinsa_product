@@ -22,7 +22,7 @@ public class ProductSizeFactory {
         List<ProductSize> productSize;
 
         switch (categoryReq.thirdLayerCategory()) {
-            case OUTER, TOP ->
+            case OUTER, TOP, KNIT_WEAR ->
                     productSize = sizeReqs.stream()
                             .map(sizeReq -> new ProductTopSize(
                                     sizeReq.sizeName(),

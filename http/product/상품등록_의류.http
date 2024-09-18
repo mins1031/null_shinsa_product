@@ -2,7 +2,7 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-  "name": "니트상품-1",
+  "name": "니트상품-6",
   "brandId": 1,
   "price": 56000,
   "categoryInfoRequest": {
@@ -82,8 +82,3 @@ Content-Type: application/json
   "productType": "CLOTHES"
 }
 
-//res
-//{
-//}
-//
-//Response code: 200; Time: 336ms; Content length: 35531 bytes
