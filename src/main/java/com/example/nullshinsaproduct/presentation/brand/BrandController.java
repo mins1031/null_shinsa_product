@@ -20,7 +20,7 @@ public class BrandController {
     private final BrandCommandService brandCommandService;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/products")
+    @PostMapping("/brands")
     public ResponseResult<Boolean> saveBrand(@Valid @RequestBody BrandSaveRequest request) {
         log.info("신규 브랜드 생성 req : {}", request);
         brandCommandService.saveBrand(request);

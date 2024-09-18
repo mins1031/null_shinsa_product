@@ -1,0 +1,10 @@
+POST http://localhost:8080/brands
+Content-Type: application/json
+
+{
+  "brandName" : "브랜드3",
+  "corporateNumber" : "11-11-11-13",
+  "communicationSellingNumber" :  "031-078-1113",
+  "representative" : "대표 사업자3",
+  "location" :  "서울특별시 강남구 개쩌는동3"
+}
