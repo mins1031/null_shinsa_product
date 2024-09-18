@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.presentation.dto.response;
+package com.example.nullshinsaproduct.domain.dto.response;
 
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 

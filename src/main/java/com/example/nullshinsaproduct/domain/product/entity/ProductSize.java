@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn
-public abstract class ProductSizeDetail {
+public abstract class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,7 +38,7 @@ public abstract class ProductSizeDetail {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public ProductSizeDetail(String sizeName, Product product) {
+    public ProductSize(String sizeName, Product product) {
         this.sizeName = sizeName;
         this.product = product;
     }

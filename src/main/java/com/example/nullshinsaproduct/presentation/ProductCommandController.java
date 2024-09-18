@@ -1,7 +1,9 @@
 package com.example.nullshinsaproduct.presentation;
 
-import com.example.nullshinsaproduct.application.ProductCommandService;
-import com.example.nullshinsaproduct.presentation.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.product.facade.ProductFacade;
+import com.example.nullshinsaproduct.application.product.service.ProductCommandService;
+import com.example.nullshinsaproduct.common.dto.ResponseResult;
+import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class ProductCommandController {
-    private final ProductCommandService productCommandService;
+    private final ProductFacade productFacade;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/products")
-    public void saveProduct(@Valid @RequestBody ProductSaveRequest request) {
-        productCommandService.saveProduct(request);
+    public ResponseResult<Boolean> saveProduct(@Valid @RequestBody ProductSaveRequest request) {
+        log.info("상품 생성 req : {}", request);
+        productFacade.applySaveProductByType(request);
+        return ResponseResult.success(HttpStatus.CREATED, true);
     }
 }

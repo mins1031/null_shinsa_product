@@ -11,14 +11,14 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductBrandInfo {
-    private long brandId;
+    private Long brandId;
     private String brandName;
     private String corporateNumber;
     private String communicationSellingNumber;
     private String representative;
     private String location;
 
-    public ProductBrandInfo(long brandId, String brandName, String corporateNumber, String communicationSellingNumber, String representative, String location) {
+    public ProductBrandInfo(Long brandId, String brandName, String corporateNumber, String communicationSellingNumber, String representative, String location) {
         this.brandId = brandId;
         this.brandName = brandName;
         this.corporateNumber = corporateNumber;
