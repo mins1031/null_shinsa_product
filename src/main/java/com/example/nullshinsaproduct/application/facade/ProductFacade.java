@@ -1,7 +1,7 @@
-package com.example.nullshinsaproduct.application.product.facade;
+package com.example.nullshinsaproduct.application.facade;
 
-import com.example.nullshinsaproduct.application.product.service.ClothesProductService;
-import com.example.nullshinsaproduct.application.product.service.ElectronicProductService;
+import com.example.nullshinsaproduct.application.service.product.service.ClothesProductService;
+import com.example.nullshinsaproduct.application.service.product.service.ElectronicProductService;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import lombok.RequiredArgsConstructor;

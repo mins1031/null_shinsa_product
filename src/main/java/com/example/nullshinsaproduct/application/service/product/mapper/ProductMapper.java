@@ -1,12 +1,9 @@
-package com.example.nullshinsaproduct.application.product.mapper;
+package com.example.nullshinsaproduct.application.service.product.mapper;
 
 import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.domain.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
-import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
-import com.example.nullshinsaproduct.domain.product.entity.ProductTopSize;
 import com.example.nullshinsaproduct.domain.product.entity.SkuProduct;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.ImageType;

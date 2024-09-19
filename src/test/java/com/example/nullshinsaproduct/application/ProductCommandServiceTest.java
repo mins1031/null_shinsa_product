@@ -1,7 +1,6 @@
 package com.example.nullshinsaproduct.application;
 
-import com.example.nullshinsaproduct.application.product.service.ProductCommandService;
-import com.example.nullshinsaproduct.domain.product.entity.Brand;
+import com.example.nullshinsaproduct.application.service.product.service.ProductCommandService;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
