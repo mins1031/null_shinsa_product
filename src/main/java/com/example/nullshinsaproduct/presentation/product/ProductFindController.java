@@ -1,6 +1,6 @@
-package com.example.nullshinsaproduct.presentation;
+package com.example.nullshinsaproduct.presentation.product;
 
-import com.example.nullshinsaproduct.application.product.service.ProductFindService;
+import com.example.nullshinsaproduct.application.service.product.service.ProductFindService;
 import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

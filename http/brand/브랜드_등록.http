@@ -1,0 +1,16 @@
+POST http://localhost:8080/brands
+Content-Type: application/json
+
+{
+  "brandName" : "브랜드4",
+  "corporateNumber" : "11-11-11-14",
+  "communicationSellingNumber" :  "031-078-1114",
+  "representative" : "대표 사업자4",
+  "location" :  "서울특별시 강남구 개쩌는동4"
+}
+
+//{
+//  "statusCode": "CREATED",
+//  "message": null,
+//  "result": true
+//}

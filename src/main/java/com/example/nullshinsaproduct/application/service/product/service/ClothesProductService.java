@@ -1,7 +1,7 @@
-package com.example.nullshinsaproduct.application.product.service;
+package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.application.product.mapper.ProductMapper;
+import com.example.nullshinsaproduct.application.service.product.mapper.ProductMapper;
 import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
