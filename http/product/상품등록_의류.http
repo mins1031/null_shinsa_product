@@ -2,7 +2,7 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-  "name": "니트상품-6",
+  "name": "니트상품-7",
   "brandId": 1,
   "price": 56000,
   "categoryInfoRequest": {
