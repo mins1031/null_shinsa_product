@@ -7,6 +7,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandI
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -45,9 +46,10 @@ public class ClothesProduct extends Product {
             CategoryInfo category,
             DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
-            ProductDeliveryInfo productDeliveryInfo
+            ProductDeliveryInfo productDeliveryInfo,
+            ProductType productType
     ) {
-        super(name, price, productBrandInfo, discountDetail, couponApplyPossible);
+        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productType);
         this.category = category;
         this.productDeliveryInfo = productDeliveryInfo;
     }
@@ -60,7 +62,8 @@ public class ClothesProduct extends Product {
             CategoryInfo category,
             DiscountDetail discountDetail,
             CouponApplyPossible couponApplyPossible,
-            ProductDeliveryInfo productDeliveryInfo
+            ProductDeliveryInfo productDeliveryInfo,
+            ProductType productType
     ) {
         return new ClothesProduct(
                 name,
@@ -69,7 +72,8 @@ public class ClothesProduct extends Product {
                 category,
                 discountDetail,
                 couponApplyPossible,
-                productDeliveryInfo
+                productDeliveryInfo,
+                productType
         );
     }
 
@@ -83,5 +87,6 @@ public class ClothesProduct extends Product {
     public void initSizes(List<ProductSize> sizes) {
         this.productSizeList = sizes;
     }
+
 
 }

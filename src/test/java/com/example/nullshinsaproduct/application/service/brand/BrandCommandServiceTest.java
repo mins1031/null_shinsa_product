@@ -30,10 +30,13 @@ class BrandCommandServiceTest {
         //given
         BrandSaveRequest request = new BrandSaveRequest(
                 "브랜드1",
+                "한줄 소개 입니다",
                 "11-11-22-4",
                 "031-242-1111",
                 "사업자1",
-                "서울특별시 강남구 개쩌는동"
+                "서울특별시 강남구 개쩌는동",
+                "titleImage",
+                "introImage"
         );
 
         //when

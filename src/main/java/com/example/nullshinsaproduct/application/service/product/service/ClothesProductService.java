@@ -13,6 +13,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetai
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
@@ -59,7 +60,8 @@ public class ClothesProductService {
                 categoryInfo,
                 new DiscountDetail(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
                 req.couponApplyPossible(),
-                ProductDeliveryInfo.createFreeDelivery()
+                ProductDeliveryInfo.createFreeDelivery(),
+                ProductType.CLOTHES
         );
 
         ClothesProduct savedProduct = productRepository.save(clothesProduct);

@@ -22,12 +22,14 @@ public class Brand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-
     private String brandName;
+    private String oneLineIntroduce;
     private String corporateNumber;
     private String communicationSellingNumber;
     private String representative;
     private String location;
+    private String titleImageUrl;
+    private String introImageUrl;
 
     @CreatedDate
     protected LocalDateTime createdDate;
@@ -36,11 +38,14 @@ public class Brand {
     protected LocalDateTime updatedDate;
 
     @Builder
-    public Brand(String brandName, String corporateNumber, String communicationSellingNumber, String representative, String location) {
+    public Brand(String brandName, String oneLineIntroduce, String corporateNumber, String communicationSellingNumber, String representative, String location, String titleImageUrl, String introImageUrl) {
         this.brandName = brandName;
+        this.oneLineIntroduce = oneLineIntroduce;
         this.corporateNumber = corporateNumber;
         this.communicationSellingNumber = communicationSellingNumber;
         this.representative = representative;
         this.location = location;
+        this.titleImageUrl = titleImageUrl;
+        this.introImageUrl = introImageUrl;
     }
 }

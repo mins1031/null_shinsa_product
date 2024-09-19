@@ -1,14 +1,18 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
-import com.example.nullshinsaproduct.domain.product.entity.Product;
-import jakarta.persistence.DiscriminatorColumn;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductSizeType;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,7 +26,6 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn
 public abstract class ProductSize {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +34,11 @@ public abstract class ProductSize {
     private String sizeName;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Product product;
+
+    @Enumerated(EnumType.STRING)
+    private ProductSizeType productSizeType;
 
     @CreatedDate
     private LocalDateTime createdDate;

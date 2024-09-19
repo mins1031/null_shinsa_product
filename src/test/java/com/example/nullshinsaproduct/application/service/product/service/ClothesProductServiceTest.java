@@ -122,10 +122,13 @@ class ClothesProductServiceTest {
 
         Brand requestBrand = Brand.builder()
                 .brandName("min-brand")
-                .communicationSellingNumber("selling-num")
+                .oneLineIntroduce("한줄 소개 입니다")
+                .corporateNumber("사업자 이름입니다")
                 .communicationSellingNumber("010-1111-2222")
                 .representative("repre")
                 .location("토론토")
+                .titleImageUrl("titleImage")
+                .introImageUrl("introImage")
                 .build();
 
         ProductBrandInfo productBrandInfo = new ProductBrandInfo(
@@ -152,34 +155,8 @@ class ClothesProductServiceTest {
                 categoryInfo,
                 new DiscountDetail(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
                 req.couponApplyPossible(),
-                ProductDeliveryInfo.createFreeDelivery()
-        );
-
-        List<SkuProduct> skuProducts = skus.stream()
-                .map(sku -> SkuProduct.createSkuProduct(
-                        sku.color(),
-                        sku.size(),
-                        sku.stock(),
-                        sku.discountRate(),
-                        sku.productStatus(),
-                        clothesProduct
-                ))
-                .collect(Collectors.toList());
-
-        ProductDetail productDetail = new ProductDetail(
-                detail.manufacturingCountry(),
-                detail.manufacturingCompany(),
-                detail.manufacturingDate(),
-                detail.qualityGuarantee(),
-                detail.fabric(),
-                detail.measurement(),
-                detail.washCaution(),
-                detail.productInnerItems(),
-                detail.asOfficerAndTel(),
-                detail.detailContent(),
-                detail.brandDetailContent(),
-                detail.adminDetailContent(),
-                clothesProduct
+                ProductDeliveryInfo.createFreeDelivery(),
+                ProductType.CLOTHES
         );
 
         List<ProductImage> images = new ArrayList<>();
@@ -204,6 +181,7 @@ class ClothesProductServiceTest {
                         sizeReq.chest(),
                         sizeReq.sleeve()
                 )).collect(Collectors.toList());
+
 
         //when
         when(brandRepository.findById(req.brandId())).thenReturn(Optional.of(requestBrand));

@@ -4,6 +4,7 @@ import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossi
 
 import java.util.List;
 
+
 public record ProductResponse(
         Long productId,
         String name,
@@ -14,5 +15,6 @@ public record ProductResponse(
         String manufacturingDate,
         String qualityGuarantee,
         CouponApplyPossible couponApplyPossible,
+        BrandResponse brandResponse,
         List<ProductOptionResponse> productOptionResponseList) {
 }

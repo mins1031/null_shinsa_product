@@ -3,8 +3,10 @@ package com.example.nullshinsaproduct.domain.product.entity;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,7 +31,6 @@ import java.util.List;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn
 public abstract class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +39,7 @@ public abstract class Product {
     private int price; // 내려갈거
 
     // 브랜드는 상품 종류마다 뭔가 따로 로직이 있어야할 필요는 없을것 같아 상위필드에 정의
+    // 과연 브랜드 관련 데이터가 상품에 있을필요가 있을까..? id 만 있어도 충분할거 같은데 cqrs 를 미리 고려해놔서 이렇게 한것 같다. -> 일단은.. 두자
     @Embedded
     private ProductBrandInfo productBrandInfo;
     @Embedded
@@ -47,6 +49,8 @@ public abstract class Product {
     // 쿠폰가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
     @Enumerated(EnumType.STRING)
     private CouponApplyPossible couponApplyPossible;
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
 
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
@@ -62,16 +66,19 @@ public abstract class Product {
             int price,
             ProductBrandInfo productBrandInfo,
             DiscountDetail discountDetail,
-            CouponApplyPossible couponApplyPossible
+            CouponApplyPossible couponApplyPossible,
+            ProductType productType
     ) {
         this.name = name;
         this.price = price;
         this.productBrandInfo = productBrandInfo;
         this.discountDetail = discountDetail;
         this.couponApplyPossible = couponApplyPossible;
+        this.productType = productType;
     }
 
     public void initImages(List<ProductImage> images) {
         this.productImageList = images;
     }
+
 }

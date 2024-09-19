@@ -1,12 +1,15 @@
 package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
 import com.example.nullshinsaproduct.domain.product.entity.Product;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -42,6 +45,7 @@ public class ProductDetail {
     private String adminDetailContent; // 관리자 알림메모
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Product product;
 
     @CreatedDate
