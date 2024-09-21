@@ -49,4 +49,15 @@ public abstract class ProductSize {
         this.sizeName = sizeName;
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return "ProductSize{" +
+                "id=" + id +
+                ", sizeName='" + sizeName + '\'' +
+                ", productSizeType=" + productSizeType +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                '}';
+    }
 }

@@ -45,4 +45,15 @@ public class ProductImage {
         this.imageType = imageType;
         this.product = product;
     }
+
+    @Override
+    public String toString() {
+        return "ProductImage{" +
+                "id=" + id +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", imageType=" + imageType +
+                '}';
+    }
 }

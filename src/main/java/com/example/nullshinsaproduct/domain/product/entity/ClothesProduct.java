@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -33,7 +34,7 @@ public class ClothesProduct extends Product {
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<SkuProduct> skuProductList;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private ProductDetail productDetail;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductSize> productSizeList;
@@ -88,5 +89,15 @@ public class ClothesProduct extends Product {
         this.productSizeList = sizes;
     }
 
-
+    @Override
+    public String toString() {
+        return "ClothesProduct{" +
+                "product=" + super.toString() +
+                "category=" + category +
+                ", productDeliveryInfo=" + productDeliveryInfo +
+                ", skuProductList is null ? =" + Objects.isNull(skuProductList) +
+                ", productDetail is null ? =" + Objects.isNull(productDetail) +
+                ", productSizeList is null ? =" + Objects.isNull(productSizeList) +
+                '}';
+    }
 }

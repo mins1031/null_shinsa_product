@@ -4,6 +4,7 @@ import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.domain.dto.response.BrandResponse;
 import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
+import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
@@ -25,37 +26,35 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ProductFindService {
+public class ClothesProductFindService {
     private final ProductRepository productRepository;
     private final BrandRepository brandRepository;
     private final ProductSizeRepository productSizeRepository;
     private final ProductSizeFactory productSizeFactory;
     private final ProductDataCombine productDataCombine;
-//
-//    //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
-//    @Transactional(readOnly = true)
-//    public ProductResponse findIntegrationProductById(Long productId) {
-//        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
-//        ProductBrandInfo productBrandInfo = product.getProductBrandInfo();
-//        Brand brand = brandRepository.findById(productBrandInfo.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
-//
-//        BrandResponse brandResponse = new BrandResponse(
-//                brand.getId(),
-//                brand.getBrandName(),
-//                brand.getOneLineIntroduce(),
-//                brand.getCorporateNumber(),
-//                brand.getCommunicationSellingNumber(),
-//                brand.getRepresentative(),
-//                brand.getLocation(),
-//                brand.getTitleImageUrl(),
-//                brand.getIntroImageUrl()
-//        );
-//
-//        List<ProductSize> sizesByProduct = productSizeRepository.findAllByProduct(product);
-//
-//
-//        return ProductMapper.INSTANCE.toResponseDto(product, productClothesOptions);
-//    }
+
+    //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
+    @Transactional(readOnly = true)
+    public ProductResponse findOneProduct(ClothesProduct product) {
+        log.info("product : {}", product);
+        ProductBrandInfo productBrandInfo = product.getProductBrandInfo();
+        Brand brand = brandRepository.findById(productBrandInfo.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
+
+        BrandResponse brandResponse = new BrandResponse(
+                brand.getId(),
+                brand.getBrandName(),
+                brand.getOneLineIntroduce(),
+                brand.getCorporateNumber(),
+                brand.getCommunicationSellingNumber(),
+                brand.getRepresentative(),
+                brand.getLocation(),
+                brand.getTitleImageUrl(),
+                brand.getIntroImageUrl()
+        );
+
+
+        return null;
+    }
 
     @Transactional(readOnly = true)
     public List<ProductOptionStockResponse> findProductOptionStocks(final List<Long> productOptionIdList) {

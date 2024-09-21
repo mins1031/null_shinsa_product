@@ -28,4 +28,14 @@ public class ProductTopSize extends ProductSize {
         this.chest = chest;
         this.sleeve = sleeve;
     }
+
+    @Override
+    public String toString() {
+        return "ProductTopSize{" +
+                "length='" + length + '\'' +
+                ", shoulder='" + shoulder + '\'' +
+                ", chest='" + chest + '\'' +
+                ", sleeve='" + sleeve + '\'' +
+                '}';
+    }
 }

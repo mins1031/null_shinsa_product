@@ -26,6 +26,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -81,4 +82,19 @@ public abstract class Product {
         this.productImageList = images;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", productBrandInfo=" + productBrandInfo +
+                ", discountDetail=" + discountDetail +
+                ", couponApplyPossible=" + couponApplyPossible +
+                ", productType=" + productType +
+                ", productImageList is null ? =" + Objects.isNull(productImageList) +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                '}';
+    }
 }

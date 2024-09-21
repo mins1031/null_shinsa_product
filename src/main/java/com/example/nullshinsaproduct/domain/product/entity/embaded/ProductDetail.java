@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,9 +45,11 @@ public class ProductDetail {
     private String brandDetailContent; // 브랜드 알림메모
     private String adminDetailContent; // 관리자 알림메모
 
-    @ManyToOne(fetch = FetchType.LAZY)
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+//    private Product product;
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Product product;
+    private long productId;
 
     @CreatedDate
     private LocalDateTime createdDate;
@@ -66,7 +69,8 @@ public class ProductDetail {
             String detailContent,
             String brandDetailContent,
             String adminDetailContent,
-            Product product
+//            Product product
+            long productId
     ) {
         this.manufacturingCountry = manufacturingCountry;
         this.manufacturingCompany = manufacturingCompany;
@@ -80,6 +84,7 @@ public class ProductDetail {
         this.detailContent = detailContent;
         this.brandDetailContent = brandDetailContent;
         this.adminDetailContent = adminDetailContent;
-        this.product = product;
+        this.productId = productId;
     }
+
 }

@@ -76,4 +76,20 @@ public class SkuProduct {
     public boolean isSoldOut() {
         return this.stock <= 0;
     }
+
+
+    @Override
+    public String toString() {
+        return "SkuProduct{" +
+                "id=" + id +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", color='" + color + '\'' +
+                ", size='" + size + '\'' +
+                ", stock=" + stock +
+                ", startPoint=" + startPoint +
+                ", discountRate=" + discountRate +
+                ", productStatus=" + productStatus +
+                '}';
+    }
 }

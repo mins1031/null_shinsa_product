@@ -22,3 +22,4 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         enable_lazy_load_no_trans: false
         default_batch_fetch_size: 1000
+    open-in-view: false
