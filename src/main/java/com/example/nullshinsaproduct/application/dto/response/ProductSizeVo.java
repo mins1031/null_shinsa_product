@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.dto.response;
+package com.example.nullshinsaproduct.application.dto.response;
 
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.domain.product.entity.ProductBottomSize;
@@ -92,5 +92,9 @@ public record ProductSizeVo(
 
     private static ProductSizeVo createUnderSizeVo(ProductSize productSize) {
         return null;
+    }
+
+    public long getProductId() {
+        return this.product.getId();
     }
 }

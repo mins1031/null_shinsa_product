@@ -38,4 +38,8 @@ public record ProductImageVo(
                 product
         );
     }
+
+    public long getProductId() {
+        return this.product.getId();
+    }
 }

@@ -2,8 +2,7 @@ package com.example.nullshinsaproduct.presentation.brand;
 
 import com.example.nullshinsaproduct.application.service.brand.BrandCommandService;
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
-import com.example.nullshinsaproduct.domain.dto.request.BrandSaveRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.BrandSaveRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

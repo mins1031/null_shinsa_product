@@ -3,9 +3,10 @@ package com.example.nullshinsaproduct.presentation.product;
 import com.example.nullshinsaproduct.application.facade.ProductFacade;
 import com.example.nullshinsaproduct.application.service.product.service.ClothesProductFindService;
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
-import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductQueryResponse;
+import com.example.nullshinsaproduct.application.dto.response.ProductOptionStockResponse;
+import com.example.nullshinsaproduct.application.dto.response.ProductQueryResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ProductFindController {
@@ -24,9 +26,7 @@ public class ProductFindController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/products/{id}")
     public ResponseResult<ProductQueryResponse> findIntegrationProduct(@PathVariable("id") long productId) {
-        productFacade.switchFindProduct(productId);
-
-        return ResponseResult.success(HttpStatus.OK, null);
+        return ResponseResult.success(HttpStatus.OK, productFacade.switchFindProduct(productId));
     }
 
     @ResponseStatus(HttpStatus.OK)

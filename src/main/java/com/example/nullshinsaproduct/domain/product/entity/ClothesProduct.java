@@ -1,7 +1,7 @@
 package com.example.nullshinsaproduct.domain.product.entity;
 
 
-import com.example.nullshinsaproduct.domain.dto.response.ProductSizeVo;
+import com.example.nullshinsaproduct.application.dto.response.ProductSizeVo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;

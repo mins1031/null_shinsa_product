@@ -11,11 +11,11 @@ import com.example.nullshinsaproduct.domain.product.enumeration.category.SecondL
 import com.example.nullshinsaproduct.domain.product.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
-import com.example.nullshinsaproduct.domain.dto.request.CategoryInfoRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
-import com.example.nullshinsaproduct.domain.dto.request.SkuProductRequest;
+import com.example.nullshinsaproduct.application.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductDetailRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.application.dto.request.SkuProductRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

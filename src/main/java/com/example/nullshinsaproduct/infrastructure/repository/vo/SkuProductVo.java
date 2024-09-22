@@ -49,4 +49,8 @@ public record SkuProductVo(
                 skuProduct.getProduct()
         );
     }
+
+    public long getProductId() {
+        return this.product.getId();
+    }
 }

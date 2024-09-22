@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
-import com.example.nullshinsaproduct.domain.dto.response.ProductQueryResponse;
+import com.example.nullshinsaproduct.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.domain.product.entity.ElectronicProduct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

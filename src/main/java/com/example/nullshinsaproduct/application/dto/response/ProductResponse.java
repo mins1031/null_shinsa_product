@@ -1,15 +1,13 @@
-package com.example.nullshinsaproduct.infrastructure.repository.vo;
+package com.example.nullshinsaproduct.application.dto.response;
 
-import com.example.nullshinsaproduct.application.dto.response.ProductSizeVo;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-public record ProductOverviewVo(
+public record ProductResponse(
         Long productId,
         String name,
         int price,
@@ -21,12 +19,6 @@ public record ProductOverviewVo(
         int discountMaxRate,
         ProductType productType,
         LocalDateTime productCreatedDate,
-        LocalDateTime productUpdatedDate,
-        ProductDetailVo productDetailVo,
-        CategoryVo categoryVo,
-        List<SkuProductVo> skuProductVoList,
-        List<ProductSizeVo> sizeVoList,
-        List<ProductImageVo> productImageList
+        LocalDateTime productUpdatedDate
 ) {
-
 }

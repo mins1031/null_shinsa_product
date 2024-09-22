@@ -1,8 +1,7 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.application.service.product.mapper.ProductMapper;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
@@ -19,6 +18,7 @@ import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
+import com.example.nullshinsaproduct.application.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

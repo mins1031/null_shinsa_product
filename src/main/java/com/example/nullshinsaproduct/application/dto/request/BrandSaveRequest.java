@@ -1,7 +1,6 @@
-package com.example.nullshinsaproduct.domain.dto.response;
+package com.example.nullshinsaproduct.application.dto.request;
 
-public record BrandResponse(
-        long brandId,
+public record BrandSaveRequest(
         String brandName,
         String oneLineIntroduce,
         String corporateNumber,

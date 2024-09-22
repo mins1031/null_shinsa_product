@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import lombok.RequiredArgsConstructor;
