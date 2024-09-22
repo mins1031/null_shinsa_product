@@ -25,7 +25,9 @@ spring:
     open-in-view: false
 ---
 spring:
-  profiles: test
+  config:
+    activate:
+      on-profile: test
   servlet:
     multipart:
       max-file-size: 50MB

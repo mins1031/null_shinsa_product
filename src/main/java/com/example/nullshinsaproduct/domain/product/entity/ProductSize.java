@@ -45,9 +45,10 @@ public abstract class ProductSize {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public ProductSize(String sizeName, Product product) {
+    public ProductSize(String sizeName, Product product, ProductSizeType productSizeType) {
         this.sizeName = sizeName;
         this.product = product;
+        this.productSizeType = productSizeType;
     }
 
     @Override

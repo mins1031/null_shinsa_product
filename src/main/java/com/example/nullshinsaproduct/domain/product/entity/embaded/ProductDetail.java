@@ -20,6 +20,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -45,11 +46,9 @@ public class ProductDetail {
     private String brandDetailContent; // 브랜드 알림메모
     private String adminDetailContent; // 관리자 알림메모
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-//    private Product product;
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private long productId;
+    private Product product;
 
     @CreatedDate
     private LocalDateTime createdDate;
@@ -69,8 +68,8 @@ public class ProductDetail {
             String detailContent,
             String brandDetailContent,
             String adminDetailContent,
-//            Product product
-            long productId
+            Product product
+//            long productId
     ) {
         this.manufacturingCountry = manufacturingCountry;
         this.manufacturingCompany = manufacturingCompany;
@@ -84,7 +83,16 @@ public class ProductDetail {
         this.detailContent = detailContent;
         this.brandDetailContent = brandDetailContent;
         this.adminDetailContent = adminDetailContent;
-        this.productId = productId;
+        this.product = product;
+//        this.productId = productId;
+    }
+
+    public long getProductId() {
+        if (Objects.isNull(this.product)) {
+            return 0;
+        }
+
+        return this.product.getId();
     }
 
 }

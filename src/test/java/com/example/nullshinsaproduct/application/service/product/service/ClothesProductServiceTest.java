@@ -13,6 +13,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDelive
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ImageType;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductSizeType;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.domain.product.enumeration.category.FirstLayerCategory;
@@ -174,6 +175,7 @@ class ClothesProductServiceTest {
                 .map(sizeReq -> new ProductTopSize(
                         sizeReq.sizeName(),
                         clothesProduct,
+                        ProductSizeType.TOP,
                         sizeReq.length(),
                         sizeReq.shoulder(),
                         sizeReq.chest(),

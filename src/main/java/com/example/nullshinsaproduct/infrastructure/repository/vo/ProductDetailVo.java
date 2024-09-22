@@ -19,7 +19,7 @@ public record ProductDetailVo (
         String adminDetailContent
 ) {
 
-    public static ProductDetailVo from (ProductDetail productDetail) {
+    public static ProductDetailVo from(ProductDetail productDetail) {
         return new ProductDetailVo(
                 productDetail.getId(),
                 productDetail.getProductId(),

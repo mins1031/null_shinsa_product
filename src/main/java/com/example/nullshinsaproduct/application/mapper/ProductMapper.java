@@ -43,7 +43,7 @@ public class ProductMapper {
                 req.detailContent(),
                 req.brandDetailContent(),
                 req.adminDetailContent(),
-                product.getId()
+                product
         );
     }
 
