@@ -5,6 +5,7 @@ import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
 import com.example.nullshinsaproduct.domain.product.enumeration.ImageType;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public record ProductImageVo(
         long id,
@@ -40,6 +41,10 @@ public record ProductImageVo(
     }
 
     public long getProductId() {
+        if (Objects.isNull(this.product)) {
+            return 0;
+        }
+
         return this.product.getId();
     }
 }

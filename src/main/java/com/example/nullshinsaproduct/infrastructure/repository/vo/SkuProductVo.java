@@ -5,6 +5,7 @@ import com.example.nullshinsaproduct.domain.product.entity.SkuProduct;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public record SkuProductVo(
         Long id,
@@ -51,6 +52,10 @@ public record SkuProductVo(
     }
 
     public long getProductId() {
+        if (Objects.isNull(this.product)) {
+            return 0;
+        }
+
         return this.product.getId();
     }
 }

@@ -95,6 +95,10 @@ public record ProductSizeVo(
     }
 
     public long getProductId() {
+        if (Objects.isNull(this.product)) {
+            return 0;
+        }
+
         return this.product.getId();
     }
 }
