@@ -2,12 +2,9 @@ package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.domain.dto.response.BrandResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
+import com.example.nullshinsaproduct.domain.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
-import com.example.nullshinsaproduct.domain.product.entity.Product;
-import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
@@ -15,7 +12,7 @@ import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
 import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductSizeRepository;
-import com.example.nullshinsaproduct.presentation.mapper.ProductMapper;
+import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductOverviewVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,11 +32,10 @@ public class ClothesProductFindService {
 
     //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
     @Transactional(readOnly = true)
-    public ProductResponse findOneProduct(ClothesProduct product) {
+    public ProductQueryResponse findOneProduct(ClothesProduct product) {
         log.info("product : {}", product);
-        ProductBrandInfo productBrandInfo = product.getProductBrandInfo();
-        Brand brand = brandRepository.findById(productBrandInfo.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
-
+        ProductOverviewVo productOverview = product.getProductOverview();
+        Brand brand = brandRepository.findById(product.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
         BrandResponse brandResponse = new BrandResponse(
                 brand.getId(),
                 brand.getBrandName(),

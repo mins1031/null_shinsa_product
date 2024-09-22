@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 public class ProductImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate

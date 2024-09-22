@@ -4,7 +4,7 @@ import com.example.nullshinsaproduct.application.facade.ProductFacade;
 import com.example.nullshinsaproduct.application.service.product.service.ClothesProductFindService;
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
 import com.example.nullshinsaproduct.domain.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.domain.dto.response.ProductResponse;
+import com.example.nullshinsaproduct.domain.dto.response.ProductQueryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class ProductFindController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/products/{id}")
-    public ResponseResult<ProductResponse> findIntegrationProduct(@PathVariable("id") long productId) {
+    public ResponseResult<ProductQueryResponse> findIntegrationProduct(@PathVariable("id") long productId) {
         productFacade.switchFindProduct(productId);
 
         return ResponseResult.success(HttpStatus.OK, null);

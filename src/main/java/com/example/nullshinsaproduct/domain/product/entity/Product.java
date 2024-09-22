@@ -4,6 +4,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetai
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
+import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductImageVo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
@@ -27,6 +28,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Getter
 @Entity
@@ -80,6 +82,12 @@ public abstract class Product {
 
     public void initImages(List<ProductImage> images) {
         this.productImageList = images;
+    }
+
+    public List<ProductImageVo> getProductImageVos() {
+        return this.productImageList.stream()
+                .map(ProductImageVo::from)
+                .collect(Collectors.toList());
     }
 
     @Override
