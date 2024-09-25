@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.dto.response;
+package com.example.nullshinsaproduct.application.dto.response;
 
 public record ProductOptionStockResponse(
         long productOptionId,

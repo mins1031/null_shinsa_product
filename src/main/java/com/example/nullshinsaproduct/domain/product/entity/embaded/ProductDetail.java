@@ -1,13 +1,17 @@
 package com.example.nullshinsaproduct.domain.product.entity.embaded;
 
 import com.example.nullshinsaproduct.domain.product.entity.Product;
+import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +20,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Entity
@@ -41,7 +46,8 @@ public class ProductDetail {
     private String brandDetailContent; // 브랜드 알림메모
     private String adminDetailContent; // 관리자 알림메모
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Product product;
 
     @CreatedDate
@@ -63,6 +69,7 @@ public class ProductDetail {
             String brandDetailContent,
             String adminDetailContent,
             Product product
+//            long productId
     ) {
         this.manufacturingCountry = manufacturingCountry;
         this.manufacturingCompany = manufacturingCompany;
@@ -77,5 +84,15 @@ public class ProductDetail {
         this.brandDetailContent = brandDetailContent;
         this.adminDetailContent = adminDetailContent;
         this.product = product;
+//        this.productId = productId;
     }
+
+    public long getProductId() {
+        if (Objects.isNull(this.product)) {
+            return 0;
+        }
+
+        return this.product.getId();
+    }
+
 }

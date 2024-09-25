@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.application.service.brand;
 
-import com.example.nullshinsaproduct.domain.dto.request.BrandSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.BrandSaveRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -30,10 +30,13 @@ class BrandCommandServiceTest {
         //given
         BrandSaveRequest request = new BrandSaveRequest(
                 "브랜드1",
+                "한줄 소개 입니다",
                 "11-11-22-4",
                 "031-242-1111",
                 "사업자1",
-                "서울특별시 강남구 개쩌는동"
+                "서울특별시 강남구 개쩌는동",
+                "titleImage",
+                "introImage"
         );
 
         //when

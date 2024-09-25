@@ -1,6 +1,7 @@
 
 package com.example.nullshinsaproduct.domain.product.entity;
 
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductSizeType;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class ProductBottomSize extends ProductSize {
     public ProductBottomSize(
             String sizeName,
             Product product,
+            ProductSizeType productSizeType,
             String length,
             String waist,
             String crotch,
@@ -27,7 +29,7 @@ public class ProductBottomSize extends ProductSize {
             String thigh,
             String hem
     ) {
-        super(sizeName, product);
+        super(sizeName, product, productSizeType);
         this.length = length;
         this.waist = waist;
         this.crotch = crotch;

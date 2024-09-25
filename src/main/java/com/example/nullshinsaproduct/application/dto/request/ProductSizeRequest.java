@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.dto.request;
+package com.example.nullshinsaproduct.application.dto.request;
 
 public record ProductSizeRequest (
     String sizeName,
