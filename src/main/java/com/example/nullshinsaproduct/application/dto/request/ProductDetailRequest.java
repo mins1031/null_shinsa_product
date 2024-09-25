@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.domain.dto.request;
+package com.example.nullshinsaproduct.application.dto.request;
 
 public record ProductDetailRequest (
         String manufacturingCountry, // 제조국

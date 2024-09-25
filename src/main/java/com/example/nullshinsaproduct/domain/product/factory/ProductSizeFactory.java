@@ -1,12 +1,12 @@
 package com.example.nullshinsaproduct.domain.product.factory;
 
-import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.domain.product.entity.ProductBottomSize;
 import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
 import com.example.nullshinsaproduct.domain.product.entity.ProductTopSize;
-import com.example.nullshinsaproduct.domain.dto.request.CategoryInfoRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductSizeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +27,7 @@ public class ProductSizeFactory {
                             .map(sizeReq -> new ProductTopSize(
                                     sizeReq.sizeName(),
                                     product,
+                                    ProductSizeType.TOP,
                                     sizeReq.length(),
                                     sizeReq.shoulder(),
                                     sizeReq.chest(),
@@ -37,6 +38,7 @@ public class ProductSizeFactory {
                             .map(sizeReq -> new ProductBottomSize(
                                     sizeReq.sizeName(),
                                     product,
+                                    ProductSizeType.BOTTOM,
                                     sizeReq.length(),
                                     sizeReq.waist(),
                                     sizeReq.crotch(),

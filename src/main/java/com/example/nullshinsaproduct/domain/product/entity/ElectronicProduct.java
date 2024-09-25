@@ -6,6 +6,7 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandI
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -30,7 +31,7 @@ public class ElectronicProduct extends Product {
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<SkuProduct> skuProductList;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private ProductDetail productDetail;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductSize> productSizeList;
@@ -45,9 +46,10 @@ public class ElectronicProduct extends Product {
             ProductDeliveryInfo productDeliveryInfo,
             List<SkuProduct> skuProductList,
             ProductDetail productDetail,
-            List<ProductSize> productSizeList
+            List<ProductSize> productSizeList,
+            ProductType productType
     ) {
-        super(name, price, productBrandInfo, discountDetail, couponApplyPossible);
+        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productType);
         this.category = category;
         this.productDeliveryInfo = productDeliveryInfo;
         this.skuProductList = skuProductList;

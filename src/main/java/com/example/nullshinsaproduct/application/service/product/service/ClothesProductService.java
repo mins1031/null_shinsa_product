@@ -1,8 +1,7 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.application.service.product.mapper.ProductMapper;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
@@ -13,11 +12,13 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetai
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
+import com.example.nullshinsaproduct.application.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,7 +60,8 @@ public class ClothesProductService {
                 categoryInfo,
                 new DiscountDetail(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
                 req.couponApplyPossible(),
-                ProductDeliveryInfo.createFreeDelivery()
+                ProductDeliveryInfo.createFreeDelivery(),
+                ProductType.CLOTHES
         );
 
         ClothesProduct savedProduct = productRepository.save(clothesProduct);

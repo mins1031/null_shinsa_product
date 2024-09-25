@@ -6,15 +6,14 @@ import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
 import com.example.nullshinsaproduct.domain.product.entity.ProductSize;
 import com.example.nullshinsaproduct.domain.product.entity.ProductTopSize;
-import com.example.nullshinsaproduct.domain.product.entity.SkuProduct;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.CategoryInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDeliveryInfo;
-import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ImageType;
+import com.example.nullshinsaproduct.domain.product.enumeration.ProductSizeType;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.domain.product.enumeration.category.FirstLayerCategory;
@@ -24,11 +23,11 @@ import com.example.nullshinsaproduct.domain.product.enumeration.category.ThirdLa
 import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
 import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.domain.dto.request.CategoryInfoRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.domain.dto.request.ProductSizeRequest;
-import com.example.nullshinsaproduct.domain.dto.request.SkuProductRequest;
+import com.example.nullshinsaproduct.application.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductDetailRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.application.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.application.dto.request.SkuProductRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -122,10 +121,13 @@ class ClothesProductServiceTest {
 
         Brand requestBrand = Brand.builder()
                 .brandName("min-brand")
-                .communicationSellingNumber("selling-num")
+                .oneLineIntroduce("한줄 소개 입니다")
+                .corporateNumber("사업자 이름입니다")
                 .communicationSellingNumber("010-1111-2222")
                 .representative("repre")
                 .location("토론토")
+                .titleImageUrl("titleImage")
+                .introImageUrl("introImage")
                 .build();
 
         ProductBrandInfo productBrandInfo = new ProductBrandInfo(
@@ -152,34 +154,8 @@ class ClothesProductServiceTest {
                 categoryInfo,
                 new DiscountDetail(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
                 req.couponApplyPossible(),
-                ProductDeliveryInfo.createFreeDelivery()
-        );
-
-        List<SkuProduct> skuProducts = skus.stream()
-                .map(sku -> SkuProduct.createSkuProduct(
-                        sku.color(),
-                        sku.size(),
-                        sku.stock(),
-                        sku.discountRate(),
-                        sku.productStatus(),
-                        clothesProduct
-                ))
-                .collect(Collectors.toList());
-
-        ProductDetail productDetail = new ProductDetail(
-                detail.manufacturingCountry(),
-                detail.manufacturingCompany(),
-                detail.manufacturingDate(),
-                detail.qualityGuarantee(),
-                detail.fabric(),
-                detail.measurement(),
-                detail.washCaution(),
-                detail.productInnerItems(),
-                detail.asOfficerAndTel(),
-                detail.detailContent(),
-                detail.brandDetailContent(),
-                detail.adminDetailContent(),
-                clothesProduct
+                ProductDeliveryInfo.createFreeDelivery(),
+                ProductType.CLOTHES
         );
 
         List<ProductImage> images = new ArrayList<>();
@@ -199,11 +175,13 @@ class ClothesProductServiceTest {
                 .map(sizeReq -> new ProductTopSize(
                         sizeReq.sizeName(),
                         clothesProduct,
+                        ProductSizeType.TOP,
                         sizeReq.length(),
                         sizeReq.shoulder(),
                         sizeReq.chest(),
                         sizeReq.sleeve()
                 )).collect(Collectors.toList());
+
 
         //when
         when(brandRepository.findById(req.brandId())).thenReturn(Optional.of(requestBrand));
