@@ -12,7 +12,7 @@ import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
 import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

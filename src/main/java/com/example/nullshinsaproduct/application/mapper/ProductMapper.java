@@ -1,7 +1,6 @@
 package com.example.nullshinsaproduct.application.mapper;
 
 import com.example.nullshinsaproduct.application.dto.response.BrandResponse;
-import com.example.nullshinsaproduct.application.dto.response.CategoryResponse;
 import com.example.nullshinsaproduct.application.dto.response.ProductImageResponse;
 import com.example.nullshinsaproduct.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.application.dto.response.ProductResponse;
@@ -16,10 +15,10 @@ import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
 import com.example.nullshinsaproduct.domain.product.entity.SkuProduct;
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.ImageType;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductDetailVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductImageVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductOverviewVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.SkuProductVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductDetailVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductImageVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductOverviewVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.SkuProductVo;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;

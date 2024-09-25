@@ -1,7 +1,7 @@
 package com.example.nullshinsaproduct.application.mapper;
 
 import com.example.nullshinsaproduct.application.dto.response.CategoryResponse;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.CategoryVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.CategoryVo;
 
 import java.util.Objects;
 

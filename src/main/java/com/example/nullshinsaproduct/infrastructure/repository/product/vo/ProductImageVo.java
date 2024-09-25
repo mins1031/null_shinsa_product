@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.infrastructure.repository.vo;
+package com.example.nullshinsaproduct.infrastructure.repository.product.vo;
 
 import com.example.nullshinsaproduct.domain.product.entity.Product;
 import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
