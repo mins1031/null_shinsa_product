@@ -48,6 +48,13 @@ dependencies {
 	// mapstruct
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
+
+	//feign
+	implementation platform("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	//kafka
+	implementation 'org.springframework.kafka:spring-kafka'
 }
 
 tasks.named('bootBuildImage') {

@@ -1,17 +1,11 @@
 package com.example.nullshinsaproduct.domain.review.enttiy;
 
-import com.example.nullshinsaproduct.domain.product.entity.Product;
-import com.example.nullshinsaproduct.domain.product.entity.ProductImage;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -39,7 +33,7 @@ public class Review {
     private long productId;
     private String content;
     private double startPoint;
-    private String selectOption;
+    private String selectSkuOption;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
     private List<ReviewImage> reviewImageList;
@@ -48,12 +42,16 @@ public class Review {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
     private List<ReviewReply> reviewReplyList;
 
-    public Review(long writerId, long orderId, long productId, String content, double startPoint, String selectOption) {
+    public Review(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
         this.writerId = writerId;
         this.orderId = orderId;
         this.productId = productId;
         this.content = content;
         this.startPoint = startPoint;
-        this.selectOption = selectOption;
+        this.selectSkuOption = selectSkuOption;
+    }
+
+    public void initImages(List<ReviewImage> reviewImageList) {
+        this.reviewImageList = reviewImageList;
     }
 }
