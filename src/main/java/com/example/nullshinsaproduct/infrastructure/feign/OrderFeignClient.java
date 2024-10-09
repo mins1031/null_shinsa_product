@@ -16,6 +16,6 @@ public interface OrderFeignClient {
     @GetMapping("/orders/check-orderer")
     ResponseEntity<CheckOrdererResponse> checkReviewerIsOrderer(
             @RequestParam(name = "customerId") long memberId,
-            @RequestParam(name = "productId") long productId`
+            @RequestParam(name = "productId") long productId
     );
 }

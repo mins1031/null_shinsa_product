@@ -2,5 +2,14 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-
+  "reviewerId": "reviewerId",
+  "orderId": "orderId",
+  "productId": "productId",
+  "content": "content",
+  "startPoint": "startPoint",
+  "imgUrls": [
+      "https://review-url1.co.kr",
+      "https://review-url2.co.kr",
+      "https://review-url3.co.kr"
+  ]
 }
