@@ -39,4 +39,8 @@ public class ReviewImage {
         this.urlPath = urlPath;
         this.review = review;
     }
+
+    public static ReviewImage of(String urlPath, Review review) {
+        return new ReviewImage(urlPath, review);
+    }
 }

@@ -42,13 +42,24 @@ public class Review {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
     private List<ReviewReply> reviewReplyList;
 
-    public Review(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+    private Review(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
         this.writerId = writerId;
         this.orderId = orderId;
         this.productId = productId;
         this.content = content;
         this.startPoint = startPoint;
         this.selectSkuOption = selectSkuOption;
+    }
+
+    public static Review of(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+        return new Review(
+                writerId,
+                orderId,
+                productId,
+                content,
+                startPoint,
+                selectSkuOption
+        );
     }
 
     public void initImages(List<ReviewImage> reviewImageList) {
