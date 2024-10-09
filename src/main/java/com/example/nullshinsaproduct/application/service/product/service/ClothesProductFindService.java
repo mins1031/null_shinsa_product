@@ -1,20 +1,15 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
-import com.example.nullshinsaproduct.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.application.dto.response.BrandResponse;
 import com.example.nullshinsaproduct.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.application.mapper.BrandMapper;
 import com.example.nullshinsaproduct.application.mapper.ProductMapper;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
 import com.example.nullshinsaproduct.domain.product.entity.ClothesProduct;
-import com.example.nullshinsaproduct.domain.product.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.exception.product.ProductException;
 import com.example.nullshinsaproduct.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.brand.BrandRepository;
 import com.example.nullshinsaproduct.application.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductSizeRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductOverviewVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductOverviewVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

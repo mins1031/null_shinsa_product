@@ -1,8 +1,8 @@
 package com.example.nullshinsaproduct.application.service.product.service;
 
 import com.example.nullshinsaproduct.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.infrastructure.repository.ProductRepository;
-import com.example.nullshinsaproduct.infrastructure.repository.BrandRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.product.ProductRepository;
+import com.example.nullshinsaproduct.infrastructure.repository.brand.BrandRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

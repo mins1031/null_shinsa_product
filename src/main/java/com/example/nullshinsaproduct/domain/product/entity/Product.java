@@ -4,10 +4,8 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.DiscountDetai
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductImageVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductImageVo;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

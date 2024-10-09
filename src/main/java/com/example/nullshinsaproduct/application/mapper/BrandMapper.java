@@ -1,9 +1,7 @@
 package com.example.nullshinsaproduct.application.mapper;
 
 import com.example.nullshinsaproduct.application.dto.response.BrandResponse;
-import com.example.nullshinsaproduct.application.dto.response.CategoryResponse;
 import com.example.nullshinsaproduct.domain.product.entity.Brand;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.CategoryVo;
 
 import java.util.Objects;
 

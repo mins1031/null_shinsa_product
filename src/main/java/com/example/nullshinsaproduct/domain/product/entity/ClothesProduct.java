@@ -9,11 +9,11 @@ import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDelive
 import com.example.nullshinsaproduct.domain.product.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.domain.product.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.domain.product.enumeration.ProductType;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.CategoryVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductDetailVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductImageVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.ProductOverviewVo;
-import com.example.nullshinsaproduct.infrastructure.repository.vo.SkuProductVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.CategoryVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductDetailVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductImageVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.ProductOverviewVo;
+import com.example.nullshinsaproduct.infrastructure.repository.product.vo.SkuProductVo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
