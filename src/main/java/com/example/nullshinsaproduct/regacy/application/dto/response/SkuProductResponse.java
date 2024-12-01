@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.application.dto.response;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 
 import java.time.LocalDateTime;
 

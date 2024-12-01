@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.product.domain.enumeration.category;
+package com.example.nullshinsaproduct.product.domain.enumeration.category;
 
 import lombok.Getter;
 
@@ -9,10 +9,9 @@ public enum SecondLayerCategory {
     OUTER("아우터", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20001),
     TOP("상의", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20002),
     BOTTOM("하의", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20003),
-    DRESS("원피스", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20004),
-    SKIRT("스커트", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20005),
-    BAG("가방", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20006),
-    SHOES("신발", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20007),
+    DRESS_SKIRT("원피스/스커트", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20004),
+    BAG("가방", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20005),
+    SHOES("신발", Set.of(FirstLayerCategory.MEN, FirstLayerCategory.WOMEN), 20006),
 
 
     ;

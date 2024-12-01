@@ -1,10 +1,10 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfo;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.FirstLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.InferiorLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.SecondLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.ThirdLayerCategory;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.InferiorLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
 
 public record CategoryVo (
         FirstLayerCategory firstLayerCategory,
@@ -13,12 +13,12 @@ public record CategoryVo (
         InferiorLayerCategory inferiorLayerCategory
 ) {
 
-    public static CategoryVo from(CategoryInfo categoryInfo) {
+    public static CategoryVo from(CategoryInfoEntity categoryInfoEntity) {
         return new CategoryVo(
-                categoryInfo.getFirstLayerCategory(),
-                categoryInfo.getSecondLayerCategory(),
-                categoryInfo.getThirdLayerCategory(),
-                categoryInfo.getInferiorLayerCategory()
+                categoryInfoEntity.getFirstLayerCategory(),
+                categoryInfoEntity.getSecondLayerCategory(),
+                categoryInfoEntity.getThirdLayerCategory(),
+                categoryInfoEntity.getInferiorLayerCategory()
         );
     }
 }

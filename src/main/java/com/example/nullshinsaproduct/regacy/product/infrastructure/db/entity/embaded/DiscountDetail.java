@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

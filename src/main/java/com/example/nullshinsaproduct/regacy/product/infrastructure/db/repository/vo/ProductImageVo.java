@@ -1,8 +1,8 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo;
 
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductImage;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ImageType;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,25 +17,25 @@ public record ProductImageVo(
 ) {
 
     // Root Entity(Product)에서 생성하는 메서드
-    public static ProductImageVo from(ProductImage productImage) {
+    public static ProductImageVo from(ProductImageEntity productImageEntity) {
         return new ProductImageVo(
-                productImage.getId(),
-                productImage.getCreatedDate(),
-                productImage.getUpdatedDate(),
-                productImage.getImageUrl(),
-                productImage.getImageType(),
+                productImageEntity.getId(),
+                productImageEntity.getCreatedDate(),
+                productImageEntity.getUpdatedDate(),
+                productImageEntity.getImageUrl(),
+                productImageEntity.getImageType(),
                 null
         );
     }
 
     // ProductImageVo 단독으로 조회시 생성하는 메서드
-    public static ProductImageVo of(ProductImage productImage, Product product) {
+    public static ProductImageVo of(ProductImageEntity productImageEntity, Product product) {
         return new ProductImageVo(
-                productImage.getId(),
-                productImage.getCreatedDate(),
-                productImage.getUpdatedDate(),
-                productImage.getImageUrl(),
-                productImage.getImageType(),
+                productImageEntity.getId(),
+                productImageEntity.getCreatedDate(),
+                productImageEntity.getUpdatedDate(),
+                productImageEntity.getImageUrl(),
+                productImageEntity.getImageType(),
                 product
         );
     }

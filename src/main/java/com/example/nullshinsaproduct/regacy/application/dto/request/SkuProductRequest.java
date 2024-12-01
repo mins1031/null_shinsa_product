@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.application.dto.request;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 
 public record SkuProductRequest (
         String color,

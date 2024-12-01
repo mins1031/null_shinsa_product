@@ -1,9 +1,10 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity;
 
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfo;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductImageVo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -55,7 +56,7 @@ public abstract class Product {
 
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private List<ProductImage> productImageList;
+    private List<ProductImageEntity> productImageEntityList;
 
     @CreatedDate
     private LocalDateTime createdDate;
@@ -78,12 +79,12 @@ public abstract class Product {
         this.productType = productType;
     }
 
-    public void initImages(List<ProductImage> images) {
-        this.productImageList = images;
+    public void initImages(List<ProductImageEntity> images) {
+        this.productImageEntityList = images;
     }
 
     public List<ProductImageVo> getProductImageVos() {
-        return this.productImageList.stream()
+        return this.productImageEntityList.stream()
                 .map(ProductImageVo::from)
                 .collect(Collectors.toList());
     }
@@ -98,7 +99,7 @@ public abstract class Product {
                 ", discountDetail=" + discountDetail +
                 ", couponApplyPossible=" + couponApplyPossible +
                 ", productType=" + productType +
-                ", productImageList is null ? =" + Objects.isNull(productImageList) +
+                ", productImageList is null ? =" + Objects.isNull(productImageEntityList) +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
                 '}';

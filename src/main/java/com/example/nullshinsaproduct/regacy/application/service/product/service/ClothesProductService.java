@@ -4,15 +4,15 @@ import com.example.nullshinsaproduct.regacy.application.combine.ProductDataCombi
 import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ClothesProduct;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductImage;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductSize;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.SkuProduct;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfo;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetail;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfo;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDeliveryInfo;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.regacy.product.domain.factory.ProductSizeFactory;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
@@ -46,7 +46,7 @@ public class ClothesProductService {
                 brand.getLocation()
         );
 
-        CategoryInfo categoryInfo = new CategoryInfo(
+        CategoryInfoEntity categoryInfoEntity = new CategoryInfoEntity(
                 req.categoryInfoRequest().firstLayerCategory(),
                 req.categoryInfoRequest().secondLayerCategory(),
                 req.categoryInfoRequest().thirdLayerCategory(),
@@ -57,7 +57,7 @@ public class ClothesProductService {
                 req.name(),
                 req.price(),
                 productBrandInfo,
-                categoryInfo,
+                categoryInfoEntity,
                 new DiscountDetail(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
                 req.couponApplyPossible(),
                 ProductDeliveryInfo.createFreeDelivery(),
@@ -68,14 +68,14 @@ public class ClothesProductService {
 
         ProductDetail productDetail = ProductMapper.mapFromReqToProductDetail(req.productDetailRequest(), savedProduct);
         savedProduct.initDetail(productDetail);
-        List<ProductSize> productSizes = productSizeFactory.createProductSizeDetailByCategory(savedProduct, req.categoryInfoRequest(), req.productSizeRequests());
-        savedProduct.initSizes(productSizes);
-        List<SkuProduct> skus = ProductMapper.mapFromReqsToSkuProducts(req.skuProductRequests(), savedProduct);
+        List<ProductSizeEntity> productSizeEntities = productSizeFactory.createProductSizeDetailByCategory(savedProduct, req.categoryInfoRequest(), req.productSizeRequests());
+        savedProduct.initSizes(productSizeEntities);
+        List<SkuProductEntity> skus = ProductMapper.mapFromReqsToSkuProducts(req.skuProductRequests(), savedProduct);
         savedProduct.initSkus(skus);
-        List<ProductImage> images = ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct);
+        List<ProductImageEntity> images = ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct);
         savedProduct.initImages(images);
 
-        productDataCombine.saveProductSubEntities(productDetail, productSizes, skus, images);
+        productDataCombine.saveProductSubEntities(productDetail, productSizeEntities, skus, images);
 
         //이벤트 처리
 

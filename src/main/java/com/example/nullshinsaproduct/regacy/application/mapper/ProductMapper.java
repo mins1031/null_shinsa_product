@@ -11,10 +11,10 @@ import com.example.nullshinsaproduct.regacy.application.dto.response.ProductDeta
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeVo;
 import com.example.nullshinsaproduct.regacy.application.dto.response.SkuProductResponse;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductImage;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.SkuProduct;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ImageType;
+import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductDetailVo;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductImageVo;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductOverviewVo;
@@ -46,9 +46,9 @@ public class ProductMapper {
         );
     }
 
-    public static List<SkuProduct> mapFromReqsToSkuProducts(List<SkuProductRequest> req, Product product) {
+    public static List<SkuProductEntity> mapFromReqsToSkuProducts(List<SkuProductRequest> req, Product product) {
         return req.stream()
-                .map(sku -> SkuProduct.createSkuProduct(
+                .map(sku -> SkuProductEntity.createSkuProduct(
                         sku.color(),
                         sku.size(),
                         sku.stock(),
@@ -59,17 +59,17 @@ public class ProductMapper {
                 .collect(Collectors.toList());
     }
 
-    public static List<ProductImage> mapFromReqsToProductImages(String thumbnail, List<String> titleImages, List<String> detailImages, Product product) {
-        List<ProductImage> images = new ArrayList<>();
-        images.add(new ProductImage(thumbnail, ImageType.THUMBNAIL, product));
+    public static List<ProductImageEntity> mapFromReqsToProductImages(String thumbnail, List<String> titleImages, List<String> detailImages, Product product) {
+        List<ProductImageEntity> images = new ArrayList<>();
+        images.add(new ProductImageEntity(thumbnail, ImageType.THUMBNAIL, product));
         images.addAll(
                 titleImages.stream()
-                        .map(image -> new ProductImage(image, ImageType.TITLE, product))
+                        .map(image -> new ProductImageEntity(image, ImageType.TITLE, product))
                         .collect(Collectors.toList())
         );
         images.addAll(
                 detailImages.stream()
-                        .map(image -> new ProductImage(image, ImageType.DETAIL, product))
+                        .map(image -> new ProductImageEntity(image, ImageType.DETAIL, product))
                         .collect(Collectors.toList())
         );
 

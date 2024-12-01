@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.product.domain.enumeration;
+package com.example.nullshinsaproduct.product.domain.enumeration;
 
 import lombok.Getter;
 

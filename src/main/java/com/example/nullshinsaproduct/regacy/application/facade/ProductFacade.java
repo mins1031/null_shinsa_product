@@ -8,7 +8,7 @@ import com.example.nullshinsaproduct.regacy.application.service.product.service.
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ClothesProduct;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ElectronicProduct;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;

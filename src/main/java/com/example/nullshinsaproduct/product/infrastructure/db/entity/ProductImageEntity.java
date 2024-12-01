@@ -1,6 +1,7 @@
-package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity;
+package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductSizeType;
+import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,8 +11,6 @@ import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
@@ -25,40 +24,38 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class ProductSize {
+public class ProductImageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String sizeName;
+    private long id;
+    private String imageUrl;
+    @Enumerated(EnumType.STRING)
+    private ImageType imageType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Product product;
 
-    @Enumerated(EnumType.STRING)
-    private ProductSizeType productSizeType;
 
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public ProductSize(String sizeName, Product product, ProductSizeType productSizeType) {
-        this.sizeName = sizeName;
+    public ProductImageEntity(String imageUrl, ImageType imageType, Product product) {
+        this.imageUrl = imageUrl;
+        this.imageType = imageType;
         this.product = product;
-        this.productSizeType = productSizeType;
     }
 
     @Override
     public String toString() {
-        return "ProductSize{" +
+        return "ProductImage{" +
                 "id=" + id +
-                ", sizeName='" + sizeName + '\'' +
-                ", productSizeType=" + productSizeType +
                 ", createdDate=" + createdDate +
                 ", updatedDate=" + updatedDate +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", imageType=" + imageType +
                 '}';
     }
 }

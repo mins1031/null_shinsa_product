@@ -1,10 +1,10 @@
 package com.example.nullshinsaproduct.regacy.application.dto.response;
 
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSize;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductSize;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSize;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductSizeType;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSizeEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSizeEntity;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 
@@ -29,21 +29,21 @@ public record ProductSizeVo(
         Product product
 ) {
 
-    public static ProductSizeVo createVoBySizeType(ProductSize productSize) {
-        if (Objects.isNull(productSize)) {
+    public static ProductSizeVo createVoBySizeType(ProductSizeEntity productSizeEntity) {
+        if (Objects.isNull(productSizeEntity)) {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_PARAMETER);
         }
 
-        return switch (productSize.getProductSizeType()) {
-            case TOP -> createTopSizeVo(productSize);
-            case BOTTOM -> createBottomSizeVo(productSize);
-            case UNDER_WEAR -> createUnderSizeVo(productSize);
+        return switch (productSizeEntity.getProductSizeType()) {
+            case TOP -> createTopSizeVo(productSizeEntity);
+            case BOTTOM -> createBottomSizeVo(productSizeEntity);
+            case UNDER_WEAR -> createUnderSizeVo(productSizeEntity);
         };
     }
 
     // Root Entity(Product)에서 생성하는 메서드
-    private static ProductSizeVo createTopSizeVo(ProductSize productSize) {
-        if (!(productSize instanceof ProductTopSize topSize)) {
+    private static ProductSizeVo createTopSizeVo(ProductSizeEntity productSizeEntity) {
+        if (!(productSizeEntity instanceof ProductTopSizeEntity topSize)) {
             throw new ProductException(ProductExceptionCode.WRONG_MATCHED_PRODUCT_SIZE_TYPE);
         }
 
@@ -66,8 +66,8 @@ public record ProductSizeVo(
         );
     }
 
-    private static ProductSizeVo createBottomSizeVo(ProductSize productSize) {
-        if (!(productSize instanceof ProductBottomSize bottomSize)) {
+    private static ProductSizeVo createBottomSizeVo(ProductSizeEntity productSizeEntity) {
+        if (!(productSizeEntity instanceof ProductBottomSizeEntity bottomSize)) {
             throw new ProductException(ProductExceptionCode.WRONG_MATCHED_PRODUCT_SIZE_TYPE);
         }
 
@@ -90,7 +90,7 @@ public record ProductSizeVo(
         );
     }
 
-    private static ProductSizeVo createUnderSizeVo(ProductSize productSize) {
+    private static ProductSizeVo createUnderSizeVo(ProductSizeEntity productSizeEntity) {
         return null;
     }
 

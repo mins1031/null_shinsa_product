@@ -1,9 +1,9 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.FirstLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.InferiorLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.ThirdLayerCategory;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.category.SecondLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.InferiorLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,7 +16,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CategoryInfo {
+public class CategoryInfoEntity {
     @Enumerated(EnumType.STRING)
     private FirstLayerCategory firstLayerCategory;
     @Enumerated(EnumType.STRING)
@@ -26,7 +26,7 @@ public class CategoryInfo {
     @Enumerated(EnumType.STRING)
     private InferiorLayerCategory inferiorLayerCategory;
 
-    public CategoryInfo(FirstLayerCategory firstLayerCategory, SecondLayerCategory secondLayerCategory, ThirdLayerCategory thirdLayerCategory, InferiorLayerCategory inferiorLayerCategory) {
+    public CategoryInfoEntity(FirstLayerCategory firstLayerCategory, SecondLayerCategory secondLayerCategory, ThirdLayerCategory thirdLayerCategory, InferiorLayerCategory inferiorLayerCategory) {
         this.firstLayerCategory = firstLayerCategory;
         this.secondLayerCategory = secondLayerCategory;
         this.thirdLayerCategory = thirdLayerCategory;

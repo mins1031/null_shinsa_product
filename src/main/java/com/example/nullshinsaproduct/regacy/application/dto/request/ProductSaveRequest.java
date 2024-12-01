@@ -1,8 +1,8 @@
 package com.example.nullshinsaproduct.regacy.application.dto.request;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.DiscountApplyPossible;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

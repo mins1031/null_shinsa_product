@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.DeliveryFee;
+import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.Getter;

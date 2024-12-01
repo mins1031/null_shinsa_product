@@ -1,8 +1,8 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo;
 
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.SkuProduct;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -20,34 +20,34 @@ public record SkuProductVo(
         Product product
 ) {
     // Root Entity(Product)에서 생성하는 메서드
-    public static SkuProductVo from(SkuProduct skuProduct) {
+    public static SkuProductVo from(SkuProductEntity skuProductEntity) {
         return new SkuProductVo(
-                skuProduct.getId(),
-                skuProduct.getCreatedDate(),
-                skuProduct.getUpdatedDate(),
-                skuProduct.getColor(),
-                skuProduct.getSize(),
-                skuProduct.getStock(),
-                skuProduct.getStartPoint(),
-                skuProduct.getDiscountRate(),
-                skuProduct.getProductStatus(),
+                skuProductEntity.getId(),
+                skuProductEntity.getCreatedDate(),
+                skuProductEntity.getUpdatedDate(),
+                skuProductEntity.getColor(),
+                skuProductEntity.getSize(),
+                skuProductEntity.getStock(),
+                skuProductEntity.getStartPoint(),
+                skuProductEntity.getDiscountRate(),
+                skuProductEntity.getProductStatus(),
                 null
         );
     }
 
     // ProductImageVo 단독으로 조회시 생성하는 메서드
-    public static SkuProductVo of(SkuProduct skuProduct, Product product) {
+    public static SkuProductVo of(SkuProductEntity skuProductEntity, Product product) {
         return new SkuProductVo(
-                skuProduct.getId(),
-                skuProduct.getCreatedDate(),
-                skuProduct.getUpdatedDate(),
-                skuProduct.getColor(),
-                skuProduct.getSize(),
-                skuProduct.getStock(),
-                skuProduct.getStartPoint(),
-                skuProduct.getDiscountRate(),
-                skuProduct.getProductStatus(),
-                skuProduct.getProduct()
+                skuProductEntity.getId(),
+                skuProductEntity.getCreatedDate(),
+                skuProductEntity.getUpdatedDate(),
+                skuProductEntity.getColor(),
+                skuProductEntity.getSize(),
+                skuProductEntity.getStock(),
+                skuProductEntity.getStartPoint(),
+                skuProductEntity.getDiscountRate(),
+                skuProductEntity.getProductStatus(),
+                skuProductEntity.getProduct()
         );
     }
 

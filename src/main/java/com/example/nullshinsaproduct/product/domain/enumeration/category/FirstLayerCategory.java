@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.product.domain.enumeration.category;
+package com.example.nullshinsaproduct.product.domain.enumeration.category;
 
 import lombok.Getter;
 
@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Getter
 public enum FirstLayerCategory {
+    PUBLIC("공용", 10000),
     WOMEN("여성", 10001),
     MEN("남성", 10002),
     ELECTRONICS("가전", 10003),

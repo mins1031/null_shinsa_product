@@ -1,9 +1,9 @@
 package com.example.nullshinsaproduct.regacy.application.dto.response;
 
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.DeliveryFee;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.DiscountApplyPossible;
-import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
+import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 
 import java.time.LocalDateTime;
 
