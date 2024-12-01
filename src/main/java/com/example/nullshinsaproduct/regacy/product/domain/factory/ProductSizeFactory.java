@@ -1,0 +1,56 @@
+package com.example.nullshinsaproduct.regacy.product.domain.factory;
+
+import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSize;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductSize;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSize;
+import com.example.nullshinsaproduct.regacy.application.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.regacy.product.domain.enumeration.ProductSizeType;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+public class ProductSizeFactory {
+
+    public List<ProductSize> createProductSizeDetailByCategory(Product product, CategoryInfoRequest categoryReq, List<ProductSizeRequest> sizeReqs) {
+        List<ProductSize> productSize;
+
+        switch (categoryReq.thirdLayerCategory()) {
+            case OUTER, TOP, KNIT_WEAR ->
+                    productSize = sizeReqs.stream()
+                            .map(sizeReq -> new ProductTopSize(
+                                    sizeReq.sizeName(),
+                                    product,
+                                    ProductSizeType.TOP,
+                                    sizeReq.length(),
+                                    sizeReq.shoulder(),
+                                    sizeReq.chest(),
+                                    sizeReq.sleeve()
+                            )).collect(Collectors.toList());
+            case BOTTOM ->
+                    productSize = sizeReqs.stream()
+                            .map(sizeReq -> new ProductBottomSize(
+                                    sizeReq.sizeName(),
+                                    product,
+                                    ProductSizeType.BOTTOM,
+                                    sizeReq.length(),
+                                    sizeReq.waist(),
+                                    sizeReq.crotch(),
+                                    sizeReq.hip(),
+                                    sizeReq.thigh(),
+                                    sizeReq.hem()
+                            )).collect(Collectors.toList());
+
+            default ->
+                    productSize = new ArrayList<>();
+        }
+
+        return productSize;
+    }
+}
