@@ -13,13 +13,13 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class DiscountDetail {
+public class DiscountDetailInEntity {
     @Enumerated(EnumType.STRING)
     private DiscountApplyPossible discountApplyPossible;
     private int discountMinRate;
     private int discountMaxRate;
 
-    public DiscountDetail(DiscountApplyPossible discountApplyPossible, int discountMinRate, int discountMaxRate) {
+    public DiscountDetailInEntity(DiscountApplyPossible discountApplyPossible, int discountMinRate, int discountMaxRate) {
         this.discountApplyPossible = discountApplyPossible;
         this.discountMinRate = discountMinRate;
         this.discountMaxRate = discountMaxRate;

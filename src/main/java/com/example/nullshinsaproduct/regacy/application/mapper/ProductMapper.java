@@ -1,16 +1,17 @@
 package com.example.nullshinsaproduct.regacy.application.mapper;
 
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.regacy.application.dto.response.BrandResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductImageResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeResponse;
-import com.example.nullshinsaproduct.regacy.application.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.regacy.application.dto.request.SkuProductRequest;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductDetailRequest;
+import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductDetailResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeVo;
 import com.example.nullshinsaproduct.regacy.application.dto.response.SkuProductResponse;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
@@ -46,20 +47,20 @@ public class ProductMapper {
         );
     }
 
-    public static List<SkuProductEntity> mapFromReqsToSkuProducts(List<SkuProductRequest> req, Product product) {
-        return req.stream()
-                .map(sku -> SkuProductEntity.createSkuProduct(
-                        sku.color(),
-                        sku.size(),
-                        sku.stock(),
-                        sku.discountRate(),
-                        sku.productStatus(),
-                        product
-                ))
-                .collect(Collectors.toList());
-    }
+//    public static List<SkuProductEntity> mapFromReqsToSkuProducts(List<SkuProductRequest> req, Product product) {
+//        return req.stream()
+//                .map(sku -> SkuProductEntity.createSkuProduct(
+//                        sku.color(),
+//                        sku.size(),
+//                        sku.stock(),
+//                        sku.discountRate(),
+//                        sku.productStatus(),
+//                        product
+//                ))
+//                .collect(Collectors.toList());
+//    }
 
-    public static List<ProductImageEntity> mapFromReqsToProductImages(String thumbnail, List<String> titleImages, List<String> detailImages, Product product) {
+    public static List<ProductImageEntity> mapFromReqsToProductImages(String thumbnail, List<String> titleImages, List<String> detailImages, ProductEntity product) {
         List<ProductImageEntity> images = new ArrayList<>();
         images.add(new ProductImageEntity(thumbnail, ImageType.THUMBNAIL, product));
         images.addAll(

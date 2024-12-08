@@ -1,7 +1,7 @@
 package com.example.nullshinsaproduct.regacy.application.service.product.service;
 
-import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.ProductRepository;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductJpaRepository;
 import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class ProductCommandService {
-    private final ProductRepository productRepository;
+    private final ProductJpaRepository productJpaRepository;
     private final BrandRepository brandRepository;
 
     @Transactional

@@ -1,7 +1,6 @@
 package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -34,7 +33,7 @@ public class ProductImageEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Product product;
+    private ProductEntity product;
 
 
     @CreatedDate
@@ -42,7 +41,7 @@ public class ProductImageEntity {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public ProductImageEntity(String imageUrl, ImageType imageType, Product product) {
+    public ProductImageEntity(String imageUrl, ImageType imageType, ProductEntity product) {
         this.imageUrl = imageUrl;
         this.imageType = imageType;
         this.product = product;

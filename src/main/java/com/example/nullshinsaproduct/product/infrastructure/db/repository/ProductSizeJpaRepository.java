@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.product.infrastructure.db.repository;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

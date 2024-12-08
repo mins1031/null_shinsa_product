@@ -1,21 +1,20 @@
 package com.example.nullshinsaproduct.product.domain;
 
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import lombok.Getter;
 
 @Getter
 public class SkuProduct {
-
     private final long id;
-    private final long productId;
+    private final long parentProductId;
     private final String name;
     private final int stock;
     private final int plusPrice;
-    private final ProductStatus productStatus;
+    private final SkuProductStatus productStatus;
 
-    public SkuProduct(long id, long productId, String name, int stock, int plusPrice, ProductStatus productStatus) {
+    public SkuProduct(long id, long parentProductId, String name, int stock, int plusPrice, SkuProductStatus productStatus) {
         this.id = id;
-        this.productId = productId;
+        this.parentProductId = parentProductId;
         this.name = name;
         this.stock = stock;
         this.plusPrice = plusPrice;

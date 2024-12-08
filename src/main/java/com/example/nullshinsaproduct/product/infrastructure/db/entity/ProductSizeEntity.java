@@ -1,7 +1,6 @@
 package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,8 +10,6 @@ import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;

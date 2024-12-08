@@ -11,21 +11,21 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductDeliveryInfo {
+public class ProductDeliveryInfoInEntity {
     private int outboundPossibleDay;
     private DeliveryFee deliveryFee;
 
-    private ProductDeliveryInfo(int outboundPossibleDay, DeliveryFee deliveryFee) {
+    private ProductDeliveryInfoInEntity(int outboundPossibleDay, DeliveryFee deliveryFee) {
         this.outboundPossibleDay = outboundPossibleDay;
         this.deliveryFee = deliveryFee;
     }
 
-    public static ProductDeliveryInfo createFreeDelivery() {
-        return new ProductDeliveryInfo(3, DeliveryFee.FREE);
+    public static ProductDeliveryInfoInEntity createFreeDelivery() {
+        return new ProductDeliveryInfoInEntity(3, DeliveryFee.FREE);
     }
 
-    public static ProductDeliveryInfo createSpecialDelivery() {
-        return new ProductDeliveryInfo(4, DeliveryFee.NOT_FREE);
+    public static ProductDeliveryInfoInEntity createSpecialDelivery() {
+        return new ProductDeliveryInfoInEntity(4, DeliveryFee.NOT_FREE);
     }
 
 }

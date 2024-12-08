@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.application.dto.request;
+package com.example.nullshinsaproduct.product.application.dto.request;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
@@ -19,7 +19,8 @@ public record ProductSaveRequest (
     DiscountApplyPossible discountApplyPossible,
     int discountMinRate,
     int discountMaxRate,
-    ProductDetailRequest productDetailRequest,
+    int outboundPossibleDay,
+    boolean isDeliveryFree,
     List<ProductSizeRequest> productSizeRequests,
     String thumbnailLink,
     List<String> profileImagesLink,

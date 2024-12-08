@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 

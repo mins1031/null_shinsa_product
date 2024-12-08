@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.application.dto.response;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSizeEntity;

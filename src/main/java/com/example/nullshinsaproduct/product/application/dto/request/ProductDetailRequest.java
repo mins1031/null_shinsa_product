@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.application.dto.request;
+package com.example.nullshinsaproduct.product.application.dto.request;
 
 public record ProductDetailRequest (
         String manufacturingCountry, // 제조국

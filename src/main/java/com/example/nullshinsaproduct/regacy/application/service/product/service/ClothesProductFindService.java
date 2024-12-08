@@ -4,7 +4,7 @@ import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQuer
 import com.example.nullshinsaproduct.regacy.application.mapper.BrandMapper;
 import com.example.nullshinsaproduct.regacy.application.mapper.ProductMapper;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ClothesProduct;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
@@ -25,7 +25,7 @@ public class ClothesProductFindService {
 
     //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
     @Transactional(readOnly = true)
-    public ProductQueryResponse findOneProduct(ClothesProduct product) {
+    public ProductQueryResponse findOneProduct(ProductEntity product) {
         ProductOverviewVo productOverview = product.getProductOverview();
         Brand brand = brandRepository.findById(product.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
 

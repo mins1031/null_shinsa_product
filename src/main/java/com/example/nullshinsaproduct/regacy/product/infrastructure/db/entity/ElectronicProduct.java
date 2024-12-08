@@ -1,11 +1,12 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity;
 
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetail;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDeliveryInfo;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetailInEntity;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDeliveryInfoInEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
@@ -28,7 +29,7 @@ public class ElectronicProduct extends Product {
     @Embedded
     private CategoryInfoEntity category;
     @Embedded
-    private ProductDeliveryInfo productDeliveryInfo;
+    private ProductDeliveryInfoInEntity productDeliveryInfoInEntity;
 
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
@@ -41,19 +42,19 @@ public class ElectronicProduct extends Product {
     public ElectronicProduct(
             String name,
             int price,
-            ProductBrandInfo productBrandInfo,
+            ProductBrandInfoEmbeddable productBrandInfoEmbeddable,
             CategoryInfoEntity category,
-            DiscountDetail discountDetail,
+            DiscountDetailInEntity discountDetailInEntity,
             CouponApplyPossible couponApplyPossible,
-            ProductDeliveryInfo productDeliveryInfo,
+            ProductDeliveryInfoInEntity productDeliveryInfoInEntity,
             List<SkuProductEntity> skuProductEntityList,
             ProductDetail productDetail,
             List<ProductSizeEntity> productSizeEntityList,
             ProductType productType
     ) {
-        super(name, price, productBrandInfo, discountDetail, couponApplyPossible, productType);
+        super(name, price, productBrandInfoEmbeddable, discountDetailInEntity, couponApplyPossible, productType);
         this.category = category;
-        this.productDeliveryInfo = productDeliveryInfo;
+        this.productDeliveryInfoInEntity = productDeliveryInfoInEntity;
         this.skuProductEntityList = skuProductEntityList;
         this.productDetail = productDetail;
         this.productSizeEntityList = productSizeEntityList;

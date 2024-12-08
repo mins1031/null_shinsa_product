@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ProductBrandInfo {
+public class ProductBrandInfoEmbeddable {
     private Long brandId;
     private String brandName;
     private String corporateNumber;
@@ -18,7 +18,7 @@ public class ProductBrandInfo {
     private String representative;
     private String location;
 
-    public ProductBrandInfo(Long brandId, String brandName, String corporateNumber, String communicationSellingNumber, String representative, String location) {
+    public ProductBrandInfoEmbeddable(Long brandId, String brandName, String corporateNumber, String communicationSellingNumber, String representative, String location) {
         this.brandId = brandId;
         this.brandName = brandName;
         this.corporateNumber = corporateNumber;

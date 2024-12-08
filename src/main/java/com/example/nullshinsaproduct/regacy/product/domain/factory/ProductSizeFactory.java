@@ -1,11 +1,11 @@
 //package com.example.nullshinsaproduct.regacy.product.domain.factory;
 //
-//import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSizeRequest;
-//import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+//import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
+//import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 //import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSizeEntity;
 //import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 //import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSizeEntity;
-//import com.example.nullshinsaproduct.regacy.application.dto.request.CategoryInfoRequest;
+//import com.example.nullshinsaproduct.product.application.dto.request.CategoryInfoRequest;
 //import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.stereotype.Service;

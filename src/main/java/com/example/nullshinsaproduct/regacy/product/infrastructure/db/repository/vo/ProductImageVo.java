@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo;
 
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Product;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 

@@ -62,4 +62,5 @@ public class ProductSize {
     }
 
     // 정적 팩토리 메서드 여러개 craete
+
 }

@@ -1,8 +1,8 @@
-package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity;
+package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetail;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfo;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetailInEntity;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductImageVo;
@@ -43,9 +43,9 @@ public abstract class Product {
     // 브랜드는 상품 종류마다 뭔가 따로 로직이 있어야할 필요는 없을것 같아 상위필드에 정의
     // 과연 브랜드 관련 데이터가 상품에 있을필요가 있을까..? id 만 있어도 충분할거 같은데 cqrs 를 미리 고려해놔서 이렇게 한것 같다. -> 일단은.. 두자
     @Embedded
-    private ProductBrandInfo productBrandInfo;
+    private ProductBrandInfoEmbeddable productBrandInfoEmbeddable;
     @Embedded
-    private DiscountDetail discountDetail;
+    private DiscountDetailInEntity discountDetailInEntity;
 
     // === 이넘 ===
     // 쿠폰가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의
@@ -66,15 +66,15 @@ public abstract class Product {
     protected Product(
             String name,
             int price,
-            ProductBrandInfo productBrandInfo,
-            DiscountDetail discountDetail,
+            ProductBrandInfoEmbeddable productBrandInfoEmbeddable,
+            DiscountDetailInEntity discountDetailInEntity,
             CouponApplyPossible couponApplyPossible,
             ProductType productType
     ) {
         this.name = name;
         this.price = price;
-        this.productBrandInfo = productBrandInfo;
-        this.discountDetail = discountDetail;
+        this.productBrandInfoEmbeddable = productBrandInfoEmbeddable;
+        this.discountDetailInEntity = discountDetailInEntity;
         this.couponApplyPossible = couponApplyPossible;
         this.productType = productType;
     }
@@ -95,8 +95,8 @@ public abstract class Product {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", productBrandInfo=" + productBrandInfo +
-                ", discountDetail=" + discountDetail +
+                ", productBrandInfo=" + productBrandInfoEmbeddable +
+                ", discountDetail=" + discountDetailInEntity +
                 ", couponApplyPossible=" + couponApplyPossible +
                 ", productType=" + productType +
                 ", productImageList is null ? =" + Objects.isNull(productImageEntityList) +

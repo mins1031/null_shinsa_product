@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.application.service.brand;
 
-import com.example.nullshinsaproduct.regacy.application.dto.request.BrandSaveRequest;
+import com.example.nullshinsaproduct.product.application.dto.request.BrandSaveRequest;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
 import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
 import lombok.RequiredArgsConstructor;

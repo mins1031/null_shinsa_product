@@ -2,7 +2,7 @@ package com.example.nullshinsaproduct.regacy.presentation.product;
 
 import com.example.nullshinsaproduct.regacy.application.facade.ProductFacade;
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
-import com.example.nullshinsaproduct.regacy.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
