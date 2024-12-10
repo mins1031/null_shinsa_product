@@ -5,6 +5,7 @@ import com.example.nullshinsaproduct.product.application.output.map.ProductOutpu
 import com.example.nullshinsaproduct.product.application.output.port.ProductRepository;
 import com.example.nullshinsaproduct.product.domain.Product;
 import com.example.nullshinsaproduct.product.domain.ProductImage;
+import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.SkuProduct;
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.product.domain.service.ProductImageDomainService;
@@ -36,17 +37,26 @@ public class ProductCommandService {
         Product savedProduct = productOutputMapper.toProductDomain(productEntity);
 
         List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(req.skuProductRequests(), savedProduct.getId());
-        savedProduct.updateRelatedSkus(skuProducts);
+        productEntity.initSkus(
+                productOutputMapper.toSkuProductEntities(skuProducts)
+        );
 
-        ProductImageDomainService imageDomainService = new ProductImageDomainService();
-        List<ProductImage> productImages = imageDomainService.generateProductImages(
+        List<ProductSize> productSizes = productOutputMapper.toProductSizes(req.productSizeRequests(), savedProduct.getId());
+        productEntity.initSizes(
+                productOutputMapper.toProductSizeEntities(productSizes)
+        );
+
+        List<ProductImage> productImages = new ProductImageDomainService().generateProductImages(
                 req.thumbnailLink(),
                 req.profileImagesLink(),
                 req.detailImageLink(),
                 savedProduct.getId()
         );
-        savedProduct.updateRelatedImages(productImages);
+        productEntity.initImages(
+                productOutputMapper.toProductImageEntities(productImages)
+        );
 
+        // 이후 작업 필요. 우선 위 작업 테스트 부터 하고 ㄱㄱ
 
     }
 

@@ -1,11 +1,17 @@
 package com.example.nullshinsaproduct.product.application.output.map;
 
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.domain.Product;
+import com.example.nullshinsaproduct.product.domain.ProductImage;
+import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.SkuProduct;
 import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -17,13 +23,26 @@ public interface ProductOutputMapper {
 
     ProductSaveVo toProductSaveVo(ProductSaveRequest requestDto);
 
-    ProductEntity toProductEntity(Product product);
-
+    ProductEntity toProductEntity(Product domain);
     Product toProductDomain(ProductEntity entity);
 
     List<SkuProduct> toSkuProducts(List<SkuProductRequest> requests, long parentProductId);
+    SkuProduct toSkuProduct(SkuProductRequest request, long parentProductId);
 
-    SkuProduct toSkuProduct(SkuProductRequest requests, long parentProductId);
+    List<SkuProductEntity> toSkuProductEntities(List<SkuProduct> domains);
+    SkuProductEntity toSkuProductEntity(SkuProduct domain);
+
+    List<ProductSize> toProductSizes(List<ProductSizeRequest> requests, long parentProductId);
+    ProductSize toProductSize(ProductSizeRequest request, long parentProductId);
+
+    List<ProductSizeEntity> toProductSizeEntities(List<ProductSize> domains);
+    ProductSizeEntity toProductSizeEntity(ProductSize domain);
+
+    List<ProductImageEntity> toProductImageEntities(List<ProductImage> domains);
+    ProductImageEntity toProductImageEntity(ProductImage domain);
+
+
+
 
     //    default ProductEntity toProductEntity(Product product) {
 //        ProductEntity.createDefault(
