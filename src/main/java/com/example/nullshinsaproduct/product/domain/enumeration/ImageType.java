@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum ImageType {
     THUMBNAIL("섬네일 이미지"),
-    TITLE("타일 상품 이미지"),
+    PROFILE("프로필 이미지"),
     DETAIL("상세페이지 이미지"),
 
     ;

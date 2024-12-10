@@ -3,30 +3,29 @@ package com.example.nullshinsaproduct.product.domain;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
 
 @Getter
 public class ProductSize {
-    private final long id;
+    private final Long id;
     private final long productId;
-    private final String sizeName;
-    private final ProductSizeType productSizeType;
-    private final String totalLength;
-    private final String shoulder; // 어깨너비
-    private final String chest; // 가슴단면
-    private final String sleeve; // 소매길이
-    private final String waist; // 허리
-    private final String crotch; // 밑위
-    private final String hip; // 엉덩이 단면
-    private final String thigh; // 허벅지 단면
-    private final String hem; // 밑단
-    private final String width; // 너비
-    private final String height; // 높이
-    private final String depth; // 폭(깊이)
+    private String sizeName;
+    private ProductSizeType productSizeType;
+    private String totalLength;
+    private String shoulder; // 어깨너비
+    private String chest; // 가슴단면
+    private String sleeve; // 소매길이
+    private String waist; // 허리
+    private String crotch; // 밑위
+    private String hip; // 엉덩이 단면
+    private String thigh; // 허벅지 단면
+    private String hem; // 밑단
+    private String width; // 너비
+    private String height; // 높이
+    private String depth; // 폭(깊이)
 
 
     private ProductSize(
-            long id,
+            Long id,
             long productId,
             String sizeName,
             ProductSizeType productSizeType,

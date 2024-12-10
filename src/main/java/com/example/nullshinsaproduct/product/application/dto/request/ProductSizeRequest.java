@@ -5,7 +5,6 @@ import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 
 public record ProductSizeRequest (
         String sizeName,
-        ProductSizeType productSizeType,
         String totalLength,
         String shoulder, // 어깨너비
         String chest, // 가슴단면
@@ -17,6 +16,7 @@ public record ProductSizeRequest (
         String hem, // 밑단
         String width, // 너비
         String height, // 높이
-        String depth // 폭(깊이)
+        String depth, // 폭(깊이)
+        ProductSizeType productSizeType
 ) {
 }

@@ -7,13 +7,11 @@ import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQuer
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeResponse;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductDetailRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductDetailResponse;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeVo;
 import com.example.nullshinsaproduct.regacy.application.dto.response.SkuProductResponse;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductDetailVo;
@@ -65,7 +63,7 @@ public class ProductMapper {
         images.add(new ProductImageEntity(thumbnail, ImageType.THUMBNAIL, product));
         images.addAll(
                 titleImages.stream()
-                        .map(image -> new ProductImageEntity(image, ImageType.TITLE, product))
+                        .map(image -> new ProductImageEntity(image, ImageType.PROFILE, product))
                         .collect(Collectors.toList())
         );
         images.addAll(

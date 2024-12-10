@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.product.domain;
 
+import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.vo.CategoryVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductBrandVo;
@@ -16,48 +17,50 @@ public class Product {
     private final Long id;
     private String name;
     private int price;
-    private List<SkuProduct> skuProductList;
-    private List<ProductImage> productImageList;
     private CategoryVo categoryVo;
     private ProductDeliveryVo productDeliveryVo;
     private ProductBrandVo productBrandVo;
-    private ProductSize productSize;
     private ProductStatus productStatus;
     private DiscountDetail discountDetail;
+    private CouponApplyPossible couponApplyPossible;
+    private List<SkuProduct> skuProductList;
+    private List<ProductSize> productSizes;
+    private List<ProductImage> productImageList;
+
 
     public Product(
             Long id,
             String name,
             int price,
-            List<SkuProduct> skuProductList,
-            List<ProductImage> productImageList,
             CategoryVo categoryVo,
             ProductDeliveryVo productDeliveryVo,
             ProductBrandVo productBrandVo,
-            ProductSize productSize,
             ProductStatus productStatus,
-            DiscountDetail discountDetail
+            DiscountDetail discountDetail,
+            CouponApplyPossible couponApplyPossible,
+            List<SkuProduct> skuProductList,
+            List<ProductSize> productSizes,
+            List<ProductImage> productImageList
     ) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.skuProductList = skuProductList;
-        this.productImageList = productImageList;
         this.categoryVo = categoryVo;
         this.productDeliveryVo = productDeliveryVo;
         this.productBrandVo = productBrandVo;
-        this.productSize = productSize;
         this.productStatus = productStatus;
         this.discountDetail = discountDetail;
+        this.couponApplyPossible = couponApplyPossible;
+        this.skuProductList = skuProductList;
+        this.productSizes = productSizes;
+        this.productImageList = productImageList;
     }
 
-    public static Product createFrom(ProductSaveVo saveVo) {
+    public static Product createFrom(final ProductSaveVo saveVo) {
         return new Product(
                 null,
                 saveVo.name(),
                 saveVo.price(),
-                new ArrayList<>(),
-                new ArrayList<>(),
                 CategoryVo.of(
                         saveVo.firstLayerCategory(),
                         saveVo.secondLayerCategory(),
@@ -65,13 +68,16 @@ public class Product {
                 ),
                 ProductDeliveryVo.createAs(saveVo.isDeliveryFree()),
                 null/*productBrandVo*/,
-                null,
                 ProductStatus.TEMP,
                 DiscountDetail.of(
                         saveVo.discountApplyPossible(),
                         saveVo.discountMinRate(),
                         saveVo.discountMaxRate()
-                )
+                ),
+                saveVo.couponApplyPossible(),
+                new ArrayList<>(),
+                new ArrayList<>(),
+                new ArrayList<>()
         );
     }
 
@@ -84,8 +90,8 @@ public class Product {
         this.productImageList = productImageList;
     }
 
-    public void updateSize(final ProductSize productSize) {
-        this.productSize = productSize;
+    public void updateSize(final List<ProductSize> productSizes) {
+        this.productSizes = productSizes;
     }
 
 }

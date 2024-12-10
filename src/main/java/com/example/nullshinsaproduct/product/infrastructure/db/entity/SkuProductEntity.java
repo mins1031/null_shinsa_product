@@ -1,6 +1,7 @@
 package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,7 +33,7 @@ public class SkuProductEntity {
     private int plusPrice;
 
     @Enumerated(EnumType.STRING)
-    private ProductStatus productStatus;
+    private SkuProductStatus skuProductStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
@@ -44,13 +45,13 @@ public class SkuProductEntity {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public SkuProductEntity(long id, Product product, String name, int stock, int plusPrice, ProductStatus productStatus) {
+    public SkuProductEntity(long id, Product product, String name, int stock, int plusPrice, SkuProductStatus skuProductStatus) {
         this.id = id;
         this.product = product;
         this.name = name;
         this.stock = stock;
         this.plusPrice = plusPrice;
-        this.productStatus = productStatus;
+        this.skuProductStatus = skuProductStatus;
     }
 
     public static SkuProductEntity createSkuProduct(
@@ -58,7 +59,7 @@ public class SkuProductEntity {
             String size,
             int stock,
             int discountRate,
-            ProductStatus productStatus,
+            SkuProductStatus skuProductStatus,
             Product product
     ) {
         return new SkuProductEntity(

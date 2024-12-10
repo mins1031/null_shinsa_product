@@ -1,27 +1,17 @@
 package com.example.nullshinsaproduct.regacy.application.service.product.service;
 
-import com.example.nullshinsaproduct.regacy.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetailInEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDeliveryInfoInEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductJpaRepository;
-import com.example.nullshinsaproduct.regacy.application.mapper.ProductMapper;
+import com.example.nullshinsaproduct.regacy.application.combine.ProductDataCombine;
+import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
+import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -51,18 +41,18 @@ public class ClothesProductService {
                 req.categoryInfoRequest().inferiorLayerCategory()
         );
 
-        ProductEntity productEntity = ProductEntity.createBasicClothesProduct(
-                req.name(),
-                req.price(),
-                productBrandInfoEmbeddable,
-                categoryInfoEntity,
-                new DiscountDetailInEntity(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
-                req.couponApplyPossible(),
-                ProductDeliveryInfoInEntity.createFreeDelivery(),
-                ProductType.CLOTHES
-        );
-
-        ProductEntity savedProduct = productJpaRepository.save(productEntity);
+//        ProductEntity productEntity = ProductEntity.createDefault(
+//                req.name(),
+//                req.price(),
+//                productBrandInfoEmbeddable,
+//                categoryInfoEntity,
+//                new DiscountDetailInEntity(req.discountApplyPossible(), req.discountMinRate(), req.discountMaxRate()),
+//                req.couponApplyPossible(),
+//                ProductDeliveryInfoInEntity.createFreeDelivery(),
+//                ProductType.CLOTHES
+//        );
+//
+//        ProductEntity savedProduct = productJpaRepository.save(productEntity);
 
 //        ProductDetail productDetail = ProductMapper.mapFromReqToProductDetail(req.productDetailRequest(), savedProduct);
 //        savedProduct.initDetail(productDetail);
@@ -70,8 +60,8 @@ public class ClothesProductService {
 //        savedProduct.initSizes(productSizeEntities);
 //        List<SkuProductEntity> skus = ProductMapper.mapFromReqsToSkuProducts(req.skuProductRequests(), savedProduct);
 //        savedProduct.initSkus(skus);
-        List<ProductImageEntity> images = ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct);
-        savedProduct.initImages(images);
+//        List<ProductImageEntity> images = ProductMapper.mapFromReqsToProductImages(req.thumbnailLink(), req.profileImagesLink(), req.detailImageLink(), savedProduct);
+//        savedProduct.initImages(images);
 
 //        productDataCombine.saveProductSubEntities(productDetail, productSizeEntities, skus, images);
 
