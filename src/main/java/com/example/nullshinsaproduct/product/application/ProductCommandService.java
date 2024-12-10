@@ -36,25 +36,25 @@ public class ProductCommandService {
         ProductEntity productEntity = productRepository.save(productOutputMapper.toProductEntity(product));
         Product savedProduct = productOutputMapper.toProductDomain(productEntity);
 
-        List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(req.skuProductRequests(), savedProduct.getId());
-        productEntity.initSkus(
-                productOutputMapper.toSkuProductEntities(skuProducts)
-        );
-
-        List<ProductSize> productSizes = productOutputMapper.toProductSizes(req.productSizeRequests(), savedProduct.getId());
-        productEntity.initSizes(
-                productOutputMapper.toProductSizeEntities(productSizes)
-        );
-
-        List<ProductImage> productImages = new ProductImageDomainService().generateProductImages(
-                req.thumbnailLink(),
-                req.profileImagesLink(),
-                req.detailImageLink(),
-                savedProduct.getId()
-        );
-        productEntity.initImages(
-                productOutputMapper.toProductImageEntities(productImages)
-        );
+//        List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(req.skuProductRequests(), savedProduct.getId());
+//        productEntity.initSkus(
+//                productOutputMapper.toSkuProductEntities(skuProducts)
+//        );
+//
+//        List<ProductSize> productSizes = productOutputMapper.toProductSizes(req.productSizeRequests(), savedProduct.getId());
+//        productEntity.initSizes(
+//                productOutputMapper.toProductSizeEntities(productSizes)
+//        );
+//
+//        List<ProductImage> productImages = new ProductImageDomainService().generateProductImages(
+//                req.thumbnailLink(),
+//                req.profileImagesLink(),
+//                req.detailImageLink(),
+//                savedProduct.getId()
+//        );
+//        productEntity.initImages(
+//                productOutputMapper.toProductImageEntities(productImages)
+//        );
 
         // 이후 작업 필요. 우선 위 작업 테스트 부터 하고 ㄱㄱ
 

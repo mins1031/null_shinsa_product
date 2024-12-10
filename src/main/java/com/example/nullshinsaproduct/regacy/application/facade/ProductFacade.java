@@ -36,12 +36,13 @@ public class ProductFacade {
 
     @Transactional(readOnly = true)
     public ProductQueryResponse switchFindProduct(final long productId) {
-        Product product = productJpaRepository.findById(productId).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
-        return switch (product.getProductType()) {
-//            case CLOTHES -> clothesProductFindService.findOneProduct((ProductEntity) product);
-            case CLOTHES -> null;
-            case ELECTRONICS -> electronicProductFindService.findOneProduct((ElectronicProduct) product);
-        };
+//        Product product = productJpaRepository.findById(productId).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
+//        return switch (product.getProductType()) {
+////            case CLOTHES -> clothesProductFindService.findOneProduct((ProductEntity) product);
+//            case CLOTHES -> null;
+//            case ELECTRONICS -> electronicProductFindService.findOneProduct((ElectronicProduct) product);
+//        };
+        return null;
     }
 
 }

@@ -26,13 +26,14 @@ public class ClothesProductFindService {
     //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
     @Transactional(readOnly = true)
     public ProductQueryResponse findOneProduct(ProductEntity product) {
-        ProductOverviewVo productOverview = product.getProductOverview();
-        Brand brand = brandRepository.findById(product.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
-
-        return ProductMapper.mapProductOverviewToRes(
-                productOverview,
-                BrandMapper.mapEntityToRes(brand)
-        );
+//        ProductOverviewVo productOverview = product.getProductOverview();
+//        Brand brand = brandRepository.findById(product.getBrandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_BRAND));
+//
+//        return ProductMapper.mapProductOverviewToRes(
+//                productOverview,
+//                BrandMapper.mapEntityToRes(brand)
+//        );
+        return null;
     }
 
     @Transactional(readOnly = true)

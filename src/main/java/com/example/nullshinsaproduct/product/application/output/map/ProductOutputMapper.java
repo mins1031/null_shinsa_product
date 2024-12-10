@@ -12,7 +12,10 @@ import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEnt
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -21,25 +24,43 @@ import java.util.List;
 public interface ProductOutputMapper {
     ProductOutputMapper INSTANCE = Mappers.getMapper(ProductOutputMapper.class);
 
+    @Mapping(source = "categoryInfoRequest.firstLayerCategory", target = "firstLayerCategory")
+    @Mapping(source = "categoryInfoRequest.secondLayerCategory", target = "secondLayerCategory")
+    @Mapping(source = "categoryInfoRequest.thirdLayerCategory", target = "thirdLayerCategory")
     ProductSaveVo toProductSaveVo(ProductSaveRequest requestDto);
 
     ProductEntity toProductEntity(Product domain);
     Product toProductDomain(ProductEntity entity);
 
-    List<SkuProduct> toSkuProducts(List<SkuProductRequest> requests, long parentProductId);
+    @Named("toSkuProduct")
+    @Mapping(target = "parentProductId", source = "parentProductId")
     SkuProduct toSkuProduct(SkuProductRequest request, long parentProductId);
 
-    List<SkuProductEntity> toSkuProductEntities(List<SkuProduct> domains);
-    SkuProductEntity toSkuProductEntity(SkuProduct domain);
+    default List<SkuProduct> toSkuProducts(List<SkuProductRequest> requests, long parentProductId) {
+        return requests.stream()
+                .map(req -> toSkuProduct(req, parentProductId))
+                .toList();
+    }
 
-    List<ProductSize> toProductSizes(List<ProductSizeRequest> requests, long parentProductId);
-    ProductSize toProductSize(ProductSizeRequest request, long parentProductId);
-
-    List<ProductSizeEntity> toProductSizeEntities(List<ProductSize> domains);
-    ProductSizeEntity toProductSizeEntity(ProductSize domain);
-
-    List<ProductImageEntity> toProductImageEntities(List<ProductImage> domains);
-    ProductImageEntity toProductImageEntity(ProductImage domain);
+//    @Named("toSkuProductEntity")
+//    SkuProductEntity toSkuProductEntity(SkuProduct domain);
+//    @IterableMapping(qualifiedByName = "toSkuProductEntity")
+//    List<SkuProductEntity> toSkuProductEntities(List<SkuProduct> domains);
+//
+//    @Named("toProductSize")
+//    ProductSize toProductSize(ProductSizeRequest request, long parentProductId);
+//    @IterableMapping(qualifiedByName = "toProductSize")
+//    List<ProductSize> toProductSizes(List<ProductSizeRequest> requests, long parentProductId);
+//
+//    @IterableMapping(qualifiedByName = "toProductSizeEntity")
+//    List<ProductSizeEntity> toProductSizeEntities(List<ProductSize> domains);
+//    @Named("toProductSizeEntity")
+//    ProductSizeEntity toProductSizeEntity(ProductSize domain);
+//
+//    @IterableMapping(qualifiedByName = "toProductImageEntity")
+//    List<ProductImageEntity> toProductImageEntities(List<ProductImage> domains);
+//    @Named("toProductImageEntity")
+//    ProductImageEntity toProductImageEntity(ProductImage domain);
 
 
 

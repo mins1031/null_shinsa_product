@@ -3,9 +3,11 @@ package com.example.nullshinsaproduct.product.domain;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
+@Setter
 @ToString
 @EqualsAndHashCode
 public class SkuProduct {
