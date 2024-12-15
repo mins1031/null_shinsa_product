@@ -14,7 +14,6 @@ import com.example.nullshinsaproduct.product.domain.ProductImage;
 import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.SkuProduct;
 import com.example.nullshinsaproduct.product.domain.service.ProductImageDomainService;
-import com.example.nullshinsaproduct.product.domain.vo.ProductDeliveryVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
@@ -43,40 +42,40 @@ public class ProductCommandService {
     public ProductEntity saveProduct(ProductSaveRequest req) {
         // 상품생성 시작
         ProductSaveVo productSaveVo = productOutputMapper.toProductSaveVo(req);
-
         Product product = Product.createFrom(productSaveVo);
+
         return productRepository.save(productOutputMapper.toProductEntity(product));
     }
 
     @Transactional
-    public void saveSkuProducts(ProductEntity productEntity, List<SkuProductRequest> requests) {
-        List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(productEntity.getId(), requests);
-        List<SkuProductEntity> entities = ProductEntityMapper.toSkuProductEntities(skuProducts, productEntity);
+    public void saveSkuProducts(ProductEntity product, List<SkuProductRequest> requests) {
+        List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(product.getId(), requests);
+        List<SkuProductEntity> entities = ProductEntityMapper.toSkuProductEntities(skuProducts, product);
 
         skuProductRepository.saveAll(entities);
     }
 
     @Transactional
-    public void saveProductSize(ProductEntity productEntity, List<ProductSizeRequest> requests) {
+    public void saveProductSize(ProductEntity product, List<ProductSizeRequest> requests) {
         List<ProductSize> productSizes = requests.stream()
-                .map(size -> size.productSizeType().createProductSizeByType(size, productEntity.getId()))
+                .map(size -> size.productSizeType().createProductSizeByType(size, product.getId()))
                 .toList();
-        List<ProductSizeEntity> productSizeEntities = ProductEntityMapper.toProductSizeEntities(productSizes, productEntity);
+        List<ProductSizeEntity> productSizeEntities = ProductEntityMapper.toProductSizeEntities(productSizes, product);
 
         productSizeRepository.saveAll(productSizeEntities);
     }
 
     @Transactional
-    public void saveProductImages(ProductEntity productEntity, ProductSaveRequest request) {
+    public void saveProductImages(ProductEntity product, ProductSaveRequest request) {
         ProductImageDomainService domainService = new ProductImageDomainService();
         List<ProductImage> productImages = domainService.generateProductImages(
                 request.thumbnailLink(),
                 request.profileImagesLink(),
                 request.detailImageLink(),
-                productEntity.getId()
+                product.getId()
         );
 
-        List<ProductImageEntity> imageEntities = ProductEntityMapper.toProductImageEntities(productImages, productEntity);
+        List<ProductImageEntity> imageEntities = ProductEntityMapper.toProductImageEntities(productImages, product);
         productImageRepository.saveAll(imageEntities);
     }
 

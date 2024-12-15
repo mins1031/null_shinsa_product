@@ -98,8 +98,8 @@ public class ProductEntity {
     // === 연관관계 ===
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<SkuProductEntity> skuProductEntityList;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
-    private ProductDetail productDetail;
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
+//    private ProductDetail productDetail;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "product", orphanRemoval = true)
     private List<ProductSizeEntity> productSizeEntityList;
 
@@ -134,8 +134,8 @@ public class ProductEntity {
             InferiorLayerCategory inferiorLayerCategory,
             List<ProductImageEntity> productImageEntityList,
             List<SkuProductEntity> skuProductEntityList,
-            ProductDetail productDetail,
             List<ProductSizeEntity> productSizeEntityList
+//            ProductDetail productDetail,
     ) {
         this.name = name;
         this.price = price;
@@ -159,8 +159,8 @@ public class ProductEntity {
         this.inferiorLayerCategory = inferiorLayerCategory;
         this.productImageEntityList = productImageEntityList;
         this.skuProductEntityList = skuProductEntityList;
-        this.productDetail = productDetail;
         this.productSizeEntityList = productSizeEntityList;
+//        this.productDetail = productDetail;
     }
 
     public static ProductEntity createDefault(
@@ -212,9 +212,9 @@ public class ProductEntity {
     public void initSkus(List<SkuProductEntity> skus) {
         this.skuProductEntityList = skus;
     }
-    public void initDetail(ProductDetail detail) {
-        this.productDetail = detail;
-    }
+//    public void initDetail(ProductDetail detail) {
+//        this.productDetail = detail;
+//    }
     public void initSizes(List<ProductSizeEntity> sizes) {
         this.productSizeEntityList = sizes;
     }

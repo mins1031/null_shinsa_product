@@ -33,15 +33,15 @@ public interface ProductOutputMapper {
     @Mapping(source = "productDeliveryVo.deliveryFee", target = "deliveryFee")
     ProductEntity toProductEntity(Product domain);
 
-    @Mapping(target = "categoryVo.firstLayerCategory", source = "firstLayerCategory")
-    @Mapping(target = "categoryVo.secondLayerCategory", source = "secondLayerCategory")
-    @Mapping(target = "categoryVo.thirdLayerCategory", source = "thirdLayerCategory")
-    @Mapping(target = "discountDetail.discountApplyPossible", source = "discountApplyPossible")
-    @Mapping(target = "discountDetail.discountMinRate", source = "discountMinRate")
-    @Mapping(target = "discountDetail.discountMaxRate", source = "discountMaxRate")
-    @Mapping(target = "productDeliveryVo.outboundPossibleDay", source = "outboundPossibleDay")
-    @Mapping(target = "productDeliveryVo.deliveryFee", source = "deliveryFee")
-    Product toProductDomain(ProductEntity entity);
+//    @Mapping(target = "categoryVo.firstLayerCategory", source = "firstLayerCategory")
+//    @Mapping(target = "categoryVo.secondLayerCategory", source = "secondLayerCategory")
+//    @Mapping(target = "categoryVo.thirdLayerCategory", source = "thirdLayerCategory")
+//    @Mapping(target = "discountDetail.discountApplyPossible", source = "discountApplyPossible")
+//    @Mapping(target = "discountDetail.discountMinRate", source = "discountMinRate")
+//    @Mapping(target = "discountDetail.discountMaxRate", source = "discountMaxRate")
+//    @Mapping(target = "productDeliveryVo.outboundPossibleDay", source = "outboundPossibleDay")
+//    @Mapping(target = "productDeliveryVo.deliveryFee", source = "deliveryFee")
+//    Product toProductDomain(ProductEntity entity);
 
     @Named("toSkuProduct")
     @Mapping(target = "parentProductId", source = "parentProductId")

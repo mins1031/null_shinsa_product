@@ -15,12 +15,12 @@ public class ProductImageDomainService {
             List<String> detailLinks,
             long productId
     ) {
-        ProductImage thumbnail = ProductImage.of(productId, thumbnailLink, ImageType.THUMBNAIL);
+        ProductImage thumbnail = ProductImage.createDefault(productId, thumbnailLink, ImageType.THUMBNAIL);
         List<ProductImage> profileImages = profileLinks.stream()
-                .map(link -> ProductImage.of(productId, link, ImageType.PROFILE))
+                .map(link -> ProductImage.createDefault(productId, link, ImageType.PROFILE))
                 .toList();
         List<ProductImage> detailPageImages = detailLinks.stream()
-                .map(link -> ProductImage.of(productId, link, ImageType.DETAIL))
+                .map(link -> ProductImage.createDefault(productId, link, ImageType.DETAIL))
                 .toList();
 
         return Stream.concat(

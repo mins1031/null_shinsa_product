@@ -13,6 +13,13 @@ public class ProductDeliveryVo {
         this.deliveryFee = deliveryFee;
     }
 
+    public static ProductDeliveryVo of(
+            int outboundPossibleDay,
+            DeliveryFee deliveryFee
+    ) {
+        return new ProductDeliveryVo(outboundPossibleDay, deliveryFee);
+    }
+
     public static ProductDeliveryVo createAs(boolean isDeliveryFree) {
         if (isDeliveryFree) {
             return createFreeDelivery();

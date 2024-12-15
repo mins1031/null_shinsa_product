@@ -1,7 +1,13 @@
 package com.example.nullshinsaproduct.product.domain;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
+import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
+import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.product.domain.vo.CategoryVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductBrandVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductDeliveryVo;
@@ -28,7 +34,7 @@ public class Product {
     private List<ProductImage> productImageList;
 
 
-    public Product(
+    private Product(
             Long id,
             String name,
             int price,
@@ -54,6 +60,64 @@ public class Product {
         this.skuProductList = skuProductList;
         this.productSizes = productSizes;
         this.productImageList = productImageList;
+    }
+
+    public static Product of(
+            Long id,
+            String name,
+            int price,
+            Long brandId,
+            String brandName,
+            String corporateNumber,
+            String communicationSellingNumber,
+            String representative,
+            String location,
+            int discountMinRate,
+            int discountMaxRate,
+            int outboundPossibleDay,
+            DeliveryFee deliveryFee,
+            DiscountApplyPossible discountApplyPossible,
+            CouponApplyPossible couponApplyPossible,
+            ProductStatus productStatus,
+            FirstLayerCategory firstLayerCategory,
+            SecondLayerCategory secondLayerCategory,
+            ThirdLayerCategory thirdLayerCategory,
+            List<SkuProduct> skuProductList,
+            List<ProductSize> productSizes,
+            List<ProductImage> productImageList
+    ) {
+        return new Product(
+                id,
+                name,
+                price,
+                CategoryVo.of(
+                        firstLayerCategory,
+                        secondLayerCategory,
+                        thirdLayerCategory
+                ),
+                ProductDeliveryVo.of(
+                        outboundPossibleDay,
+                        deliveryFee
+                ),
+                ProductBrandVo.of(
+                        brandId,
+                        brandName,
+                        corporateNumber,
+                        communicationSellingNumber,
+                        representative,
+                        location
+                ),
+                productStatus,
+                DiscountDetail.of(
+                        discountApplyPossible,
+                        discountMinRate,
+                        discountMaxRate
+                ),
+                couponApplyPossible,
+                skuProductList,
+                productSizes,
+                productImageList
+        );
     }
 
     public static Product createFrom(final ProductSaveVo saveVo) {

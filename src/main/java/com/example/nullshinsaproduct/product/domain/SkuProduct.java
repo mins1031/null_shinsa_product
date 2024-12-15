@@ -26,6 +26,24 @@ public class SkuProduct {
         this.skuProductStatus = skuProductStatus;
     }
 
+    public static SkuProduct of(
+            Long id,
+            long parentProductId,
+            String name,
+            int stock,
+            int plusPrice,
+            SkuProductStatus skuProductStatus
+    ) {
+        return new SkuProduct(
+                id,
+                parentProductId,
+                name,
+                stock,
+                plusPrice,
+                skuProductStatus
+        );
+    }
+
     public static SkuProduct createDefault(
             long parentProductId,
             String name,

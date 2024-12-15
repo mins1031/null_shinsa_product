@@ -26,4 +26,22 @@ public class ProductBrandVo {
         this.representative = representative;
         this.location = location;
     }
+
+    public static ProductBrandVo of(
+            Long brandId,
+            String brandName,
+            String corporateNumber,
+            String communicationSellingNumber,
+            String representative,
+            String location
+    ) {
+        return new ProductBrandVo(
+                brandId,
+                brandName,
+                corporateNumber,
+                communicationSellingNumber,
+                representative,
+                location
+        );
+    }
 }

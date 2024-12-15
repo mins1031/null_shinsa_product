@@ -12,7 +12,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     private final ProductJpaRepository productJpaRepository;
 
     @Override
-    public ProductEntity save(ProductEntity productEntity) {
-        return productJpaRepository.save(productEntity);
+    public ProductEntity save(ProductEntity entity) {
+        return productJpaRepository.save(entity);
     }
 }

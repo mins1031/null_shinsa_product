@@ -62,7 +62,43 @@ public class ProductSize {
         this.depth = depth;
     }
 
-    // 정적 팩토리 메서드 여러개 craete
+    public static ProductSize of(
+            Long id,
+            long productId,
+            String sizeName,
+            ProductSizeType productSizeType,
+            String totalLength,
+            String shoulder,
+            String chest,
+            String sleeve,
+            String waist,
+            String crotch,
+            String hip,
+            String thigh,
+            String hem,
+            String width,
+            String height,
+            String depth
+    ) {
+        return new ProductSize(
+                id,
+                productId,
+                sizeName,
+                productSizeType,
+                totalLength,
+                shoulder,
+                chest,
+                sleeve,
+                waist,
+                crotch,
+                hip,
+                thigh,
+                hem,
+                width,
+                height,
+                depth
+        );
+    }
 
     public static ProductSize createOuter(ProductSizeRequest req, Long productId) {
         return ProductSize.builder()

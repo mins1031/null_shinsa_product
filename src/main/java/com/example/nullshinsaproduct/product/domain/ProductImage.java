@@ -19,7 +19,16 @@ public class ProductImage {
         this.imageType = imageType;
     }
 
-    public static ProductImage of(long productId, String imageUrl, ImageType imageType) {
+    public static ProductImage of(
+            Long id,
+            long productId,
+            String imageUrl,
+            ImageType imageType
+    ) {
+        return new ProductImage(id, productId, imageUrl, imageType);
+    }
+
+    public static ProductImage createDefault(long productId, String imageUrl, ImageType imageType) {
         return new ProductImage(null, productId, imageUrl, imageType);
     }
 }
