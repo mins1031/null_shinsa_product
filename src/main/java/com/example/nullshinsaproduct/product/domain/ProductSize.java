@@ -1,13 +1,15 @@
 package com.example.nullshinsaproduct.product.domain;
 
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
+import lombok.Builder;
 import lombok.Getter;
 
 
 @Getter
 public class ProductSize {
     private final Long id;
-    private final long productId;
+    private long productId;
     private String sizeName;
     private ProductSizeType productSizeType;
     private String totalLength;
@@ -23,7 +25,7 @@ public class ProductSize {
     private String height; // 높이
     private String depth; // 폭(깊이)
 
-
+    @Builder
     private ProductSize(
             Long id,
             long productId,
@@ -62,4 +64,72 @@ public class ProductSize {
 
     // 정적 팩토리 메서드 여러개 craete
 
+    public static ProductSize createOuter(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .shoulder(req.shoulder())
+                .chest(req.chest())
+                .sleeve(req.sleeve())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createTop(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .shoulder(req.shoulder())
+                .chest(req.chest())
+                .sleeve(req.sleeve())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createBottom(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .waist(req.waist())
+                .crotch(req.crotch())
+                .hip(req.hip())
+                .thigh(req.thigh())
+                .hem(req.hem())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createDress(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .shoulder(req.shoulder())
+                .chest(req.chest())
+                .sleeve(req.sleeve())
+                .hip(req.hip())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createSkirt(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .waist(req.waist())
+                .hip(req.hip())
+                .hem(req.hem())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createShoe(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .totalLength(req.totalLength())
+                .productId(productId)
+                .build();
+    }
+
+    public static ProductSize createBag(ProductSizeRequest req, Long productId) {
+        return ProductSize.builder()
+                .width(req.width())
+                .height(req.height())
+                .depth(req.depth())
+                .productId(productId)
+                .build();
+    }
 }

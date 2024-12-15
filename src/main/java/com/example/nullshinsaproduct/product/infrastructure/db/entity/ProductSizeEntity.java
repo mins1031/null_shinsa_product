@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -47,7 +48,7 @@ public class ProductSizeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Product product;
+    private ProductEntity product;
 
 
     @CreatedDate
@@ -70,7 +71,7 @@ public class ProductSizeEntity {
             String height,
             String depth,
             ProductSizeType productSizeType,
-            Product product
+            ProductEntity product
     ) {
         this.sizeName = sizeName;
         this.totalLength = totalLength;
@@ -89,5 +90,40 @@ public class ProductSizeEntity {
         this.product = product;
     }
 
-    // 정적 팩토리 메서드 여러개 craete
+
+    public static ProductSizeEntity of(
+            String sizeName,
+            String totalLength,
+            String shoulder,
+            String chest,
+            String sleeve,
+            String waist,
+            String crotch,
+            String hip,
+            String thigh,
+            String hem,
+            String width,
+            String height,
+            String depth,
+            ProductSizeType productSizeType,
+            ProductEntity product
+    ) {
+        return new ProductSizeEntity(
+                sizeName,
+                totalLength,
+                shoulder,
+                chest,
+                sleeve,
+                waist,
+                crotch,
+                hip,
+                thigh,
+                hem,
+                width,
+                height,
+                depth,
+                productSizeType,
+                product
+        );
+    }
 }

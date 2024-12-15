@@ -47,14 +47,8 @@ public class ProductImageEntity {
         this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return "ProductImage{" +
-                "id=" + id +
-                ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", imageType=" + imageType +
-                '}';
+    public static ProductImageEntity of(String imageUrl, ImageType imageType, ProductEntity product) {
+        return new ProductImageEntity(imageUrl, imageType, product);
     }
+
 }

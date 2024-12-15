@@ -5,14 +5,9 @@ import com.example.nullshinsaproduct.regacy.application.service.product.service.
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ClothesProductService;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ElectronicProductFindService;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ElectronicProductService;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ElectronicProduct;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.common.exception.product.ProductException;
-import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

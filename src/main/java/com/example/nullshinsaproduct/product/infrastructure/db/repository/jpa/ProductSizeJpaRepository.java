@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.product.infrastructure.db.repository;
+package com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa;
 
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;

@@ -1,7 +1,7 @@
 package com.example.nullshinsaproduct.regacy.application.service.product.service;
 
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

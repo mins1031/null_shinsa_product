@@ -1,7 +1,8 @@
 package com.example.nullshinsaproduct.product.presentation;
 
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
-import com.example.nullshinsaproduct.product.application.ProductCommandService;
+import com.example.nullshinsaproduct.product.application.facade.ProductCommandFacade;
+import com.example.nullshinsaproduct.product.application.service.ProductCommandService;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class ProductCommandController {
-    private final ProductCommandService productCommandService;
+    private final ProductCommandFacade productCommandFacade;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/products")
     public ResponseResult<Boolean> saveProduct(@Valid @RequestBody ProductSaveRequest request) {
         log.info("상품 생성 req : {}", request);
-        productCommandService.saveProduct(request);
+        productCommandFacade.saveProduct(request);
         return ResponseResult.success(HttpStatus.CREATED, true);
     }
 

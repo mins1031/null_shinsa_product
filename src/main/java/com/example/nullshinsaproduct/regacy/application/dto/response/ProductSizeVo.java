@@ -3,8 +3,6 @@ package com.example.nullshinsaproduct.regacy.application.dto.response;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
-import com.example.nullshinsaproduct.common.exception.product.ProductException;
-import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

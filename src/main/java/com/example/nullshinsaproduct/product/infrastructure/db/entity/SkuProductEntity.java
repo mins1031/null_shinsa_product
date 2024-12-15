@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.kafka.common.record.UnalignedMemoryRecords;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -37,7 +38,7 @@ public class SkuProductEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Product product;
+    private ProductEntity product;
 
 
     @CreatedDate
@@ -45,7 +46,7 @@ public class SkuProductEntity {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    public SkuProductEntity(long id, Product product, String name, int stock, int plusPrice, SkuProductStatus skuProductStatus) {
+    public SkuProductEntity(Long id, ProductEntity product, String name, int stock, int plusPrice, SkuProductStatus skuProductStatus) {
         this.id = id;
         this.product = product;
         this.name = name;
@@ -55,14 +56,19 @@ public class SkuProductEntity {
     }
 
     public static SkuProductEntity createSkuProduct(
-            String color,
-            String size,
+            ProductEntity product,
+            String name,
             int stock,
-            int discountRate,
-            SkuProductStatus skuProductStatus,
-            Product product
+            int plusPrice,
+            SkuProductStatus skuProductStatus
     ) {
         return new SkuProductEntity(
+                null,
+                product,
+                name,
+                stock,
+                plusPrice,
+                skuProductStatus
         );
     }
 

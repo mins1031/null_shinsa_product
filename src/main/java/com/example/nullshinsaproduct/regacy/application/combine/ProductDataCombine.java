@@ -5,9 +5,9 @@ import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSiz
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.ProductDetailRepository;
-import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductImageJpaRepository;
-import com.example.nullshinsaproduct.product.infrastructure.db.repository.ProductSizeJpaRepository;
-import com.example.nullshinsaproduct.product.infrastructure.db.repository.SkuProductJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductImageJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductSizeJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.SkuProductJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

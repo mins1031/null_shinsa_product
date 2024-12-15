@@ -9,7 +9,7 @@ public class DiscountDetail {
     private int discountMinRate;
     private int discountMaxRate;
 
-    private DiscountDetail(DiscountApplyPossible discountApplyPossible, int discountMinRate, int discountMaxRate) {
+    public DiscountDetail(DiscountApplyPossible discountApplyPossible, int discountMinRate, int discountMaxRate) {
         this.discountApplyPossible = discountApplyPossible;
         this.discountMinRate = discountMinRate;
         this.discountMaxRate = discountMaxRate;

@@ -3,6 +3,7 @@ package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.InferiorLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
@@ -77,6 +78,8 @@ public class ProductEntity {
     private CouponApplyPossible couponApplyPossible;
     @Enumerated(EnumType.STRING)
     private ProductType productType;
+    @Enumerated(EnumType.STRING)
+    private ProductStatus productStatus;
     // 카테고리, 배송정보 모두 상품별로 따로 정의가 들어가야할 가능성이 조금이라 있을듯하여 하위 클래스에 정의
     @Enumerated(EnumType.STRING)
     private FirstLayerCategory firstLayerCategory;
@@ -124,6 +127,7 @@ public class ProductEntity {
             DiscountApplyPossible discountApplyPossible,
             CouponApplyPossible couponApplyPossible,
             ProductType productType,
+            ProductStatus productStatus,
             FirstLayerCategory firstLayerCategory,
             SecondLayerCategory secondLayerCategory,
             ThirdLayerCategory thirdLayerCategory,
@@ -148,6 +152,7 @@ public class ProductEntity {
         this.discountApplyPossible = discountApplyPossible;
         this.couponApplyPossible = couponApplyPossible;
         this.productType = productType;
+        this.productStatus = productStatus;
         this.firstLayerCategory = firstLayerCategory;
         this.secondLayerCategory = secondLayerCategory;
         this.thirdLayerCategory = thirdLayerCategory;
@@ -174,6 +179,7 @@ public class ProductEntity {
             DiscountApplyPossible discountApplyPossible,
             CouponApplyPossible couponApplyPossible,
             ProductType productType,
+            ProductStatus productStatus,
             FirstLayerCategory firstLayerCategory,
             SecondLayerCategory secondLayerCategory,
             ThirdLayerCategory thirdLayerCategory,
@@ -195,6 +201,7 @@ public class ProductEntity {
                 .discountApplyPossible(discountApplyPossible)
                 .couponApplyPossible(couponApplyPossible)
                 .productType(productType)
+                .productStatus(productStatus)
                 .firstLayerCategory(firstLayerCategory)
                 .secondLayerCategory(secondLayerCategory)
                 .thirdLayerCategory(thirdLayerCategory)
@@ -254,9 +261,9 @@ public class ProductEntity {
         this.productImageEntityList = images;
     }
 
-    public List<ProductImageVo> getProductImageVos() {
-        return this.productImageEntityList.stream()
-                .map(ProductImageVo::from)
-                .collect(Collectors.toList());
-    }
+//    public List<ProductImageVo> getProductImageVos() {
+//        return this.productImageEntityList.stream()
+//                .map(ProductImageVo::from)
+//                .collect(Collectors.toList());
+//    }
 }

@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 @EqualsAndHashCode
 public class SkuProduct {
@@ -16,15 +15,15 @@ public class SkuProduct {
     private String name;
     private int stock;
     private int plusPrice;
-    private SkuProductStatus productStatus;
+    private SkuProductStatus skuProductStatus;
 
-    public SkuProduct(Long id, long parentProductId, String name, int stock, int plusPrice, SkuProductStatus productStatus) {
+    public SkuProduct(Long id, long parentProductId, String name, int stock, int plusPrice, SkuProductStatus skuProductStatus) {
         this.id = id;
         this.parentProductId = parentProductId;
         this.name = name;
         this.stock = stock;
         this.plusPrice = plusPrice;
-        this.productStatus = productStatus;
+        this.skuProductStatus = skuProductStatus;
     }
 
     public static SkuProduct createDefault(

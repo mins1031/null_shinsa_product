@@ -1,18 +1,11 @@
 package com.example.nullshinsaproduct.product.application.output.map;
 
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.domain.Product;
-import com.example.nullshinsaproduct.product.domain.ProductImage;
-import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.SkuProduct;
 import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
-import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -29,63 +22,34 @@ public interface ProductOutputMapper {
     @Mapping(source = "categoryInfoRequest.thirdLayerCategory", target = "thirdLayerCategory")
     ProductSaveVo toProductSaveVo(ProductSaveRequest requestDto);
 
+
+    @Mapping(source = "categoryVo.firstLayerCategory", target = "firstLayerCategory")
+    @Mapping(source = "categoryVo.secondLayerCategory", target = "secondLayerCategory")
+    @Mapping(source = "categoryVo.thirdLayerCategory", target = "thirdLayerCategory")
+    @Mapping(source = "discountDetail.discountApplyPossible", target = "discountApplyPossible")
+    @Mapping(source = "discountDetail.discountMinRate", target = "discountMinRate")
+    @Mapping(source = "discountDetail.discountMaxRate", target = "discountMaxRate")
+    @Mapping(source = "productDeliveryVo.outboundPossibleDay", target = "outboundPossibleDay")
+    @Mapping(source = "productDeliveryVo.deliveryFee", target = "deliveryFee")
     ProductEntity toProductEntity(Product domain);
+
+    @Mapping(target = "categoryVo.firstLayerCategory", source = "firstLayerCategory")
+    @Mapping(target = "categoryVo.secondLayerCategory", source = "secondLayerCategory")
+    @Mapping(target = "categoryVo.thirdLayerCategory", source = "thirdLayerCategory")
+    @Mapping(target = "discountDetail.discountApplyPossible", source = "discountApplyPossible")
+    @Mapping(target = "discountDetail.discountMinRate", source = "discountMinRate")
+    @Mapping(target = "discountDetail.discountMaxRate", source = "discountMaxRate")
+    @Mapping(target = "productDeliveryVo.outboundPossibleDay", source = "outboundPossibleDay")
+    @Mapping(target = "productDeliveryVo.deliveryFee", source = "deliveryFee")
     Product toProductDomain(ProductEntity entity);
 
     @Named("toSkuProduct")
     @Mapping(target = "parentProductId", source = "parentProductId")
-    SkuProduct toSkuProduct(SkuProductRequest request, long parentProductId);
+    SkuProduct toSkuProduct(long parentProductId, SkuProductRequest request);
 
-    default List<SkuProduct> toSkuProducts(List<SkuProductRequest> requests, long parentProductId) {
+    default List<SkuProduct> toSkuProducts(long parentProductId, List<SkuProductRequest> requests) {
         return requests.stream()
-                .map(req -> toSkuProduct(req, parentProductId))
+                .map(req -> toSkuProduct(parentProductId, req))
                 .toList();
     }
-
-//    @Named("toSkuProductEntity")
-//    SkuProductEntity toSkuProductEntity(SkuProduct domain);
-//    @IterableMapping(qualifiedByName = "toSkuProductEntity")
-//    List<SkuProductEntity> toSkuProductEntities(List<SkuProduct> domains);
-//
-//    @Named("toProductSize")
-//    ProductSize toProductSize(ProductSizeRequest request, long parentProductId);
-//    @IterableMapping(qualifiedByName = "toProductSize")
-//    List<ProductSize> toProductSizes(List<ProductSizeRequest> requests, long parentProductId);
-//
-//    @IterableMapping(qualifiedByName = "toProductSizeEntity")
-//    List<ProductSizeEntity> toProductSizeEntities(List<ProductSize> domains);
-//    @Named("toProductSizeEntity")
-//    ProductSizeEntity toProductSizeEntity(ProductSize domain);
-//
-//    @IterableMapping(qualifiedByName = "toProductImageEntity")
-//    List<ProductImageEntity> toProductImageEntities(List<ProductImage> domains);
-//    @Named("toProductImageEntity")
-//    ProductImageEntity toProductImageEntity(ProductImage domain);
-
-
-
-
-    //    default ProductEntity toProductEntity(Product product) {
-//        ProductEntity.createDefault(
-//                product.getName(),
-//                product.getPrice(),
-//                product.getProductBrandVo().getBrandId(),
-//                product.getProductBrandVo().getBrandName(),
-//                product.getProductBrandVo().getCorporateNumber(),
-//                product.getProductBrandVo().getCommunicationSellingNumber(),
-//                product.getProductBrandVo().getRepresentative(),
-//                product.getProductBrandVo().getLocation(),
-//                product.getDiscountDetail().getDiscountMinRate(),
-//                product.getDiscountDetail().getDiscountMaxRate(),
-//                product.(),
-//                product.(),
-//                product.getDiscountDetail().getDiscountApplyPossible(),
-//                product.(),
-//                product.(),
-//                product.(),
-//                product.(),
-//                product.(),
-//                product.()
-//        );
-//    }
 }

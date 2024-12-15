@@ -9,4 +9,9 @@ public class ProductException extends RuntimeException {
     public ProductException(ProductExceptionCode productExceptionCode) {
         this.productExceptionCode = productExceptionCode;
     }
+
+    public ProductException(ProductExceptionCode productExceptionCode, String message) {
+        super(message);
+        this.productExceptionCode = productExceptionCode;
+    }
 }
