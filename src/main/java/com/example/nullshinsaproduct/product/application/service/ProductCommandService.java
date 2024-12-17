@@ -3,7 +3,7 @@ package com.example.nullshinsaproduct.product.application.service;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
-import com.example.nullshinsaproduct.product.application.output.map.ProductEntityMapper;
+import com.example.nullshinsaproduct.product.application.output.map.ProductMapper;
 import com.example.nullshinsaproduct.product.application.output.map.ProductOutputMapper;
 import com.example.nullshinsaproduct.product.application.output.port.ProductImageRepository;
 import com.example.nullshinsaproduct.product.application.output.port.ProductRepository;
@@ -49,8 +49,8 @@ public class ProductCommandService {
 
     @Transactional
     public void saveSkuProducts(ProductEntity product, List<SkuProductRequest> requests) {
-        List<SkuProduct> skuProducts = productOutputMapper.toSkuProducts(product.getId(), requests);
-        List<SkuProductEntity> entities = ProductEntityMapper.toSkuProductEntities(skuProducts, product);
+        List<SkuProduct> skuProducts = ProductMapper.toSkuProducts(product.getId(), requests);
+        List<SkuProductEntity> entities = ProductMapper.toSkuProductEntities(skuProducts, product);
 
         skuProductRepository.saveAll(entities);
     }
@@ -60,7 +60,7 @@ public class ProductCommandService {
         List<ProductSize> productSizes = requests.stream()
                 .map(size -> size.productSizeType().createProductSizeByType(size, product.getId()))
                 .toList();
-        List<ProductSizeEntity> productSizeEntities = ProductEntityMapper.toProductSizeEntities(productSizes, product);
+        List<ProductSizeEntity> productSizeEntities = ProductMapper.toProductSizeEntities(productSizes, product);
 
         productSizeRepository.saveAll(productSizeEntities);
     }
@@ -75,7 +75,7 @@ public class ProductCommandService {
                 product.getId()
         );
 
-        List<ProductImageEntity> imageEntities = ProductEntityMapper.toProductImageEntities(productImages, product);
+        List<ProductImageEntity> imageEntities = ProductMapper.toProductImageEntities(productImages, product);
         productImageRepository.saveAll(imageEntities);
     }
 

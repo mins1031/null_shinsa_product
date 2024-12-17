@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.product.application.output.map;
 
+import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.domain.Product;
 import com.example.nullshinsaproduct.product.domain.ProductImage;
 import com.example.nullshinsaproduct.product.domain.ProductSize;
@@ -13,7 +14,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductEntityMapper {
+public class ProductMapper {
 
     public static Product toProductDomain(ProductEntity entity) {
         return Product.of(
@@ -44,6 +45,21 @@ public class ProductEntityMapper {
 
 
     // ======  SkuProduct Mappers START ======
+    public static SkuProduct toSkuProduct(long parentProductId, SkuProductRequest request) {
+        return SkuProduct.createDefault(
+                parentProductId,
+                request.name(),
+                request.stock(),
+                request.plusPrice(),
+                request.skuProductStatus()
+        );
+    }
+
+    public static List<SkuProduct> toSkuProducts(long parentProductId, List<SkuProductRequest> requests) {
+        return requests.stream()
+                .map(request -> toSkuProduct(parentProductId, request))
+                .toList();
+    }
 
     public static SkuProduct toSkuProductDomain(SkuProductEntity skuProduct) {
         return SkuProduct.of(
@@ -62,7 +78,7 @@ public class ProductEntityMapper {
         }
 
         return skuProducts.stream()
-                .map(ProductEntityMapper::toSkuProductDomain)
+                .map(ProductMapper::toSkuProductDomain)
                 .toList();
     }
 
@@ -118,7 +134,7 @@ public class ProductEntityMapper {
         }
 
         return sizeEntities.stream()
-                .map(ProductEntityMapper::toProductSizeDomain)
+                .map(ProductMapper::toProductSizeDomain)
                 .toList();
     }
 
@@ -192,7 +208,7 @@ public class ProductEntityMapper {
         }
 
         return imageEntities.stream()
-                .map(ProductEntityMapper::toProductImageDomain)
+                .map(ProductMapper::toProductImageDomain)
                 .toList();
     }
 

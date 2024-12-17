@@ -126,4 +126,8 @@ public class ProductSizeEntity {
                 product
         );
     }
+
+    public long getProductId() {
+        return this.product.getId();
+    }
 }

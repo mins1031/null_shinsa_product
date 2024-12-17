@@ -33,23 +33,4 @@ public interface ProductOutputMapper {
     @Mapping(source = "productDeliveryVo.deliveryFee", target = "deliveryFee")
     ProductEntity toProductEntity(Product domain);
 
-//    @Mapping(target = "categoryVo.firstLayerCategory", source = "firstLayerCategory")
-//    @Mapping(target = "categoryVo.secondLayerCategory", source = "secondLayerCategory")
-//    @Mapping(target = "categoryVo.thirdLayerCategory", source = "thirdLayerCategory")
-//    @Mapping(target = "discountDetail.discountApplyPossible", source = "discountApplyPossible")
-//    @Mapping(target = "discountDetail.discountMinRate", source = "discountMinRate")
-//    @Mapping(target = "discountDetail.discountMaxRate", source = "discountMaxRate")
-//    @Mapping(target = "productDeliveryVo.outboundPossibleDay", source = "outboundPossibleDay")
-//    @Mapping(target = "productDeliveryVo.deliveryFee", source = "deliveryFee")
-//    Product toProductDomain(ProductEntity entity);
-
-    @Named("toSkuProduct")
-    @Mapping(target = "parentProductId", source = "parentProductId")
-    SkuProduct toSkuProduct(long parentProductId, SkuProductRequest request);
-
-    default List<SkuProduct> toSkuProducts(long parentProductId, List<SkuProductRequest> requests) {
-        return requests.stream()
-                .map(req -> toSkuProduct(parentProductId, req))
-                .toList();
-    }
 }

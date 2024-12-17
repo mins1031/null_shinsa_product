@@ -51,4 +51,7 @@ public class ProductImageEntity {
         return new ProductImageEntity(imageUrl, imageType, product);
     }
 
+    public long getProductId() {
+        return this.product.getId();
+    }
 }

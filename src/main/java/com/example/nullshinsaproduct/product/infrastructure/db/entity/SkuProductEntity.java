@@ -72,6 +72,10 @@ public class SkuProductEntity {
         );
     }
 
+    public long getProductId() {
+        return this.product.getId();
+    }
+
     public boolean isSoldOut() {
         return this.stock <= 0;
     }
