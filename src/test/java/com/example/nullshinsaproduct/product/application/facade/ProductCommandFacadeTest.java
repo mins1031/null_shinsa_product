@@ -55,7 +55,10 @@ class ProductCommandFacadeTest {
         );
 
         fakeBrandRepository.save(BrandTestHelper.makeBrandEntity());
-        this.productCommandFacade = new ProductCommandFacade(productCommandService);
+        this.productCommandFacade = new ProductCommandFacade(
+                productCommandService,
+                System.out::println
+        );
     }
 
     @Test
