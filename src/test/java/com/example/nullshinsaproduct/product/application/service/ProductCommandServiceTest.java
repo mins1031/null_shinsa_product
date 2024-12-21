@@ -1,29 +1,21 @@
 package com.example.nullshinsaproduct.product.application.service;
 
-import com.example.nullshinsaproduct.product.application.dto.request.CategoryInfoRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.application.output.map.ProductMapper;
 import com.example.nullshinsaproduct.product.application.output.map.ProductOutputMapper;
+import com.example.nullshinsaproduct.product.application.output.port.FakeBrandRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductImageRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductSizeRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeSkuProductRepository;
-import com.example.nullshinsaproduct.product.application.output.port.ProductImageRepository;
-import com.example.nullshinsaproduct.product.application.output.port.ProductSizeRepository;
+import com.example.nullshinsaproduct.product.common.helper.BrandTestHelper;
+import com.example.nullshinsaproduct.product.common.helper.ProductTestHelper;
 import com.example.nullshinsaproduct.product.domain.Product;
-import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
-import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
-import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
-import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
-import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
-import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
@@ -33,13 +25,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ProductCommandServiceTest {
     private FakeProductRepository productRepository;
     private FakeSkuProductRepository skuProductRepository;
     private FakeProductSizeRepository fakeProductSizeRepository;
     private FakeProductImageRepository fakeProductImageRepository;
+    private FakeBrandRepository fakeBrandRepository;
 
     private ProductCommandService productCommandService;
 
@@ -50,24 +43,25 @@ class ProductCommandServiceTest {
         this.skuProductRepository = new FakeSkuProductRepository();
         this.fakeProductSizeRepository = new FakeProductSizeRepository();
         this.fakeProductImageRepository = new FakeProductImageRepository();
+        this.fakeBrandRepository = new FakeBrandRepository();
 
         this.productCommandService = new ProductCommandService(
                 this.productRepository,
                 this.skuProductRepository,
                 this.fakeProductSizeRepository,
                 this.fakeProductImageRepository,
+                this.fakeBrandRepository,
                 ProductOutputMapper.INSTANCE
         );
 
-        productRepository.save(makeProductEntityInTemp());
-
+        productRepository.save(ProductTestHelper.makeProductEntityInTemp());
+        fakeBrandRepository.save(BrandTestHelper.makeBrandEntity());
     }
-
 
     @Test
     void 상품_등록요청객체로_상품객체를_저장할_수_있다() {
         //given
-        ProductSaveRequest productSaveRequest = makeOuterProductSaveReq();
+        ProductSaveRequest productSaveRequest = ProductTestHelper.makeOuterProductSaveReq();
 
         //when
         ProductEntity productEntity = productCommandService.saveProduct(productSaveRequest);
@@ -97,7 +91,7 @@ class ProductCommandServiceTest {
         //given
         long productId = 1L;
         ProductEntity productEntity = productRepository.findById(productId);
-        List<SkuProductRequest> skuProductRequests = makeSkuProductSaveReq();
+        List<SkuProductRequest> skuProductRequests = ProductTestHelper.makeSkuProductSaveReq();
 
         //when
         productCommandService.saveSkuProducts(productEntity, skuProductRequests);
@@ -129,7 +123,7 @@ class ProductCommandServiceTest {
         //given
         long productId = 1L;
         ProductEntity productEntity = productRepository.findById(productId);
-        List<ProductSizeRequest> productSizeRequests = makeProductSizeReqs();
+        List<ProductSizeRequest> productSizeRequests = ProductTestHelper.makeProductSizeReqs();
 
         //when
         productCommandService.saveProductSize(productEntity, productSizeRequests);
@@ -155,7 +149,7 @@ class ProductCommandServiceTest {
         //given
         long productId = 1L;
         ProductEntity productEntity = productRepository.findById(productId);
-        ProductSaveRequest productSaveRequest = makeOuterProductSaveReq();
+        ProductSaveRequest productSaveRequest = ProductTestHelper.makeOuterProductSaveReq();
 
         //when
         productCommandService.saveProductImages(productEntity, productSaveRequest);
@@ -169,11 +163,11 @@ class ProductCommandServiceTest {
 
         assertEquals(productSaveRequest.profileImagesLink().get(0), all.get(1).getImageUrl());
         assertEquals(ImageType.PROFILE, all.get(1).getImageType());
-//        assertEquals(productId, all.get(1).getProductId());
+        assertEquals(productId, all.get(1).getProductId());
 
         assertEquals(productSaveRequest.profileImagesLink().get(1), all.get(2).getImageUrl());
         assertEquals(ImageType.PROFILE, all.get(2).getImageType());
-//        assertEquals(productId, all.get(2).getProductId());
+        assertEquals(productId, all.get(2).getProductId());
 
         assertEquals(productSaveRequest.detailImageLink().get(0), all.get(3).getImageUrl());
         assertEquals(ImageType.DETAIL, all.get(3).getImageType());
@@ -184,133 +178,4 @@ class ProductCommandServiceTest {
         assertEquals(productId, all.get(4).getProductId());
     }
 
-
-    private static ProductSaveRequest makeOuterProductSaveReq() {
-        return new ProductSaveRequest(
-                "test 상품",
-                1L,
-                100000,
-                new CategoryInfoRequest(
-                        FirstLayerCategory.MEN,
-                        SecondLayerCategory.OUTER,
-                        ThirdLayerCategory.CARDIGAN,
-                        null
-                ),
-                CouponApplyPossible.POSSIBLE,
-                DiscountApplyPossible.POSSIBLE,
-                3,
-                20,
-                3,
-                true,
-                List.of(
-                        new ProductSizeRequest(
-                                "L",
-                                "80",
-                                "60",
-                                "50",
-                                "70",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                ProductSizeType.OUTER
-                        )
-                ),
-                "https://thumbnailLink",
-                List.of("https://profileLink", "https://profileLink"),
-                List.of("https://detailLink", "https://detailLink"),
-                makeSkuProductSaveReq(),
-                ProductType.CLOTHES
-        );
-    }
-
-    public static List<SkuProductRequest> makeSkuProductSaveReq() {
-        return List.of(
-                new SkuProductRequest(
-                        "상품1 - 사이즈1",
-                        0,
-                        5000,
-                        SkuProductStatus.TEMP
-                ),
-                new SkuProductRequest(
-                        "상품1 - 사이즈2",
-                        0,
-                        15000,
-                        SkuProductStatus.TEMP
-                ),
-                new SkuProductRequest(
-                        "상품1 - 사이즈3",
-                        0,
-                        0,
-                        SkuProductStatus.TEMP
-                )
-        );
-    }
-
-    public static ProductEntity makeProductEntityInTemp() {
-        ProductSaveRequest req = makeOuterProductSaveReq();
-        return ProductEntity.createDefault(
-                req.name(),
-                req.price(),
-                req.brandId(),
-                null,
-                null,
-                null,
-                null,
-                null,
-                req.discountMinRate(),
-                req.discountMaxRate(),
-                req.outboundPossibleDay(),
-                DeliveryFee.findByIsFree(req.isDeliveryFree()),
-                req.discountApplyPossible(),
-                req.couponApplyPossible(),
-                req.productType(),
-                ProductStatus.TEMP,
-                req.categoryInfoRequest().firstLayerCategory(),
-                req.categoryInfoRequest().secondLayerCategory(),
-                req.categoryInfoRequest().thirdLayerCategory(),
-                null
-        );
-    }
-
-    private static List<ProductSizeRequest> makeProductSizeReqs() {
-        return List.of(
-                new ProductSizeRequest(
-                        "M",
-                        "77",
-                        "57",
-                        "47",
-                        "67",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ProductSizeType.OUTER
-                ),
-                new ProductSizeRequest(
-                        "L",
-                        "80",
-                        "60",
-                        "50",
-                        "70",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ProductSizeType.OUTER
-                )
-        );
-    }
 }

@@ -24,30 +24,6 @@ import java.util.List;
 class ProductOutputMapperTest {
 
     @Test
-    public void 상품저장_DTO를_VO로_변환할_수_있다() {
-        //given
-        ProductSaveRequest productSaveRequest = makeOuterProductSaveReq();
-
-        //when
-        ProductOutputMapper productOutputMapper = ProductOutputMapper.INSTANCE;
-        ProductSaveVo productSaveVo = productOutputMapper.toProductSaveVo(productSaveRequest);
-
-        //then
-        Assertions.assertEquals(productSaveRequest.name(), productSaveVo.name());
-        Assertions.assertEquals(productSaveRequest.price(), productSaveVo.price());
-        Assertions.assertEquals(productSaveRequest.categoryInfoRequest().firstLayerCategory(), productSaveVo.firstLayerCategory());
-        Assertions.assertEquals(productSaveRequest.categoryInfoRequest().secondLayerCategory(), productSaveVo.secondLayerCategory());
-        Assertions.assertEquals(productSaveRequest.categoryInfoRequest().thirdLayerCategory(), productSaveVo.thirdLayerCategory());
-        Assertions.assertEquals(productSaveRequest.couponApplyPossible(), productSaveVo.couponApplyPossible());
-        Assertions.assertEquals(productSaveRequest.discountApplyPossible(), productSaveVo.discountApplyPossible());
-        Assertions.assertEquals(productSaveRequest.discountMinRate(), productSaveVo.discountMinRate());
-        Assertions.assertEquals(productSaveRequest.discountMaxRate(), productSaveVo.discountMaxRate());
-        Assertions.assertEquals(productSaveRequest.outboundPossibleDay(), productSaveVo.outboundPossibleDay());
-        Assertions.assertEquals(productSaveRequest.isDeliveryFree(), productSaveVo.isDeliveryFree());
-        Assertions.assertEquals(productSaveRequest.productType(), productSaveVo.productType());
-    }
-
-    @Test
     public void 상품_도메인객체를_엔티티로_변환할_수_있다() {
         //given
         ProductSaveVo productSaveVo = makeOuterProductSaveVo();
@@ -79,6 +55,12 @@ class ProductOutputMapperTest {
         return new ProductSaveVo(
                 "test 상품",
                 100000,
+                1L,
+                "brandName",
+                "corporateNum",
+                "sellingNum",
+                "represetative",
+                "location",
                 FirstLayerCategory.MEN,
                 SecondLayerCategory.OUTER,
                 ThirdLayerCategory.CARDIGAN,

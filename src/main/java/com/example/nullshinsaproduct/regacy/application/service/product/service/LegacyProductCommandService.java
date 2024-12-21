@@ -2,7 +2,7 @@ package com.example.nullshinsaproduct.regacy.application.service.product.service
 
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
-import com.example.nullshinsaproduct.brand.infrastructure.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class LegacyProductCommandService {
     private final ProductJpaRepository productJpaRepository;
-    private final BrandRepository brandRepository;
+    private final BrandJpaRepository brandJpaRepository;
 
     @Transactional
     public void saveProduct(final ProductSaveRequest request) {

@@ -1,10 +1,13 @@
 package com.example.nullshinsaproduct.product.application.output.map;
 
+import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
+import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.domain.Product;
 import com.example.nullshinsaproduct.product.domain.ProductImage;
 import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.SkuProduct;
+import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
@@ -15,6 +18,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductMapper {
+
+    public static ProductSaveVo toProductSaveVo(ProductSaveRequest req, BrandEntity entity) {
+        return new ProductSaveVo(
+                req.name(),
+                req.price(),
+                entity.getId(),
+                entity.getBrandName(),
+                entity.getCorporateNumber(),
+                entity.getCommunicationSellingNumber(),
+                entity.getRepresentative(),
+                entity.getLocation(),
+                req.categoryInfoRequest().firstLayerCategory(),
+                req.categoryInfoRequest().secondLayerCategory(),
+                req.categoryInfoRequest().thirdLayerCategory(),
+                req.couponApplyPossible(),
+                req.discountApplyPossible(),
+                req.discountMinRate(),
+                req.discountMaxRate(),
+                req.outboundPossibleDay(),
+                req.isDeliveryFree(),
+                req.productType()
+        );
+    }
 
     public static Product toProductDomain(ProductEntity entity) {
         return Product.of(

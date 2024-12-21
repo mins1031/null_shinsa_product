@@ -5,7 +5,7 @@ import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCo
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import com.example.nullshinsaproduct.regacy.application.combine.ProductDataCombine;
-import com.example.nullshinsaproduct.brand.infrastructure.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
 import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
@@ -17,14 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ClothesProductService {
     private final ProductJpaRepository productJpaRepository;
-    private final BrandRepository brandRepository;
+    private final BrandJpaRepository brandJpaRepository;
 //    private final ProductSizeFactory productSizeFactory;
     private final ProductDataCombine productDataCombine;
 
     @Transactional
     public void saveClothesProduct(ProductSaveRequest req) {
         // TODO 시큐리티 설정을 통해 요청자의 데이터를 조회하는 과정이 필요하긴 하지만.. 일단 이렇게 해놓고 추후 개선 필요
-        BrandEntity brandEntity = brandRepository.findById(req.brandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT_OPTION));
+        BrandEntity brandEntity = brandJpaRepository.findById(req.brandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT_OPTION));
         ProductBrandInfoEmbeddable productBrandInfoEmbeddable = new ProductBrandInfoEmbeddable(
                 brandEntity.getId(),
                 brandEntity.getBrandName(),

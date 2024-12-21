@@ -13,8 +13,8 @@ public class ProductCommandFacade {
     private final ProductCommandService productCommandService;
 
     @Transactional
-    public void saveProduct(ProductSaveRequest request) {
-        ProductEntity productEntity = productCommandService.saveProduct(request);
+    public void saveProduct(final ProductSaveRequest request) {
+        final ProductEntity productEntity = productCommandService.saveProduct(request);
 
         productCommandService.saveSkuProducts(productEntity, request.skuProductRequests());
         productCommandService.saveProductSize(productEntity, request.productSizeRequests());
@@ -22,5 +22,6 @@ public class ProductCommandFacade {
 
 
         // 이후 작업 필요. 우선 위 작업 테스트 부터 하고 ㄱㄱ
+        
     }
 }

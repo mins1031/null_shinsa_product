@@ -12,9 +12,11 @@ public enum ProductExceptionCode {
     NOT_EXIST_REQUEST_PARAMS(HttpStatus.BAD_REQUEST, 1000, "요청 파라미터가 없습니다. 요청데이터를 다시 확인해주세요."),
     NOT_EXIST_PRODUCT(HttpStatus.NOT_FOUND, 1001, "요청한 상품데이터가 없습니다. 상품데이터를 다시 확인해주세요."),
     NOT_EXIST_PRODUCT_OPTION(HttpStatus.NOT_FOUND, 1002, "요청한 상품옵션 데이터가 없습니다. 상품데이터를 다시 확인해주세요."),
-    NOT_EXIST_BRAND(HttpStatus.NOT_FOUND, 1003, "잘못된 브랜드정보 입니다. 다시 확인해주세요."),
     WRONG_MATCHED_PRODUCT_SIZE_TYPE(HttpStatus.INTERNAL_SERVER_ERROR, 1004, "상품사이즈 데이터의 정합성이 맞지 않습니다. 확인이 필요합니다."),
     NOT_EXIST_REVIEWER_ORDER(HttpStatus.INTERNAL_SERVER_ERROR, 1005, "리뷰어는 해당 상품을 주문하지 않았습니다. 확인이 필요합니다."),
+
+
+    NOT_EXIST_REQUEST_BRAND(HttpStatus.INTERNAL_SERVER_ERROR, 2001, "존재하지 않는 브랜드 입니다. 요청 값을 다시 확인해 주세요"),
     ;
 
     private final HttpStatus httpStatus;

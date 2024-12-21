@@ -1,26 +1,10 @@
-package com.example.nullshinsaproduct.brand.infrastructure;
+package com.example.nullshinsaproduct.brand.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 
 @Getter
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BrandEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
-
+public class Brand {
+    private final Long id;
     private String brandName;
     private String oneLineIntroduce;
     private String corporateNumber;
@@ -30,13 +14,17 @@ public class BrandEntity {
     private String titleImageUrl;
     private String introImageUrl;
 
-    @CreatedDate
-    protected LocalDateTime createdDate;
-
-    @LastModifiedDate
-    protected LocalDateTime updatedDate;
-
-    public BrandEntity(Long id, String brandName, String oneLineIntroduce, String corporateNumber, String communicationSellingNumber, String representative, String location, String titleImageUrl, String introImageUrl) {
+    private Brand(
+            Long id,
+            String brandName,
+            String oneLineIntroduce,
+            String corporateNumber,
+            String communicationSellingNumber,
+            String representative,
+            String location,
+            String titleImageUrl,
+            String introImageUrl
+    ) {
         this.id = id;
         this.brandName = brandName;
         this.oneLineIntroduce = oneLineIntroduce;
@@ -48,7 +36,7 @@ public class BrandEntity {
         this.introImageUrl = introImageUrl;
     }
 
-    public static BrandEntity of(
+    public static Brand of(
             Long id,
             String brandName,
             String oneLineIntroduce,
@@ -59,7 +47,7 @@ public class BrandEntity {
             String titleImageUrl,
             String introImageUrl
     ) {
-        return new BrandEntity(
+        return new Brand(
                 id,
                 brandName,
                 oneLineIntroduce,
@@ -71,6 +59,4 @@ public class BrandEntity {
                 introImageUrl
         );
     }
-
-
 }

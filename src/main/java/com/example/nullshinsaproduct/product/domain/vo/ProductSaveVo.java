@@ -10,6 +10,12 @@ import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLa
 public record ProductSaveVo(
         String name,
         int price,
+        Long brandId,
+        String brandName,
+        String corporateNumber,
+        String communicationSellingNumber,
+        String representative,
+        String location,
         FirstLayerCategory firstLayerCategory,
         SecondLayerCategory secondLayerCategory,
         ThirdLayerCategory thirdLayerCategory,

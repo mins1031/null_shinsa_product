@@ -2,7 +2,7 @@ package com.example.nullshinsaproduct.regacy.application.service.product.service
 
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.brand.infrastructure.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductOptionStockResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ClothesProductFindService {
-    private final BrandRepository brandRepository;
+    private final BrandJpaRepository brandJpaRepository;
 
     //주문 저장시에 상품정보가 필요. 재사용성 위해 필요한 모든 데이터 응답 api 구현
     @Transactional(readOnly = true)

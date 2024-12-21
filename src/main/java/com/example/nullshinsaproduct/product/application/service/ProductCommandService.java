@@ -1,5 +1,7 @@
 package com.example.nullshinsaproduct.product.application.service;
 
+import com.example.nullshinsaproduct.brand.apllication.output.port.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
@@ -34,6 +36,7 @@ public class ProductCommandService {
     private final SkuProductRepository skuProductRepository;
     private final ProductSizeRepository productSizeRepository;
     private final ProductImageRepository productImageRepository;
+    private final BrandRepository brandRepository;
 
     private final ProductOutputMapper productOutputMapper;
 
@@ -41,7 +44,9 @@ public class ProductCommandService {
     @Transactional
     public ProductEntity saveProduct(ProductSaveRequest req) {
         // 상품생성 시작
-        ProductSaveVo productSaveVo = productOutputMapper.toProductSaveVo(req);
+        BrandEntity brandEntity = brandRepository.findById(req.brandId());
+        ProductSaveVo productSaveVo = ProductMapper.toProductSaveVo(req, brandEntity);
+
         Product product = Product.createFrom(productSaveVo);
 
         return productRepository.save(productOutputMapper.toProductEntity(product));

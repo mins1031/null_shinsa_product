@@ -131,7 +131,14 @@ public class Product {
                         saveVo.thirdLayerCategory()
                 ),
                 ProductDeliveryVo.createAs(saveVo.isDeliveryFree()),
-                null/*productBrandVo*/,
+                ProductBrandVo.of(
+                        saveVo.brandId(),
+                        saveVo.brandName(),
+                        saveVo.corporateNumber(),
+                        saveVo.communicationSellingNumber(),
+                        saveVo.representative(),
+                        saveVo.location()
+                ),
                 ProductStatus.TEMP,
                 DiscountDetail.of(
                         saveVo.discountApplyPossible(),
