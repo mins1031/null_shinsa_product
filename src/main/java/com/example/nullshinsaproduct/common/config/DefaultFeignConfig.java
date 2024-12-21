@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 
 @Configuration
-@EnableFeignClients("com.example.nullshinsaproduct.infrastructure.feign")
+@EnableFeignClients("com.example.nullshinsaproduct.review.infrestructure.http.feign")
 @ImportAutoConfiguration({FeignAutoConfiguration.class, HttpClientConfiguration.class})
 public class DefaultFeignConfig {
 
