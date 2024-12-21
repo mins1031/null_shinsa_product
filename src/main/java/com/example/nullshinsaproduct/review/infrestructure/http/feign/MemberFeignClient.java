@@ -14,5 +14,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 )
 public interface MemberFeignClient {
     @GetMapping("/members/{id}")
-    ResponseEntity<MemberQueryResponse> findMemberById(@PathVariable long id);
+    ResponseEntity<MemberQueryResponse> findMemberById(@PathVariable("id") Long id);
 }

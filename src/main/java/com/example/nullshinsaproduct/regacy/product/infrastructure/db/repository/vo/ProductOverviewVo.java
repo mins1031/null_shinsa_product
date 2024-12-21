@@ -22,7 +22,6 @@ public record ProductOverviewVo(
         ProductType productType,
         LocalDateTime productCreatedDate,
         LocalDateTime productUpdatedDate,
-        ProductDetailVo productDetailVo,
         CategoryVo categoryVo,
         List<SkuProductVo> skuProductVoList,
         List<ProductSizeVo> sizeVoList,

@@ -1,28 +1,16 @@
 package com.example.nullshinsaproduct.product.infrastructure.db.entity;
 
 
+import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.InferiorLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
-import com.example.nullshinsaproduct.regacy.application.dto.response.ProductSizeVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.CategoryInfoEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.DiscountDetailInEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductBrandInfoEmbeddable;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDeliveryInfoInEntity;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.embaded.ProductDetail;
-import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.CategoryVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductDetailVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductImageVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductOverviewVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.SkuProductVo;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -31,7 +19,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,8 +28,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Getter
 @Entity

@@ -30,9 +30,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Getter
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Entity
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

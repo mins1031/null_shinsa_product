@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity;
+package com.example.nullshinsaproduct.brand.infrastructure;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Brand {
+public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -37,7 +37,7 @@ public class Brand {
     protected LocalDateTime updatedDate;
 
     @Builder
-    public Brand(String brandName, String oneLineIntroduce, String corporateNumber, String communicationSellingNumber, String representative, String location, String titleImageUrl, String introImageUrl) {
+    public BrandEntity(String brandName, String oneLineIntroduce, String corporateNumber, String communicationSellingNumber, String representative, String location, String titleImageUrl, String introImageUrl) {
         this.brandName = brandName;
         this.oneLineIntroduce = oneLineIntroduce;
         this.corporateNumber = corporateNumber;

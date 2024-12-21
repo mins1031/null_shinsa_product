@@ -1,5 +1,7 @@
 package com.example.nullshinsaproduct.regacy.application.dto.response;
 
+import com.example.nullshinsaproduct.brand.presentation.dto.BrandResponse;
+
 import java.util.List;
 
 

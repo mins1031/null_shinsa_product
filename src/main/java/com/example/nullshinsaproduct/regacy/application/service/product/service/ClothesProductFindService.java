@@ -1,15 +1,9 @@
 package com.example.nullshinsaproduct.regacy.application.service.product.service;
 
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQueryResponse;
-import com.example.nullshinsaproduct.regacy.application.mapper.BrandMapper;
-import com.example.nullshinsaproduct.regacy.application.mapper.ProductMapper;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.common.exception.product.ProductException;
-import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandRepository;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductOptionStockResponse;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductOverviewVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

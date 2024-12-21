@@ -3,7 +3,6 @@ package com.example.nullshinsaproduct.regacy.application.facade;
 import com.example.nullshinsaproduct.regacy.application.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ClothesProductFindService;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ClothesProductService;
-import com.example.nullshinsaproduct.regacy.application.service.product.service.ElectronicProductFindService;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ElectronicProductService;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
@@ -18,7 +17,6 @@ public class ProductFacade {
     private final ClothesProductService clothesProductService;
     private final ElectronicProductService electronicProductService;
     private final ClothesProductFindService clothesProductFindService;
-    private final ElectronicProductFindService electronicProductFindService;
     private final ProductJpaRepository productJpaRepository;
 
     public void applySaveProductByType(ProductSaveRequest req) {

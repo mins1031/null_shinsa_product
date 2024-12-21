@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.regacy.application.dto.response;
+package com.example.nullshinsaproduct.brand.presentation.dto;
 
 public record BrandResponse(
         long brandId,

@@ -1,8 +1,8 @@
-package com.example.nullshinsaproduct.regacy.application.service.brand;
+package com.example.nullshinsaproduct.brand.apllication;
 
+import com.example.nullshinsaproduct.brand.infrastructure.BrandRepository;
 import com.example.nullshinsaproduct.product.application.dto.request.BrandSaveRequest;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.Brand;
-import com.example.nullshinsaproduct.regacy.brand.BrandRepository;
+import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ public class BrandCommandService {
     @Transactional
     public void saveBrand(BrandSaveRequest req) {
         // 원래는 사업자번호 검증하는 작업도 필요하지만 일단 스킵(중요한거 아님)
-        Brand brand = Brand.builder()
+        BrandEntity brandEntity = BrandEntity.builder()
                 .brandName(req.brandName())
                 .oneLineIntroduce(req.oneLineIntroduce())
                 .corporateNumber(req.corporateNumber())
@@ -26,6 +26,6 @@ public class BrandCommandService {
                 .introImageUrl(req.introImageUrl())
                 .build();
 
-        brandRepository.save(brand);
+        brandRepository.save(brandEntity);
     }
 }
