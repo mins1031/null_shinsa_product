@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.product.application.facade;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.event.ProductSaveEvent;
 import com.example.nullshinsaproduct.product.application.service.ProductCommandService;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;

@@ -5,7 +5,7 @@ import com.example.nullshinsaproduct.regacy.application.service.product.service.
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ClothesProductService;
 import com.example.nullshinsaproduct.regacy.application.service.product.service.ElectronicProductService;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

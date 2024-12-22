@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.regacy.application.service.product.service;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

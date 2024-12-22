@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class ProductFindController {
+public class LegacyProductFindController {
     private final ClothesProductFindService clothesProductFindService;
     private final ProductFacade productFacade;
 

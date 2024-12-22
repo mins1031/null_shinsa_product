@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class EmailSender {
-    private final MailSender mailSender;
+//    private final MailSender mailSender;
 
     public void send(
             String title,

@@ -4,4 +4,6 @@ import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEnt
 
 public interface ProductRepository {
     ProductEntity save(ProductEntity entity);
+
+    ProductEntity findById(long id);
 }

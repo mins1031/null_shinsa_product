@@ -1,16 +1,14 @@
-package com.example.nullshinsaproduct.regacy.application.dto.response;
+package com.example.nullshinsaproduct.product.application.input.dto.response;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 
 import java.time.LocalDateTime;
 
 public record ProductSizeResponse(
-        long sizeId,
-        LocalDateTime createdDate,
-        LocalDateTime updatedDate,
+        Long id,
+        Long productId,
         String sizeName,
-        ProductSizeType productSizeType,
-        String length,
+        String totalLength,
         String shoulder,
         String chest,
         String sleeve,
@@ -19,6 +17,11 @@ public record ProductSizeResponse(
         String hip,
         String thigh,
         String hem,
-        long productId
+        String width,
+        String height,
+        String depth,
+        ProductSizeType productSizeType,
+        LocalDateTime createdDate,
+        LocalDateTime updatedDate
 ) {
 }

@@ -2,8 +2,7 @@ package com.example.nullshinsaproduct.product.presentation;
 
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
 import com.example.nullshinsaproduct.product.application.facade.ProductCommandFacade;
-import com.example.nullshinsaproduct.product.application.service.ProductCommandService;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

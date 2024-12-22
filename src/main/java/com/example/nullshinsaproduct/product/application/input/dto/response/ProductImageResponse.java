@@ -1,15 +1,15 @@
-package com.example.nullshinsaproduct.regacy.application.dto.response;
+package com.example.nullshinsaproduct.product.application.input.dto.response;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 
 import java.time.LocalDateTime;
 
 public record ProductImageResponse(
-        long id,
-        LocalDateTime createdDate,
-        LocalDateTime updatedDate,
+        Long id,
+        Long productId,
         String imageUrl,
         ImageType imageType,
-        long productId
+        LocalDateTime createdDate,
+        LocalDateTime updatedDate
 ) {
 }

@@ -1,9 +1,8 @@
 package com.example.nullshinsaproduct.product.application.service;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
-import com.example.nullshinsaproduct.product.application.output.map.ProductMapper;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.application.output.map.ProductOutputMapper;
 import com.example.nullshinsaproduct.product.application.output.port.FakeBrandRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductImageRepository;
@@ -50,8 +49,7 @@ class ProductCommandServiceTest {
                 this.skuProductRepository,
                 this.fakeProductSizeRepository,
                 this.fakeProductImageRepository,
-                this.fakeBrandRepository,
-                ProductOutputMapper.INSTANCE
+                this.fakeBrandRepository
         );
 
         productRepository.save(ProductTestHelper.makeProductEntityInTemp());
@@ -65,7 +63,7 @@ class ProductCommandServiceTest {
 
         //when
         ProductEntity productEntity = productCommandService.saveProduct(productSaveRequest);
-        Product product = ProductMapper.toProductDomain(productEntity);
+        Product product = ProductOutputMapper.toProductDomain(productEntity);
 
         //then
         assertEquals(productSaveRequest.name(), product.getName());

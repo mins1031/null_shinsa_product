@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.product.domain.enumeration;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.domain.ProductSize;
 import lombok.Getter;
 

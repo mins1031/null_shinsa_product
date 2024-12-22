@@ -1,8 +1,9 @@
-package com.example.nullshinsaproduct.regacy.application.dto.response;
+package com.example.nullshinsaproduct.product.application.input.dto.response;
 
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public record ProductResponse(
         DiscountApplyPossible discountApplyPossible,
         int discountMinRate,
         int discountMaxRate,
-        ProductType productType,
+        ProductStatus productStatus,
         LocalDateTime productCreatedDate,
         LocalDateTime productUpdatedDate
 ) {
