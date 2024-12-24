@@ -2,13 +2,13 @@ POST http://localhost:8080/products
 Content-Type: application/json
 
 {
-  "name": "아우터상품-7",
-  "brandId": 1,
+  "name": "[포터리] 코트상품-1",
+  "brandId": 2,
   "price": 56000,
   "categoryInfoRequest": {
     "firstLayerCategory" : "MEN",
     "secondLayerCategory" : "OUTER",
-    "thirdLayerCategory" : "BLOUSON_MA1",
+    "thirdLayerCategory" : "WINTER_DOUBLE_COAT",
     "inferiorLayerCategory" : null
   },
   "couponApplyPossible": "POSSIBLE",
@@ -19,10 +19,10 @@ Content-Type: application/json
   "productSizeRequests": [
     {
       "sizeName": "S",
-      "totalLength": "64",
-      "shoulder": "50.5",
-      "chest": "57",
-      "sleeve": "59",
+      "totalLength": "117",
+      "shoulder": "60.5",
+      "chest": "61",
+      "sleeve": "70",
       "waist": "",
       "crotch": "",
       "hip": "",
@@ -35,10 +35,10 @@ Content-Type: application/json
     },
     {
       "sizeName": "M",
-      "totalLength": "66",
-      "shoulder": "52.5",
-      "chest": "59",
-      "sleeve": "61",
+      "totalLength": "119",
+      "shoulder": "62",
+      "chest": "63",
+      "sleeve": "72",
       "waist": "",
       "crotch": "",
       "hip": "",
@@ -51,10 +51,10 @@ Content-Type: application/json
     },
     {
       "sizeName": "L",
-      "totalLength": "68",
-      "shoulder": "54.5",
-      "chest": "61",
-      "sleeve": "63",
+      "totalLength": "121",
+      "shoulder": "63.5",
+      "chest": "65",
+      "sleeve": "73",
       "waist": "",
       "crotch": "",
       "hip": "",
@@ -71,9 +71,21 @@ Content-Type: application/json
   "detailImageLink": ["http://knit1-detail.com"],
   "skuProductRequests": [
     {
-      "name": "니트1 - 사이즈1",
+      "name": "[포터리] 코트1 - 사이즈S",
       "stock": 0,
       "plusPrice": 3000,
+      "productStatus": "TEMP"
+    },
+    {
+      "name": "[포터리] 코트1 - 사이즈M",
+      "stock": 0,
+      "plusPrice": 5000,
+      "productStatus": "TEMP"
+    },
+    {
+      "name": "[포터리] 코트1 - 사이즈L",
+      "stock": 0,
+      "plusPrice": 7000,
       "productStatus": "TEMP"
     }
   ],

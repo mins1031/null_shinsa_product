@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.product.presentation;
 
+import com.example.nullshinsaproduct.common.dto.ResponseResult;
 import com.example.nullshinsaproduct.product.application.input.dto.response.ProductQueryResponse;
 import com.example.nullshinsaproduct.product.application.service.ProductFindService;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +18,8 @@ public class ProductFindController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/products/{id}")
-    public ProductQueryResponse findProductById(@NotNull @PathVariable("id") long id) {
-        return productFindService.findProductById(id);
+    public ResponseResult<ProductQueryResponse> findProductById(@NotNull @PathVariable("id") long id) {
+        ProductQueryResponse response = productFindService.findProductById(id);
+        return ResponseResult.success(HttpStatus.OK, response);
     }
 }

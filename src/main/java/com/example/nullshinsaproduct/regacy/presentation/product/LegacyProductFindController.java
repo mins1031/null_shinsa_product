@@ -23,11 +23,11 @@ public class LegacyProductFindController {
     private final ClothesProductFindService clothesProductFindService;
     private final ProductFacade productFacade;
 
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/products/{id}")
-    public ResponseResult<ProductQueryResponse> findIntegrationProduct(@PathVariable("id") long productId) {
-        return ResponseResult.success(HttpStatus.OK, productFacade.switchFindProduct(productId));
-    }
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/products/{id}")
+//    public ResponseResult<ProductQueryResponse> findIntegrationProduct(@PathVariable("id") long productId) {
+//        return ResponseResult.success(HttpStatus.OK, productFacade.switchFindProduct(productId));
+//    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/products/stock")

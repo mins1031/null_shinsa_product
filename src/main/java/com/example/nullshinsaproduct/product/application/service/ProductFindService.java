@@ -19,7 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProductFindService {
     private final ProductRepository productRepository;
 
-
+    // 이제 여기에 연관 전시 상품들도 같이 노출되는 로직도 필요
+    // 별점 관련 작업도 필요
     @Transactional(readOnly = true)
     public ProductQueryResponse findProductById(long id) {
         ProductEntity productEntity = productRepository.findById(id);
