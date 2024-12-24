@@ -2,7 +2,7 @@ package com.example.nullshinsaproduct.regacy.application.service.product.service
 
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import com.example.nullshinsaproduct.regacy.application.combine.ProductDataCombine;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;

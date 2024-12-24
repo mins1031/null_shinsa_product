@@ -2,148 +2,137 @@ GET http://localhost:8080/products/1
 Content-Type: application/json
 
 {
-  "statusCode":"OK",
-  "message":null,
-  "result":{
-    "productResponse":{
-      "productId":1,
-      "name":"니트상품-7",
-      "price":56000,
-      "outboundPossibleDay":3,
-      "deliveryFee":"FREE",
-      "couponApplyPossible":"POSSIBLE",
-      "discountApplyPossible":"POSSIBLE",
-      "discountMinRate":0,
-      "discountMaxRate":20,
-      "productType":"CLOTHES",
-      "productCreatedDate":null,
-      "productUpdatedDate":null
+  "statusCode": "OK",
+  "message": null,
+  "result": {
+    "productResponse": {
+      "productId": 1,
+      "name": "아우터상품-1",
+      "price": 56000,
+      "outboundPossibleDay": 4,
+      "deliveryFee": "NOT_FREE",
+      "couponApplyPossible": "POSSIBLE",
+      "discountApplyPossible": "POSSIBLE",
+      "discountMinRate": 0,
+      "discountMaxRate": 20,
+      "productStatus": "TEMP",
+      "productCreatedDate": null,
+      "productUpdatedDate": null
     },
-    "productDetailRes":{
-      "id":1,
-      "productId":1,
-      "manufacturingCountry":"대한민국",
-      "manufacturingCompany":"민영제조사",
-      "manufacturingDate":"2024-01-01",
-      "qualityGuarantee":"품질보증서",
-      "fabric":"캐시미어 10%, 울 90%",
-      "measurement":"",
-      "washCaution":"드라이클리닝 맡기세요",
-      "productInnerItems":"",
-      "asOfficerAndTel":"010-5534-23123",
-      "detailContent":"상품상세 알림메모",
-      "brandDetailContent":"브랜드 알림메모",
-      "adminDetailContent":"관리자 알림메모"
+    "categoryResponse": {
+      "firstLayerCategory": "MEN",
+      "secondLayerCategory": "OUTER",
+      "thirdLayerCategory": "BLOUSON_MA1"
     },
-    "categoryRes":{
-      "firstLayerCategory":"MEN",
-      "secondLayerCategory":"CLOTHES",
-      "thirdLayerCategory":"KNIT_WEAR",
-      "inferiorLayerCategory":"TOP"
+    "brandResponse": {
+      "brandId": 1,
+      "brandName": "COS",
+      "corporateNumber": "11-11-11-14",
+      "communicationSellingNumber": "031-078-1114",
+      "representative": "대표 사업자4",
+      "location": "서울특별시 강남구 개쩌는동1"
     },
-    "brandResponse":{
-      "brandId":1,
-      "brandName":"브랜드4",
-      "oneLineIntroduce":null,
-      "corporateNumber":"11-11-11-14",
-      "communicationSellingNumber":"031-078-1114",
-      "representative":"대표 사업자4",
-      "location":"서울특별시 강남구 개쩌는동4",
-      "titleImageUrl":null,
-      "introImageUrl":null
-    },
-    "skuProductResList":[
+    "skuProductResList": [
       {
-        "id":1,
-        "createdDate":null,
-        "updatedDate":null,
-        "color":"gray",
-        "size":"S",
-        "stock":0,
-        "startPoint":0.0,
-        "discountRate":0,
-        "productStatus":"TEMP",
-        "productId":0
+        "id": 1,
+        "productId": 1,
+        "name": "니트1 - 사이즈1",
+        "stock": 0,
+        "plusPrice": 3000.0,
+        "skuProductStatus": null,
+        "createdDate": "2024-12-25T00:39:14.991079",
+        "updatedDate": "2024-12-25T00:39:14.991113"
       }
     ],
-    "sizeResList":[
+    "sizeResList": [
       {
-        "sizeId":1,
-        "createdDate":null,
-        "updatedDate":null,
-        "sizeName":"S",
-        "productSizeType":"TOP",
-        "length":"64",
-        "shoulder":"50.5",
-        "chest":"57",
-        "sleeve":"59",
-        "waist":null,
-        "crotch":null,
-        "hip":null,
-        "thigh":null,
-        "hem":null,
-        "productId":1
+        "id": 1,
+        "productId": 1,
+        "sizeName": null,
+        "totalLength": "64",
+        "shoulder": "50.5",
+        "chest": "57",
+        "sleeve": "59",
+        "waist": null,
+        "crotch": null,
+        "hip": null,
+        "thigh": null,
+        "hem": null,
+        "width": null,
+        "height": null,
+        "depth": null,
+        "productSizeType": null,
+        "createdDate": "2024-12-25T00:39:15.003995",
+        "updatedDate": "2024-12-25T00:39:15.004009"
       },
       {
-        "sizeId":2,
-        "createdDate":null,
-        "updatedDate":null,
-        "sizeName":"M",
-        "productSizeType":"TOP",
-        "length":"66",
-        "shoulder":"52.5",
-        "chest":"59",
-        "sleeve":"61",
-        "waist":null,
-        "crotch":null,
-        "hip":null,
-        "thigh":null,
-        "hem":null,
-        "productId":1
+        "id": 2,
+        "productId": 1,
+        "sizeName": null,
+        "totalLength": "66",
+        "shoulder": "52.5",
+        "chest": "59",
+        "sleeve": "61",
+        "waist": null,
+        "crotch": null,
+        "hip": null,
+        "thigh": null,
+        "hem": null,
+        "width": null,
+        "height": null,
+        "depth": null,
+        "productSizeType": null,
+        "createdDate": "2024-12-25T00:39:15.004022",
+        "updatedDate": "2024-12-25T00:39:15.004024"
       },
       {
-        "sizeId":3,
-        "createdDate":null,
-        "updatedDate":null,
-        "sizeName":"L",
-        "productSizeType":"TOP",
-        "length":"68",
-        "shoulder":"54.5",
-        "chest":"61",
-        "sleeve":"63",
-        "waist":null,
-        "crotch":null,
-        "hip":null,
-        "thigh":null,
-        "hem":null,
-        "productId":1
+        "id": 3,
+        "productId": 1,
+        "sizeName": null,
+        "totalLength": "68",
+        "shoulder": "54.5",
+        "chest": "61",
+        "sleeve": "63",
+        "waist": null,
+        "crotch": null,
+        "hip": null,
+        "thigh": null,
+        "hem": null,
+        "width": null,
+        "height": null,
+        "depth": null,
+        "productSizeType": null,
+        "createdDate": "2024-12-25T00:39:15.004028",
+        "updatedDate": "2024-12-25T00:39:15.004031"
       }
     ],
-    "productImageResList":[
+    "productImageResList": [
       {
-        "id":1,
-        "createdDate":null,
-        "updatedDate":null,
-        "imageUrl":"http://knit1-thumbnail.com",
-        "imageType":"THUMBNAIL",
-        "productId":0
+        "id": 1,
+        "productId": 1,
+        "imageUrl": "http://knit1-thumbnail.com",
+        "imageType": "THUMBNAIL",
+        "createdDate": "2024-12-25T00:39:15.006921",
+        "updatedDate": "2024-12-25T00:39:15.006933"
       },
       {
-        "id":2,
-        "createdDate":null,
-        "updatedDate":null,
-        "imageUrl":"http://knit1-prifile.com",
-        "imageType":"TITLE",
-        "productId":0
+        "id": 2,
+        "productId": 1,
+        "imageUrl": "http://knit1-prifile.com",
+        "imageType": "PROFILE",
+        "createdDate": "2024-12-25T00:39:15.006941",
+        "updatedDate": "2024-12-25T00:39:15.00695"
       },
       {
-        "id":3,
-        "createdDate":null,
-        "updatedDate":null,
-        "imageUrl":"http://knit1-detail.com",
-        "imageType":"DETAIL",
-        "productId":0
+        "id": 3,
+        "productId": 1,
+        "imageUrl": "http://knit1-detail.com",
+        "imageType": "DETAIL",
+        "createdDate": "2024-12-25T00:39:15.006953",
+        "updatedDate": "2024-12-25T00:39:15.006956"
       }
     ]
   }
 }
+
+//Response code: 200; Time: 194ms; Content length: 2330 bytes

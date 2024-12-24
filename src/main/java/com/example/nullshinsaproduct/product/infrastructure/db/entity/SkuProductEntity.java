@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@Table(
+        name = "sku_product"
+)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SkuProductEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

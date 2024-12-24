@@ -7,6 +7,7 @@ public class ProductException extends RuntimeException {
     private final ProductExceptionCode productExceptionCode;
 
     public ProductException(ProductExceptionCode productExceptionCode) {
+        super(productExceptionCode.getErrorMessage());
         this.productExceptionCode = productExceptionCode;
     }
 

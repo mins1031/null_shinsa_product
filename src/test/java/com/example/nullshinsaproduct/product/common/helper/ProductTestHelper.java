@@ -1,13 +1,13 @@
 package com.example.nullshinsaproduct.product.common.helper;
 
-import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
-import com.example.nullshinsaproduct.product.application.dto.request.CategoryInfoRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
-import com.example.nullshinsaproduct.product.application.dto.request.SkuProductRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.CategoryInfoRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
@@ -15,7 +15,11 @@ import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus
 import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
+import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 
 import java.util.List;
 
@@ -63,6 +67,48 @@ public class ProductTestHelper {
         );
     }
 
+    public static ProductSaveVo makeOuterProductSaveVo() {
+        return new ProductSaveVo(
+                "test 상품",
+                100000,
+                1L,
+                "brandName",
+                "corporateNum",
+                "sellingNum",
+                "represetative",
+                "location",
+                FirstLayerCategory.MEN,
+                SecondLayerCategory.OUTER,
+                ThirdLayerCategory.CARDIGAN,
+                CouponApplyPossible.POSSIBLE,
+                DiscountApplyPossible.POSSIBLE,
+                3,
+                20,
+                3,
+                true,
+                ProductType.CLOTHES
+        );
+    }
+
+    public static List<SkuProductEntity> makeSkuProductEntities(ProductEntity entity) {
+        return List.of(
+                SkuProductEntity.createSkuProduct(
+                        entity,
+                        "상품1 - 사이즈1",
+                        0,
+                        5000,
+                        SkuProductStatus.TEMP
+                ),
+                SkuProductEntity.createSkuProduct(
+                        entity,
+                        "상품1 - 사이즈2",
+                        0,
+                        3000,
+                        SkuProductStatus.TEMP
+                )
+        );
+    }
+
     public static List<SkuProductRequest> makeSkuProductSaveReq() {
         return List.of(
                 new SkuProductRequest(
@@ -103,12 +149,103 @@ public class ProductTestHelper {
                 DeliveryFee.findByIsFree(req.isDeliveryFree()),
                 req.discountApplyPossible(),
                 req.couponApplyPossible(),
-                req.productType(),
                 ProductStatus.TEMP,
+                false,
                 req.categoryInfoRequest().firstLayerCategory(),
                 req.categoryInfoRequest().secondLayerCategory(),
                 req.categoryInfoRequest().thirdLayerCategory(),
                 null
+        );
+    }
+
+    public static ProductEntity makeProductEntityInApprove() {
+        ProductSaveRequest req = makeOuterProductSaveReq();
+        return ProductEntity.createDefault(
+                req.name(),
+                req.price(),
+                req.brandId(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                req.discountMinRate(),
+                req.discountMaxRate(),
+                req.outboundPossibleDay(),
+                DeliveryFee.findByIsFree(req.isDeliveryFree()),
+                req.discountApplyPossible(),
+                req.couponApplyPossible(),
+                ProductStatus.APPROVE,
+                true,
+                req.categoryInfoRequest().firstLayerCategory(),
+                req.categoryInfoRequest().secondLayerCategory(),
+                req.categoryInfoRequest().thirdLayerCategory(),
+                null
+        );
+    }
+
+    public static ProductEntity makeProductEntityWithAssociations() {
+        ProductSaveRequest req = makeOuterProductSaveReq();
+        return ProductEntity.createDefault(
+                req.name(),
+                req.price(),
+                req.brandId(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                req.discountMinRate(),
+                req.discountMaxRate(),
+                req.outboundPossibleDay(),
+                DeliveryFee.findByIsFree(req.isDeliveryFree()),
+                req.discountApplyPossible(),
+                req.couponApplyPossible(),
+                ProductStatus.APPROVE,
+                true,
+                req.categoryInfoRequest().firstLayerCategory(),
+                req.categoryInfoRequest().secondLayerCategory(),
+                req.categoryInfoRequest().thirdLayerCategory(),
+                null
+        );
+    }
+
+    public static List<ProductSizeEntity> makeProductSizeEntities(ProductEntity entity) {
+        return List.of(
+                ProductSizeEntity.of(
+                        "상품1 - 사이즈1",
+                        "77",
+                        "57",
+                        "47",
+                        "67",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ProductSizeType.OUTER,
+                        entity
+                ),
+                ProductSizeEntity.of(
+                        "상품1 - 사이즈2",
+                        "80",
+                        "60",
+                        "50",
+                        "70",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ProductSizeType.OUTER,
+                        entity
+                )
         );
     }
 
@@ -145,6 +282,16 @@ public class ProductTestHelper {
                         "",
                         "",
                         ProductSizeType.OUTER
+                )
+        );
+    }
+
+    public static List<ProductImageEntity> makeProductImageEntities(ProductEntity entity) {
+        return List.of(
+                ProductImageEntity.of(
+                        "url.co.kr",
+                        ImageType.THUMBNAIL,
+                        entity
                 )
         );
     }

@@ -6,29 +6,45 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @ToString
 @EqualsAndHashCode
 public class SkuProduct {
     private Long id;
-    private long parentProductId;
+    private Long parentProductId;
     private String name;
     private int stock;
     private int plusPrice;
     private SkuProductStatus skuProductStatus;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
-    public SkuProduct(Long id, long parentProductId, String name, int stock, int plusPrice, SkuProductStatus skuProductStatus) {
+
+    public SkuProduct(
+            Long id,
+            Long parentProductId,
+            String name,
+            int stock,
+            int plusPrice,
+            SkuProductStatus skuProductStatus,
+            LocalDateTime createdDate,
+            LocalDateTime updatedDate
+    ) {
         this.id = id;
         this.parentProductId = parentProductId;
         this.name = name;
         this.stock = stock;
         this.plusPrice = plusPrice;
         this.skuProductStatus = skuProductStatus;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public static SkuProduct of(
             Long id,
-            long parentProductId,
+            Long parentProductId,
             String name,
             int stock,
             int plusPrice,
@@ -40,12 +56,14 @@ public class SkuProduct {
                 name,
                 stock,
                 plusPrice,
-                skuProductStatus
+                skuProductStatus,
+                LocalDateTime.now(),
+                LocalDateTime.now()
         );
     }
 
     public static SkuProduct createDefault(
-            long parentProductId,
+            Long parentProductId,
             String name,
             int stock,
             int plusPrice,
@@ -57,7 +75,9 @@ public class SkuProduct {
                 name,
                 stock,
                 plusPrice,
-                skuProductStatus
+                skuProductStatus,
+                LocalDateTime.now(),
+                LocalDateTime.now()
         );
     }
 }

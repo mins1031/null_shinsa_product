@@ -1,7 +1,6 @@
 package com.example.nullshinsaproduct.product.application.facade;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSaveRequest;
-import com.example.nullshinsaproduct.product.application.output.map.ProductMapper;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSaveRequest;
 import com.example.nullshinsaproduct.product.application.output.map.ProductOutputMapper;
 import com.example.nullshinsaproduct.product.application.output.port.FakeBrandRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductImageRepository;
@@ -19,7 +18,6 @@ import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEnt
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,8 +48,7 @@ class ProductCommandFacadeTest {
                 this.fakeSkuProductRepository,
                 this.fakeProductSizeRepository,
                 this.fakeProductImageRepository,
-                this.fakeBrandRepository,
-                ProductOutputMapper.INSTANCE
+                this.fakeBrandRepository
         );
 
         fakeBrandRepository.save(BrandTestHelper.makeBrandEntity());
@@ -73,7 +70,7 @@ class ProductCommandFacadeTest {
         ProductEntity productEntity = fakeProductRepository.findById(1L);
 
         // ==== 상품 검증 로직 ====
-        Product product = ProductMapper.toProductDomain(productEntity);
+        Product product = ProductOutputMapper.toProductDomain(productEntity);
         assertEquals(req.name(), product.getName());
         assertEquals(req.price(), product.getPrice());
         assertEquals(req.categoryInfoRequest().firstLayerCategory(), product.getCategoryVo().getFirstLayerCategory());

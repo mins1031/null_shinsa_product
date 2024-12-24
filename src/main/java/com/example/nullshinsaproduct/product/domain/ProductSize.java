@@ -1,15 +1,17 @@
 package com.example.nullshinsaproduct.product.domain;
 
-import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSizeRequest;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 import lombok.Builder;
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 
 
 @Getter
 public class ProductSize {
     private final Long id;
-    private long productId;
+    private Long productId;
     private String sizeName;
     private ProductSizeType productSizeType;
     private String totalLength;
@@ -24,11 +26,13 @@ public class ProductSize {
     private String width; // 너비
     private String height; // 높이
     private String depth; // 폭(깊이)
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     @Builder
     private ProductSize(
             Long id,
-            long productId,
+            Long productId,
             String sizeName,
             ProductSizeType productSizeType,
             String totalLength,
@@ -42,7 +46,9 @@ public class ProductSize {
             String hem,
             String width,
             String height,
-            String depth
+            String depth,
+            LocalDateTime createdDate,
+            LocalDateTime updatedDate
     ) {
         this.id = id;
         this.productId = productId;
@@ -60,11 +66,13 @@ public class ProductSize {
         this.width = width;
         this.height = height;
         this.depth = depth;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 
     public static ProductSize of(
             Long id,
-            long productId,
+            Long productId,
             String sizeName,
             ProductSizeType productSizeType,
             String totalLength,
@@ -96,7 +104,9 @@ public class ProductSize {
                 hem,
                 width,
                 height,
-                depth
+                depth,
+                LocalDateTime.now(),
+                LocalDateTime.now()
         );
     }
 
@@ -107,6 +117,8 @@ public class ProductSize {
                 .chest(req.chest())
                 .sleeve(req.sleeve())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -117,6 +129,8 @@ public class ProductSize {
                 .chest(req.chest())
                 .sleeve(req.sleeve())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -129,6 +143,8 @@ public class ProductSize {
                 .thigh(req.thigh())
                 .hem(req.hem())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -140,6 +156,8 @@ public class ProductSize {
                 .sleeve(req.sleeve())
                 .hip(req.hip())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -150,6 +168,8 @@ public class ProductSize {
                 .hip(req.hip())
                 .hem(req.hem())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -157,6 +177,8 @@ public class ProductSize {
         return ProductSize.builder()
                 .totalLength(req.totalLength())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 
@@ -166,6 +188,8 @@ public class ProductSize {
                 .height(req.height())
                 .depth(req.depth())
                 .productId(productId)
+                .createdDate(LocalDateTime.now())
+                .updatedDate(LocalDateTime.now())
                 .build();
     }
 }

@@ -1,11 +1,11 @@
 //package com.example.nullshinsaproduct.regacy.product.domain.factory;
 //
-//import com.example.nullshinsaproduct.product.application.dto.request.ProductSizeRequest;
+//import com.example.nullshinsaproduct.product.application.input.dto.request.ProductSizeRequest;
 //import com.example.nullshinsaproduct.product.infrastructure.db.entity.Product;
 //import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductBottomSizeEntity;
 //import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 //import com.example.nullshinsaproduct.regacy.product.infrastructure.db.entity.ProductTopSizeEntity;
-//import com.example.nullshinsaproduct.product.application.dto.request.CategoryInfoRequest;
+//import com.example.nullshinsaproduct.product.application.input.dto.request.CategoryInfoRequest;
 //import com.example.nullshinsaproduct.product.domain.enumeration.ProductSizeType;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@
 //                                    sizeReq.sizeName(),
 //                                    product,
 //                                    ProductSizeType.TOP,
-//                                    sizeReq.length(),
+//                                    sizeReq.totalLength(),
 //                                    sizeReq.shoulder(),
 //                                    sizeReq.chest(),
 //                                    sizeReq.sleeve()
@@ -39,7 +39,7 @@
 //                                    sizeReq.sizeName(),
 //                                    product,
 //                                    ProductSizeType.BOTTOM,
-//                                    sizeReq.length(),
+//                                    sizeReq.totalLength(),
 //                                    sizeReq.waist(),
 //                                    sizeReq.crotch(),
 //                                    sizeReq.hip(),

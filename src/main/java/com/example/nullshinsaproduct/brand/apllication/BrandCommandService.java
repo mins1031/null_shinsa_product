@@ -1,7 +1,7 @@
 package com.example.nullshinsaproduct.brand.apllication;
 
 import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
-import com.example.nullshinsaproduct.product.application.dto.request.BrandSaveRequest;
+import com.example.nullshinsaproduct.product.application.input.dto.request.BrandSaveRequest;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
