@@ -16,7 +16,6 @@ public class FakeProductRepository implements ProductRepository {
     private long idCountIncrement = 0;
     private Map<Long, ProductEntity> fakeProductContext = Collections.synchronizedMap(new HashMap<>());
 
-
     @Override
     public ProductEntity save(ProductEntity entity) {
         if (Objects.isNull(entity)) {
@@ -53,6 +52,11 @@ public class FakeProductRepository implements ProductRepository {
     @Override
     public ProductEntity findById(long id) {
         return this.fakeProductContext.get(id);
+    }
+
+    @Override
+    public List<ProductEntity> findByIds(List<Long> ids) {
+        return null;
     }
 
 

@@ -1,0 +1,25 @@
+PUT http://localhost:8080/products
+Content-Type: application/json
+
+{
+  "updateTargetIds" : [5]
+}
+
+
+//{
+//  "statusCode": "OK",
+//  "message": null,
+//  "result": {
+//    "responses": [
+//      {
+//        "id": 5,
+//        "name": "[포터리] 코트상품-1",
+//        "toStatus": "APPROVE",
+//        "isSuccess": true,
+//        "failReason": null
+//      }
+//    ]
+//  }
+//}
+//
+//Response code: 200; Time: 205ms; Content length: 146 bytes

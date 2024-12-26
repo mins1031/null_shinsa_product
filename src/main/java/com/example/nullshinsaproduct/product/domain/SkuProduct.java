@@ -1,9 +1,10 @@
 package com.example.nullshinsaproduct.product.domain;
 
+import com.example.nullshinsaproduct.common.exception.product.ProductException;
+import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
@@ -79,5 +80,13 @@ public class SkuProduct {
                 LocalDateTime.now(),
                 LocalDateTime.now()
         );
+    }
+
+    public void updateApproveStatus() {
+        if (this.skuProductStatus.getSeq() > SkuProductStatus.TEMP.getSeq()) {
+            throw new ProductException(ProductExceptionCode.WRONG_UPDATE_STATUS_SKU);
+        }
+
+        this.skuProductStatus = SkuProductStatus.APPROVE;
     }
 }

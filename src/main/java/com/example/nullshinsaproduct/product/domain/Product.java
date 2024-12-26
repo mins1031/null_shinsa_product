@@ -1,10 +1,11 @@
 package com.example.nullshinsaproduct.product.domain;
 
+import com.example.nullshinsaproduct.common.exception.product.ProductException;
+import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductType;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
@@ -12,7 +13,6 @@ import com.example.nullshinsaproduct.product.domain.vo.CategoryVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductBrandVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductDeliveryVo;
 import com.example.nullshinsaproduct.product.domain.vo.ProductSaveVo;
-import com.example.nullshinsaproduct.regacy.product.infrastructure.db.repository.vo.ProductOverviewVo;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -172,8 +172,13 @@ public class Product {
     }
 
     public void updateApproveStatus() {
+        if (this.productStatus.getSeq() > ProductStatus.TEMP.getSeq()) {
+            throw new ProductException(ProductExceptionCode.WRONG_UPDATE_STATUS_SKU);
+        }
+
         this.productStatus = ProductStatus.APPROVE;
         this.isCanView = true;
+        this.skuProductList.forEach(SkuProduct::updateApproveStatus);
     }
 
     public boolean isNotFindStatus() {

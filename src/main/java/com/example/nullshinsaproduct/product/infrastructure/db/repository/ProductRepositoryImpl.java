@@ -8,6 +8,7 @@ import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.Pr
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -25,5 +26,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         Optional<ProductEntity> product = productJpaRepository.findById(id);
 
         return product.orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
+    }
+
+    @Override
+    public List<ProductEntity> findByIds(List<Long> ids) {
+        return productJpaRepository.findAllById(ids);
     }
 }
