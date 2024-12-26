@@ -72,6 +72,12 @@ public class ProductOutputMapper {
         );
     }
 
+    public static List<Product> toProductDomains(List<ProductEntity> entities) {
+        return entities.stream()
+                .map(ProductOutputMapper::toProductDomain)
+                .toList();
+    }
+
     public static ProductEntity toProductEntity(Product domain) {
         return ProductEntity.createDefault(
                 domain.getName(),

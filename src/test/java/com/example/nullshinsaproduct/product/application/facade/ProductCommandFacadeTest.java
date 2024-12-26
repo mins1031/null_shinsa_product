@@ -48,7 +48,9 @@ class ProductCommandFacadeTest {
                 this.fakeSkuProductRepository,
                 this.fakeProductSizeRepository,
                 this.fakeProductImageRepository,
-                this.fakeBrandRepository
+                this.fakeBrandRepository,
+                null,
+                null
         );
 
         fakeBrandRepository.save(BrandTestHelper.makeBrandEntity());

@@ -5,9 +5,11 @@ import com.example.nullshinsaproduct.product.application.input.dto.request.Produ
 import com.example.nullshinsaproduct.product.application.input.dto.request.SkuProductRequest;
 import com.example.nullshinsaproduct.product.application.output.map.ProductOutputMapper;
 import com.example.nullshinsaproduct.product.application.output.port.FakeBrandRepository;
+import com.example.nullshinsaproduct.product.application.output.port.FakeProductDslRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductImageRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeProductSizeRepository;
+import com.example.nullshinsaproduct.product.application.output.port.FakeSkuProductDslRepository;
 import com.example.nullshinsaproduct.product.application.output.port.FakeSkuProductRepository;
 import com.example.nullshinsaproduct.product.common.helper.BrandTestHelper;
 import com.example.nullshinsaproduct.product.common.helper.ProductTestHelper;
@@ -15,10 +17,12 @@ import com.example.nullshinsaproduct.product.domain.Product;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +36,9 @@ class ProductCommandServiceTest {
     private FakeProductSizeRepository fakeProductSizeRepository;
     private FakeProductImageRepository fakeProductImageRepository;
     private FakeBrandRepository fakeBrandRepository;
+    private FakeProductDslRepository fakeProductDslRepository;
+    private FakeSkuProductDslRepository fakeSkuProductDslRepository;
+
 
     private ProductCommandService productCommandService;
 
@@ -43,13 +50,17 @@ class ProductCommandServiceTest {
         this.fakeProductSizeRepository = new FakeProductSizeRepository();
         this.fakeProductImageRepository = new FakeProductImageRepository();
         this.fakeBrandRepository = new FakeBrandRepository();
+        this.fakeProductDslRepository = new FakeProductDslRepository();
+        this.fakeSkuProductDslRepository = new FakeSkuProductDslRepository();
 
         this.productCommandService = new ProductCommandService(
                 this.productRepository,
                 this.skuProductRepository,
                 this.fakeProductSizeRepository,
                 this.fakeProductImageRepository,
-                this.fakeBrandRepository
+                this.fakeBrandRepository,
+                this.fakeProductDslRepository,
+                this.fakeSkuProductDslRepository
         );
 
         productRepository.save(ProductTestHelper.makeProductEntityInTemp());
@@ -176,4 +187,27 @@ class ProductCommandServiceTest {
         assertEquals(productId, all.get(4).getProductId());
     }
 
+
+    @Test
+    void 상품의_상태를_승인완료로_변경할_수_있다() {
+        //given
+        List<Long> willApproveIds = List.of(1L);
+        ProductEntity productEntity = productRepository.findById(1L);
+        List<SkuProductEntity> skuProductEntities = ProductTestHelper.makeSkuProductEntities(productEntity);
+        fakeProductDslRepository.save(productEntity);
+        skuProductEntities.forEach(sku -> fakeSkuProductDslRepository.save(sku));
+
+        //when
+        productCommandService.updateApproveStatus(willApproveIds);
+
+        //then
+        ProductEntity resultProduct = fakeProductDslRepository.findById(1L);
+        Assertions.assertEquals(ProductStatus.APPROVE, resultProduct.getProductStatus());
+        Assertions.assertTrue(resultProduct.isCanView());
+
+        SkuProductEntity resultSku = fakeSkuProductDslRepository.findById(1L);
+        Assertions.assertEquals(SkuProductStatus.APPROVE, resultSku.getSkuProductStatus());
+        SkuProductEntity resultSku2 = fakeSkuProductDslRepository.findById(2L);
+        Assertions.assertEquals(SkuProductStatus.APPROVE, resultSku2.getSkuProductStatus());
+    }
 }
