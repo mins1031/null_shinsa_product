@@ -119,6 +119,10 @@ public class ProductCommandService {
                 .filter(ProductStatusUpdateResponse::isSuccess)
                 .map(ProductStatusUpdateResponse::id)
                 .collect(Collectors.toList());
+        if (updateSuccessIds.isEmpty()) {
+            return;
+        }
+
         productDslRepository.updateStatusByIds(
                 updateSuccessIds,
                 ProductStatus.APPROVE

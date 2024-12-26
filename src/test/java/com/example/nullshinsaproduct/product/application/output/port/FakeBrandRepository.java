@@ -2,6 +2,7 @@ package com.example.nullshinsaproduct.product.application.output.port;
 
 import com.example.nullshinsaproduct.brand.apllication.output.port.BrandRepository;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
+import com.example.nullshinsaproduct.product.common.helper.CommonTestHelper;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 
@@ -22,7 +23,7 @@ public class FakeBrandRepository implements BrandRepository {
         }
 
         idCountIncrement++;
-        injectIdInEntity(brandEntity);
+        CommonTestHelper.injectIdInEntity(brandEntity, "id", idCountIncrement);
         fakeBrandContext.put(idCountIncrement, brandEntity);
         return fakeBrandContext.get(idCountIncrement);
     }
@@ -32,13 +33,4 @@ public class FakeBrandRepository implements BrandRepository {
         return fakeBrandContext.get(id);
     }
 
-    private void injectIdInEntity(BrandEntity entity) {
-        try {
-            Field id = entity.getClass().getDeclaredField("id");
-            id.setAccessible(true);
-            id.set(entity, idCountIncrement);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("특정 필드값 조회 및 값 세팅 실패");
-        }
-    }
 }

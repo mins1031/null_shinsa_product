@@ -1,11 +1,13 @@
 package com.example.nullshinsaproduct.product.application.output.port;
 
+import com.example.nullshinsaproduct.product.common.helper.CommonTestHelper;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -24,7 +26,7 @@ public class FakeProductRepository implements ProductRepository {
 
         idCountIncrement++;
         fakeProductContext.put(idCountIncrement, entity);
-        injectIdInEntity(entity);
+        CommonTestHelper.injectIdInEntity(entity, "id", idCountIncrement);
 
         return fakeProductContext.get(idCountIncrement);
     }
@@ -41,7 +43,7 @@ public class FakeProductRepository implements ProductRepository {
 
         idCountIncrement++;
         fakeProductContext.put(idCountIncrement, entity);
-        injectIdInEntity(entity);
+        CommonTestHelper.injectIdInEntity(entity, "id", idCountIncrement);
         injectSkuListInEntity(entity, skuProductEntities);
         injectSizeListInEntity(entity, productSizeEntities);
         injectImageListInEntity(entity, productImageEntities);
@@ -56,19 +58,14 @@ public class FakeProductRepository implements ProductRepository {
 
     @Override
     public List<ProductEntity> findByIds(List<Long> ids) {
-        return null;
-    }
-
-
-    private void injectIdInEntity(ProductEntity entity) {
-        try {
-            Field id = entity.getClass().getDeclaredField("id");
-            id.setAccessible(true);
-            id.set(entity, idCountIncrement);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("특정 필드값 조회 및 값 세팅 실패");
+        List<ProductEntity> result = new ArrayList<>();
+        for (Long id : ids) {
+            result.add(this.fakeProductContext.get(id));
         }
+
+        return result;
     }
+
 
     private void injectSkuListInEntity(ProductEntity entity, List<SkuProductEntity> skus) {
         try {

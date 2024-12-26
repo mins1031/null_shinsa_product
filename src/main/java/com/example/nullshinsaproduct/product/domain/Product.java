@@ -190,9 +190,9 @@ public class Product {
 
 
 
-//    public void updateRelatedSkus(final List<SkuProduct> skuProductList) {
-//        this.skuProductList = skuProductList;
-//    }
+    public void updateRelatedSkus(final List<SkuProduct> skuProductList) {
+        this.skuProductList = skuProductList;
+    }
 //
 //    public void updateRelatedImages(final List<ProductImage> productImageList) {
 //        this.productImageList = productImageList;
