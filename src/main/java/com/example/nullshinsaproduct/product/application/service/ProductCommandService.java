@@ -102,8 +102,9 @@ public class ProductCommandService {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT);
         }
 
+        // 여기가 N+1 포인트임.
+        // QueryDsl 의 fetchJoin으로 개선할건지 다른방식으로 할건지 정해야함. --> N+1 공부 및 카타시안 곱 조인 공부해볼것.
         List<Product> products = ProductOutputMapper.toProductDomains(productEntities);
-        // 도메인의 상태는 변경해도.. 엔티티의 상태는? 또 건별로 처리해야하는데.. 이렇게 처리하면 디비엔 변경이 안되는데?
 
         List<ProductStatusUpdateResponse> responses = products.stream()
                 .map(this::switchResponseByError)

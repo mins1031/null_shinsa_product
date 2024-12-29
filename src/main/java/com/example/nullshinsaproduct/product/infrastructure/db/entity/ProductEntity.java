@@ -24,6 +24,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -36,6 +38,7 @@ import java.util.List;
 @Table(
         name = "product"
 )
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductEntity {
     @Id
