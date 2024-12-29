@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,8 +19,11 @@ import java.util.List;
 
 @Getter
 @Entity
+@Table(
+        name = "review"
+)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Review {
+public class ReviewEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,14 +39,14 @@ public class Review {
     private double startPoint;
     private String selectSkuOption;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
-    private List<ReviewImage> reviewImageList;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
-    private List<ReviewHeart> reviewHeartList;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "review", orphanRemoval = true)
-    private List<ReviewReply> reviewReplyList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewEntity", orphanRemoval = true)
+    private List<ReviewImageEntity> reviewImageEntityList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewEntity", orphanRemoval = true)
+    private List<ReviewHeartEntity> reviewHeartEntityList;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewEntity", orphanRemoval = true)
+    private List<ReviewReplyEntity> reviewReplyEntityList;
 
-    private Review(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+    private ReviewEntity(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
         this.writerId = writerId;
         this.orderId = orderId;
         this.productId = productId;
@@ -51,8 +55,8 @@ public class Review {
         this.selectSkuOption = selectSkuOption;
     }
 
-    public static Review of(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
-        return new Review(
+    public static ReviewEntity of(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+        return new ReviewEntity(
                 writerId,
                 orderId,
                 productId,
@@ -62,7 +66,7 @@ public class Review {
         );
     }
 
-    public void initImages(List<ReviewImage> reviewImageList) {
-        this.reviewImageList = reviewImageList;
+    public void initImages(List<ReviewImageEntity> reviewImageEntityList) {
+        this.reviewImageEntityList = reviewImageEntityList;
     }
 }

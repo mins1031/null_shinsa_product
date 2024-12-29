@@ -8,8 +8,8 @@ Content-Type: application/json
   "content": "content",
   "startPoint": "startPoint",
   "imgUrls": [
-      "https://review-url1.co.kr",
-      "https://review-url2.co.kr",
-      "https://review-url3.co.kr"
+      "https://reviewEntity-url1.co.kr",
+      "https://reviewEntity-url2.co.kr",
+      "https://reviewEntity-url3.co.kr"
   ]
 }

@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.review.infrestructure.http.dto.response;
 
-public record MemberQueryResponse (
+public record ReviewerQueryInfraResponse(
         Long memberId,
         String name,
         String height,
