@@ -32,7 +32,7 @@ public class ReviewEntity {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    private long writerId;
+    private long reviewerId;
     private long orderId;
     private long productId;
     private String content;
@@ -46,8 +46,8 @@ public class ReviewEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewEntity", orphanRemoval = true)
     private List<ReviewReplyEntity> reviewReplyEntityList;
 
-    private ReviewEntity(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
-        this.writerId = writerId;
+    private ReviewEntity(long reviewerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+        this.reviewerId = reviewerId;
         this.orderId = orderId;
         this.productId = productId;
         this.content = content;
@@ -55,9 +55,9 @@ public class ReviewEntity {
         this.selectSkuOption = selectSkuOption;
     }
 
-    public static ReviewEntity of(long writerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
+    public static ReviewEntity of(long reviewerId, long orderId, long productId, String content, double startPoint, String selectSkuOption) {
         return new ReviewEntity(
-                writerId,
+                reviewerId,
                 orderId,
                 productId,
                 content,

@@ -9,7 +9,6 @@ import com.example.nullshinsaproduct.review.infrestructure.db.enttiy.ReviewEntit
 import com.example.nullshinsaproduct.review.infrestructure.db.enttiy.ReviewImageEntity;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
-import com.example.nullshinsaproduct.review.infrestructure.http.dto.response.ReviewerQueryInfraResponse;
 import com.example.nullshinsaproduct.review.infrestructure.db.repository.ReviewImageRepository;
 import com.example.nullshinsaproduct.review.infrestructure.db.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
