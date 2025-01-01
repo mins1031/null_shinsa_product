@@ -28,19 +28,19 @@ public class ReviewHeartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @CreatedDate
-    private LocalDateTime createdDate;
-    @LastModifiedDate
-    private LocalDateTime updatedDate;
-
-    private long userId;
+    private long heartPickerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private ReviewEntity reviewEntity;
 
-    public ReviewHeartEntity(long userId, ReviewEntity reviewEntity) {
-        this.userId = userId;
+    @CreatedDate
+    private LocalDateTime createdDate;
+    @LastModifiedDate
+    private LocalDateTime updatedDate;
+
+    public ReviewHeartEntity(long heartPickerId, ReviewEntity reviewEntity) {
+        this.heartPickerId = heartPickerId;
         this.reviewEntity = reviewEntity;
     }
 }
