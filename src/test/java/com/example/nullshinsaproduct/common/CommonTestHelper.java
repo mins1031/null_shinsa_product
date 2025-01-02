@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct.product.common.helper;
+package com.example.nullshinsaproduct.common;
 
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 

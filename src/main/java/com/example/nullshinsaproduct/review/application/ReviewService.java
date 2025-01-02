@@ -5,6 +5,7 @@ import com.example.nullshinsaproduct.review.application.dto.request.ReviewSaveRe
 import com.example.nullshinsaproduct.review.application.output.dto.CheckOrdererResponse;
 import com.example.nullshinsaproduct.review.application.output.dto.ReviewerQueryResponse;
 import com.example.nullshinsaproduct.review.application.output.port.ReviewHeartRepository;
+import com.example.nullshinsaproduct.review.application.output.port.ReviewImageRepository;
 import com.example.nullshinsaproduct.review.application.output.port.ReviewRepository;
 import com.example.nullshinsaproduct.review.application.output.port.ReviewerClientWrapperPort;
 import com.example.nullshinsaproduct.review.application.output.port.ReviewerOrderClientWrapperPort;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.awt.geom.AffineTransform;
 import java.util.List;
 
 @Slf4j
@@ -26,7 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository reviewRepository;
-    private final ReviewImageJpaRepository reviewImageJpaRepository;
+    private final ReviewImageRepository reviewImageRepository;
     private final ReviewHeartRepository reviewHeartRepository;
     private final ReviewerClientWrapperPort reviewerClientWrapper;
     private final ReviewerOrderClientWrapperPort reviewerOrderClientWrapper;
@@ -52,7 +54,7 @@ public class ReviewService {
         List<ReviewImageEntity> reviewImageEntities = req.imgUrls().stream()
                 .map(imgUrl -> ReviewImageEntity.of(imgUrl, savedReviewEntity))
                 .toList();
-        reviewImageJpaRepository.saveAll(reviewImageEntities);
+        reviewImageRepository.saveAll(reviewImageEntities);
     }
 
     @Transactional

@@ -1,6 +1,8 @@
 POST http://localhost:8080/products
 Content-Type: application/json
 
+// 2025.01.02 : 당장은 주문서버나 회원서버가 녹록치 않은 관계로 실제 통합테스트는 무리가 있음. 추후 주문, 회원(간략) 구현후 테스트 예정
+
 {
   "reviewerId": "reviewerId",
   "orderId": "orderId",

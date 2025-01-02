@@ -22,6 +22,7 @@ public enum ProductExceptionCode {
 
 
     NOT_EXIST_REQUEST_BRAND(HttpStatus.BAD_REQUEST, 2001, "존재하지 않는 브랜드 입니다. 요청 값을 다시 확인해 주세요"),
+    NOT_EXIST_REQUEST_MEMBER(HttpStatus.BAD_REQUEST, 2002, "존재하지 않는 회원 입니다. 요청 값을 다시 확인해 주세요"),
     ;
 
     private final HttpStatus httpStatus;
