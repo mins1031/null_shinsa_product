@@ -1,6 +1,6 @@
 package com.example.nullshinsaproduct.product.application.output.port;
 
-import com.example.nullshinsaproduct.product.common.helper.CommonTestHelper;
+import com.example.nullshinsaproduct.common.CommonTestHelper;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 

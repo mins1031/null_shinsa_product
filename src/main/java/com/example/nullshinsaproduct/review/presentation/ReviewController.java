@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.review.presentation;
 
+import com.example.nullshinsaproduct.review.application.dto.request.ReviewHeartSaveRequest;
 import com.example.nullshinsaproduct.review.application.dto.request.ReviewSaveRequest;
 import com.example.nullshinsaproduct.review.application.ReviewService;
 import com.example.nullshinsaproduct.common.dto.ResponseResult;
@@ -23,6 +24,14 @@ public class ReviewController {
     public ResponseResult<Boolean> saveReview(@Valid @RequestBody ReviewSaveRequest request) {
         log.info("리뷰등록 req : {}", request);
         reviewService.saveReview(request);
+        return ResponseResult.success(HttpStatus.CREATED, true);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/reviews/heart")
+    public ResponseResult<Boolean> saveReviewHeart(@Valid @RequestBody ReviewHeartSaveRequest request) {
+        log.info("리뷰좋아요 등록 req : {}", request);
+        reviewService.saveReviewHeart(request);
         return ResponseResult.success(HttpStatus.CREATED, true);
     }
 }

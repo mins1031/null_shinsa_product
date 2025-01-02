@@ -1,8 +1,7 @@
 package com.example.nullshinsaproduct.product.application.output.port;
 
-import com.example.nullshinsaproduct.product.common.helper.CommonTestHelper;
+import com.example.nullshinsaproduct.common.CommonTestHelper;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 
 import java.lang.reflect.Field;

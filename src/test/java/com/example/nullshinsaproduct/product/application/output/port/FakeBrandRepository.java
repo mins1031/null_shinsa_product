@@ -2,11 +2,8 @@ package com.example.nullshinsaproduct.product.application.output.port;
 
 import com.example.nullshinsaproduct.brand.apllication.output.port.BrandRepository;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
-import com.example.nullshinsaproduct.product.common.helper.CommonTestHelper;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
-import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
+import com.example.nullshinsaproduct.common.CommonTestHelper;
 
-import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

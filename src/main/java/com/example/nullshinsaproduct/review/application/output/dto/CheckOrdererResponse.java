@@ -1,9 +1,10 @@
-package com.example.nullshinsaproduct.review.infrestructure.http.dto.response;
+package com.example.nullshinsaproduct.review.application.output.dto;
 
 public record CheckOrdererResponse(
         boolean isOrderer,
         Long orderId,
-        String orderSkuName
+        Long ordererId,
+        String orderProductName
 ) {
 
     public boolean isNotOrderer() {

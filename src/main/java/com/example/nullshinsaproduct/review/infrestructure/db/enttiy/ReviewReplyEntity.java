@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +20,11 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@Table(
+        name = "review_reply"
+)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ReviewImage {
+public class ReviewReplyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,18 +33,14 @@ public class ReviewImage {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    private String urlPath;
+    private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "review_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
-    private Review review;
+    private ReviewEntity reviewEntity;
 
-    public ReviewImage(String urlPath, Review review) {
-        this.urlPath = urlPath;
-        this.review = review;
-    }
-
-    public static ReviewImage of(String urlPath, Review review) {
-        return new ReviewImage(urlPath, review);
+    public ReviewReplyEntity(String content, ReviewEntity reviewEntity) {
+        this.content = content;
+        this.reviewEntity = reviewEntity;
     }
 }
