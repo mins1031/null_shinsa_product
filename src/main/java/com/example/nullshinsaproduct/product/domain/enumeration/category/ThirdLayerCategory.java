@@ -44,14 +44,14 @@ public enum ThirdLayerCategory {
 
 
     // ===== 하의 =====
-    DENIM("데님 팬츠", Set.of(SecondLayerCategory.TOP), 30032),
-    COTTON("코튼 팬츠", Set.of(SecondLayerCategory.TOP), 30033),
-    SUIT_SLACKS("수트 팬츠/ 슬랙스", Set.of(SecondLayerCategory.TOP), 30034),
-    TRAINING_JOGGER("트레이닝/조거팬츠", Set.of(SecondLayerCategory.TOP), 30035),
-    SHORT("숏 팬츠", Set.of(SecondLayerCategory.TOP), 30036),
-    LEGGINGS("레깅스", Set.of(SecondLayerCategory.TOP), 30037),
-    JUMP("점프 슈트", Set.of(SecondLayerCategory.TOP), 30038),
-    ETC_BOTTOM("기타 하의", Set.of(SecondLayerCategory.TOP), 30039),
+    DENIM("데님 팬츠", Set.of(SecondLayerCategory.BOTTOM), 30032),
+    COTTON("코튼 팬츠", Set.of(SecondLayerCategory.BOTTOM), 30033),
+    SUIT_SLACKS("수트 팬츠/ 슬랙스", Set.of(SecondLayerCategory.BOTTOM), 30034),
+    TRAINING_JOGGER("트레이닝/조거팬츠", Set.of(SecondLayerCategory.BOTTOM), 30035),
+    SHORT("숏 팬츠", Set.of(SecondLayerCategory.BOTTOM), 30036),
+    LEGGINGS("레깅스", Set.of(SecondLayerCategory.BOTTOM), 30037),
+    JUMP("점프 슈트", Set.of(SecondLayerCategory.BOTTOM), 30038),
+    ETC_BOTTOM("기타 하의", Set.of(SecondLayerCategory.BOTTOM), 30039),
 
 
     // ===== 가방 =====

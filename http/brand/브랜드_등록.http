@@ -2,11 +2,11 @@ POST http://localhost:8080/brands
 Content-Type: application/json
 
 {
-  "brandName" : "유니클로",
-  "corporateNumber" : "11-11-11-14",
-  "communicationSellingNumber" :  "031-078-1114",
-  "representative" : "대표 사업자5",
-  "location" :  "서울특별시 강남구 개쩌는동5"
+  "brandName" : "아트이프액츠",
+  "corporateNumber" : "11-11-11-20",
+  "communicationSellingNumber" :  "031-078-1120",
+  "representative" : "대표 사업자10",
+  "location" :  "서울특별시 강남구 개쩌는동10"
 }
 
 
