@@ -37,6 +37,7 @@ public class ReviewEntity {
     private long productId;
     private String content;
     private double startPoint;
+    private boolean isCalculatedStarPoint;
     private String selectSkuOption;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "reviewEntity", orphanRemoval = true)

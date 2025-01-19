@@ -54,7 +54,6 @@ public enum ThirdLayerCategory {
     ETC_BOTTOM("기타 하의", Set.of(SecondLayerCategory.BOTTOM), 30039),
 
 
-    // ===== 가방 =====
     BACK_BAG("백팩", Set.of(SecondLayerCategory.BAG), 30040),
     CROSS_BAG("메신저/크로스백", Set.of(SecondLayerCategory.BAG), 30041),
     SHOULDER_BAG("숄더백", Set.of(SecondLayerCategory.BAG), 30042),

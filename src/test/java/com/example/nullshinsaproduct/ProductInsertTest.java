@@ -2,43 +2,68 @@ package com.example.nullshinsaproduct;
 
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
+import com.example.nullshinsaproduct.product.domain.ProductImage;
 import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
+import com.example.nullshinsaproduct.product.domain.enumeration.ImageType;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.FirstLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.SecondLayerCategory;
 import com.example.nullshinsaproduct.product.domain.enumeration.category.ThirdLayerCategory;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductImageEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.ProductSizeEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductImageJpaRepository;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductSizeJpaRepository;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.SkuProductJpaRepository;
+import com.example.nullshinsaproduct.review.domain.Review;
+import com.example.nullshinsaproduct.review.domain.ReviewImage;
+import com.example.nullshinsaproduct.review.infrestructure.db.enttiy.ReviewEntity;
+import com.example.nullshinsaproduct.review.infrestructure.db.repository.jpa.ReviewImageJpaRepository;
+import com.example.nullshinsaproduct.review.infrestructure.db.repository.jpa.ReviewJpaRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 @SpringBootTest
 @ActiveProfiles("local")
+//@Disabled
+//@Transactional
 public class ProductInsertTest {
 
+    @Autowired
+    private BrandJpaRepository brandJpaRepository;
     @Autowired
     private ProductJpaRepository productJpaRepository;
     @Autowired
     private SkuProductJpaRepository skuProductJpaRepository;
     @Autowired
-    private BrandJpaRepository brandJpaRepository;
+    private ProductSizeJpaRepository productSizeJpaRepository;
+    @Autowired
+    private ProductImageJpaRepository productImageJpaRepository;
+    @Autowired
+    private ReviewJpaRepository reviewJpaRepository;
+    @Autowired
+    private ReviewImageJpaRepository reviewImageJpaRepository;
+
 
     @Test
-    void name() {
+    void 상품_및_상품_연관관계_데이터_INSERT() {
         Random random = new Random(700000);
         List<BrandEntity> all = brandJpaRepository.findAll();
         for (BrandEntity brandEntity : all) {
@@ -118,8 +143,10 @@ public class ProductInsertTest {
                 );
                 skuProductJpaRepository.saveAll(skuProduct);
 
-                List<ProductSizeEntity> sizeEntities = new ArrayList<>();
-                if (secondLayerCategory.equals(SecondLayerCategory.OUTER)) {
+                List<ProductSizeEntity> sizeEntities;
+                if (secondLayerCategory.equals(SecondLayerCategory.OUTER)
+                        || secondLayerCategory.equals(SecondLayerCategory.TOP)
+                ) {
                     sizeEntities = List.of(
                             ProductSizeEntity.builder()
                                     .sizeName("M")
@@ -138,11 +165,106 @@ public class ProductInsertTest {
                                     .product(save)
                                     .build()
                     );
+                } else if (secondLayerCategory.equals(SecondLayerCategory.BOTTOM)) {
+                    sizeEntities = List.of(
+                            ProductSizeEntity.builder()
+                                    .sizeName("M")
+                                    .totalLength("총장 - M")
+                                    .waist("허리 - M")
+                                    .crotch("밑위 - M")
+                                    .hip("엉덩이 단면 - M")
+                                    .thigh("허벅지 단면 - M")
+                                    .hem("밑단 - M")
+                                    .product(save)
+                                    .build(),
+                            ProductSizeEntity.builder()
+                                    .sizeName("L")
+                                    .totalLength("총장 - L")
+                                    .waist("허리 - L")
+                                    .crotch("밑위 - L")
+                                    .hip("엉덩이 단면 - L")
+                                    .thigh("허벅지 단면 - L")
+                                    .hem("밑단 - L")
+                                    .product(save)
+                                    .build()
+                    );
+                } else {
+                    sizeEntities = List.of(
+                            ProductSizeEntity.builder()
+                                    .sizeName("M")
+                                    .width("100")
+                                    .height("140")
+                                    .depth("200")
+                                    .product(save)
+                                    .build(),
+                            ProductSizeEntity.builder()
+                                    .sizeName("L")
+                                    .width("110")
+                                    .height("150")
+                                    .depth("210")
+                                    .product(save)
+                                    .build()
+                    );
                 }
+                productSizeJpaRepository.saveAll(sizeEntities);
 
-
+                List<ProductImageEntity> imageEntities = new ArrayList<>();
+                if (secondLayerCategory.equals(SecondLayerCategory.OUTER)) {
+                    imageEntities = List.of(
+                            ProductImageEntity.of(
+                                    "THUMBNAIL url 1",
+                                    ImageType.THUMBNAIL,
+                                    save
+                            ),
+                            ProductImageEntity.of(
+                                    "PROFILE url 1",
+                                    ImageType.PROFILE,
+                                    save
+                            ),
+                            ProductImageEntity.of(
+                                    "DETAIL image url 1",
+                                    ImageType.DETAIL,
+                                    save
+                            )
+                    );
+                }
+                productImageJpaRepository.saveAll(imageEntities);
             }
+        }
+    }
 
+    @Test
+    void 리뷰_및_리뷰_연관관계_데이터_INSERT() {
+        int chunk = 2000;
+        Random pointRandom = new Random(5);
+        Random idRandom = new Random(20);
+        int count = productJpaRepository.findByCount();
+        for (int i = 0; i < count / chunk; i++) {
+            int offset = i * chunk;
+            PageRequest pageRequest = PageRequest.of(offset, chunk);
+            Page<ProductEntity> products = productJpaRepository.findAll(pageRequest);
+            for (ProductEntity productEntity : products) {
+                List<ReviewEntity> of = List.of(
+                        ReviewEntity.of(
+                                idRandom.nextLong(),
+                                idRandom.nextLong(),
+                                productEntity.getId(),
+                                productEntity.getName() + "리뷰1",
+                                pointRandom.nextDouble(),
+                                "SKU NAME " + (i + 1)
+                        ),
+                        ReviewEntity.of(
+                                idRandom.nextLong(),
+                                idRandom.nextLong(),
+                                productEntity.getId(),
+                                productEntity.getName() + "리뷰2",
+                                pointRandom.nextDouble(),
+                                "SKU NAME " + (i + 1)
+                        )
+                );
+
+                reviewJpaRepository.saveAll(of);
+            }
         }
     }
 
