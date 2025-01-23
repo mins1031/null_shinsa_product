@@ -61,6 +61,7 @@ public class ProductEntity {
     private DeliveryFee deliveryFee;
 
     private boolean isCanView;
+    private double totalStartPoint;
 
     // === 이넘 ===
     // 쿠폰가능여부 정도의 필드기에 참조정도로만 사용할것 같아 상위클래스에 정의

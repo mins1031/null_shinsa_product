@@ -60,7 +60,8 @@ public class ProductSizeEntity {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
-    private ProductSizeEntity(
+    @Builder
+    public ProductSizeEntity(
             String sizeName,
             String totalLength,
             String shoulder,
