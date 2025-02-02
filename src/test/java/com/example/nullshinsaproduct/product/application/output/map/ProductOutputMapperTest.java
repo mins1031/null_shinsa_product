@@ -30,6 +30,7 @@ class ProductOutputMapperTest {
         Assertions.assertEquals(product.getDiscountDetail().getDiscountApplyPossible(), productEntity.getDiscountApplyPossible());
         Assertions.assertEquals(product.getDiscountDetail().getDiscountMinRate(), productEntity.getDiscountMinRate());
         Assertions.assertEquals(product.getDiscountDetail().getDiscountMaxRate(), productEntity.getDiscountMaxRate());
+        Assertions.assertEquals(product.getDiscountDetail().getDiscountRate(), productEntity.getDiscountRate());
         Assertions.assertEquals(product.getProductDeliveryVo().getOutboundPossibleDay(), productEntity.getOutboundPossibleDay());
         Assertions.assertEquals(product.getProductDeliveryVo().getDeliveryFee(), productEntity.getDeliveryFee());
         Assertions.assertEquals(product.getProductStatus(), ProductStatus.TEMP);

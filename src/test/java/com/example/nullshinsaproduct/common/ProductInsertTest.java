@@ -1,4 +1,4 @@
-package com.example.nullshinsaproduct;
+package com.example.nullshinsaproduct.common;
 
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
@@ -109,6 +109,7 @@ public class ProductInsertTest {
                         brandEntity.getCommunicationSellingNumber(),
                         brandEntity.getRepresentative(),
                         brandEntity.getLocation(),
+                        10,
                         0,
                         random.nextInt(70),
                         3,

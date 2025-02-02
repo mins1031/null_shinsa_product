@@ -56,6 +56,7 @@ public class ProductEntity {
 
     private int discountMinRate;
     private int discountMaxRate;
+    private int discountRate;
 
     private int outboundPossibleDay;
     private DeliveryFee deliveryFee;
@@ -106,6 +107,7 @@ public class ProductEntity {
             String communicationSellingNumber,
             String representative,
             String location,
+            int discountRate,
             int discountMinRate,
             int discountMaxRate,
             int outboundPossibleDay,
@@ -130,6 +132,7 @@ public class ProductEntity {
         this.communicationSellingNumber = communicationSellingNumber;
         this.representative = representative;
         this.location = location;
+        this.discountRate = discountRate;
         this.discountMinRate = discountMinRate;
         this.discountMaxRate = discountMaxRate;
         this.outboundPossibleDay = outboundPossibleDay;
@@ -156,6 +159,7 @@ public class ProductEntity {
             String communicationSellingNumber,
             String representative,
             String location,
+            int discountRate,
             int discountMinRate,
             int discountMaxRate,
             int outboundPossibleDay,
@@ -178,6 +182,7 @@ public class ProductEntity {
                 .communicationSellingNumber(communicationSellingNumber)
                 .representative(representative)
                 .location(location)
+                .discountRate(discountRate)
                 .discountMinRate(discountMinRate)
                 .discountMaxRate(discountMaxRate)
                 .outboundPossibleDay(outboundPossibleDay)

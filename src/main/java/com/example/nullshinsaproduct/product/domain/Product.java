@@ -82,6 +82,7 @@ public class Product {
             String communicationSellingNumber,
             String representative,
             String location,
+            int discountRate,
             int discountMinRate,
             int discountMaxRate,
             int outboundPossibleDay,
@@ -125,7 +126,8 @@ public class Product {
                 DiscountDetail.of(
                         discountApplyPossible,
                         discountMinRate,
-                        discountMaxRate
+                        discountMaxRate,
+                        discountRate
                 ),
                 couponApplyPossible,
                 createdDate,
@@ -160,7 +162,8 @@ public class Product {
                 DiscountDetail.of(
                         saveVo.discountApplyPossible(),
                         saveVo.discountMinRate(),
-                        saveVo.discountMaxRate()
+                        saveVo.discountMaxRate(),
+                        saveVo.discountRate()
                 ),
                 saveVo.couponApplyPossible(),
                 null,
