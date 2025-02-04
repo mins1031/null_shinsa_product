@@ -64,7 +64,9 @@ public class SkuProductDslRepositoryImpl implements SkuProductDslRepository {
                                 productEntity.name,
                                 skuProductEntity.name,
                                 productEntity.price,
-                                skuProductEntity.plusPrice
+                                skuProductEntity.plusPrice,
+                                productEntity.productStatus,
+                                skuProductEntity.skuProductStatus
                         )
                 ).from(skuProductEntity)
                 .where(

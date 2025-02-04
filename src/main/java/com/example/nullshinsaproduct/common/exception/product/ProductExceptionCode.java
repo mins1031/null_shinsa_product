@@ -23,6 +23,9 @@ public enum ProductExceptionCode {
 
     NOT_EXIST_REQUEST_BRAND(HttpStatus.BAD_REQUEST, 2001, "존재하지 않는 브랜드 입니다. 요청 값을 다시 확인해 주세요"),
     NOT_EXIST_REQUEST_MEMBER(HttpStatus.BAD_REQUEST, 2002, "존재하지 않는 회원 입니다. 요청 값을 다시 확인해 주세요"),
+
+    DONT_SAVE_EMPTY_SHOPPING_BASKET(HttpStatus.INTERNAL_SERVER_ERROR, 3001, "저장하려는 장바구니 아이템이 존재하지 않습니다."),
+    DONT_SAVE_SELL_STATUS_PRODUCT_IN_SHOPPING_BASKET(HttpStatus.BAD_REQUEST, 3002, "장바구니에 저장하려는 상품의 상태가 판매가능한 상태가 아닙니다."),
     ;
 
     private final HttpStatus httpStatus;

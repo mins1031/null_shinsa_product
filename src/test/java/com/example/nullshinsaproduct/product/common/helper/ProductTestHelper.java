@@ -111,6 +111,16 @@ public class ProductTestHelper {
         );
     }
 
+    public static SkuProductEntity makeSkuProductEntityInSelling(ProductEntity entity) {
+        return SkuProductEntity.createSkuProduct(
+                        entity,
+                        "상품1 - 사이즈1",
+                        0,
+                        5000,
+                        SkuProductStatus.SELLING
+        );
+    }
+
     public static List<SkuProductRequest> makeSkuProductSaveReq() {
         return List.of(
                 new SkuProductRequest(
@@ -180,6 +190,33 @@ public class ProductTestHelper {
                 req.discountApplyPossible(),
                 req.couponApplyPossible(),
                 ProductStatus.APPROVE,
+                true,
+                req.categoryInfoRequest().firstLayerCategory(),
+                req.categoryInfoRequest().secondLayerCategory(),
+                req.categoryInfoRequest().thirdLayerCategory(),
+                null
+        );
+    }
+
+    public static ProductEntity makeProductEntityInSelling() {
+        ProductSaveRequest req = makeOuterProductSaveReq();
+        return ProductEntity.createDefault(
+                req.name(),
+                req.price(),
+                req.brandId(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                req.discountRate(),
+                req.discountMinRate(),
+                req.discountMaxRate(),
+                req.outboundPossibleDay(),
+                DeliveryFee.findByIsFree(req.isDeliveryFree()),
+                req.discountApplyPossible(),
+                req.couponApplyPossible(),
+                ProductStatus.SELLING,
                 true,
                 req.categoryInfoRequest().firstLayerCategory(),
                 req.categoryInfoRequest().secondLayerCategory(),

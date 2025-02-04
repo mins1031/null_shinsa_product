@@ -1,7 +1,12 @@
 package com.example.nullshinsaproduct.shoppingbasket.domain;
 
-import com.example.nullshinsaproduct.shoppingbasket.application.ShoppingBasketService;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
+import lombok.Getter;
 
+import java.util.Objects;
+
+@Getter
 public class ShoppingBasket {
 
     // 상품의 재고만으로 품절여부를 판단할지
@@ -23,10 +28,13 @@ public class ShoppingBasket {
     private String productName;
     private String skuName;
     private int skuCount;
+    private int productPrice;
     private int discountPriceWhenSave;
     private boolean isSoldOut;
+    private ProductStatus productStatus;
+    private SkuProductStatus skuProductStatus;
 
-    private ShoppingBasket(
+    public ShoppingBasket(
             Long basketId,
             long productId,
             long skuId,
@@ -36,8 +44,11 @@ public class ShoppingBasket {
             String productName,
             String skuName,
             int skuCount,
+            int productPrice,
             int discountPriceWhenSave,
-            boolean isSoldOut
+            boolean isSoldOut,
+            ProductStatus productStatus,
+            SkuProductStatus skuProductStatus
     ) {
         this.basketId = basketId;
         this.productId = productId;
@@ -48,8 +59,11 @@ public class ShoppingBasket {
         this.productName = productName;
         this.skuName = skuName;
         this.skuCount = skuCount;
+        this.productPrice = productPrice;
         this.discountPriceWhenSave = discountPriceWhenSave;
         this.isSoldOut = isSoldOut;
+        this.productStatus = productStatus;
+        this.skuProductStatus = skuProductStatus;
     }
 
     public static ShoppingBasket ofDefault(
@@ -61,7 +75,10 @@ public class ShoppingBasket {
             String productName,
             String skuName,
             int skuCount,
-            int discountPriceWhenSave
+            int productPrice,
+            int discountPriceWhenSave,
+            ProductStatus productStatus,
+            SkuProductStatus skuProductStatus
     ) {
         return new ShoppingBasket(
                 null,
@@ -73,9 +90,19 @@ public class ShoppingBasket {
                 productName,
                 skuName,
                 skuCount,
+                productPrice,
                 discountPriceWhenSave,
-                false
+                false,
+                productStatus,
+                skuProductStatus
         );
+    }
+
+    public boolean isCanSellingStatus() {
+        boolean isCanSellProduct = ProductStatus.SELLING.getSeq() == this.productStatus.getSeq();
+        boolean isCanSellSku = SkuProductStatus.SELLING.getSeq() == this.skuProductStatus.getSeq();
+
+        return isCanSellProduct && isCanSellSku;
     }
 
     public void changeProductSku(
