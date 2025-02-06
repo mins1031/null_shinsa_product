@@ -85,11 +85,9 @@ public class ShoppingBasket {
     }
 
     public void changeProductSku(
-            String productName,
             String skuName,
             int skuCount
     ) {
-        this.productName = productName;
         this.skuName = skuName;
         this.skuCount = skuCount;
     }

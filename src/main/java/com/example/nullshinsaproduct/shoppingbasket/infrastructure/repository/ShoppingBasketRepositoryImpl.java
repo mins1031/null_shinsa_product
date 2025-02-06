@@ -22,4 +22,20 @@ public class ShoppingBasketRepositoryImpl implements ShoppingBasketRepository {
 
         return shoppingBasketJpaRepository.save(entity);
     }
+
+    @Override
+    public ShoppingBasketEntity findById(long id) {
+        return shoppingBasketJpaRepository.findById(id).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT));
+    }
+
+    @Override
+    public void update(ShoppingBasketEntity entity) {
+        // upsert 느낌
+        shoppingBasketJpaRepository.save(entity);
+    }
+
+    @Override
+    public void delete(long basketId) {
+        shoppingBasketJpaRepository.deleteById(basketId);
+    }
 }

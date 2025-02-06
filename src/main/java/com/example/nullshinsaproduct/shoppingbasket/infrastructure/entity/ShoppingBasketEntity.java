@@ -71,4 +71,8 @@ public class ShoppingBasketEntity {
                 discountPriceWhenSave
         );
     }
+
+//    public void update(long skuId, int skuCount) {
+//        this.
+//    }
 }

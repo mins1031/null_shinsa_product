@@ -4,4 +4,10 @@ import com.example.nullshinsaproduct.shoppingbasket.infrastructure.entity.Shoppi
 
 public interface ShoppingBasketRepository {
     ShoppingBasketEntity saveShoppingBasket(ShoppingBasketEntity entity);
+
+    ShoppingBasketEntity findById(long id);
+
+    void update(ShoppingBasketEntity entity);
+
+    void delete(long basketId);
 }

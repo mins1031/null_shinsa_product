@@ -10,6 +10,7 @@ import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.dto.FindSkuWithProductDto;
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketSaveRequest;
+import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketUpdateRequest;
 import com.example.nullshinsaproduct.shoppingbasket.application.outport.map.ShoppingBasketOutputMapper;
 import com.example.nullshinsaproduct.shoppingbasket.application.outport.port.ShoppingBasketRepository;
 import com.example.nullshinsaproduct.shoppingbasket.domain.ShoppingBasket;
@@ -60,7 +61,10 @@ public class ShoppingBasketService {
         );
     }
 
-    private FindSkuWithProductDto findSkuWithProductDto(long productId, long skuId) {
+    private FindSkuWithProductDto findSkuWithProductDto(
+            long productId,
+            long skuId
+    ) {
         FindSkuWithProductDto productAndSkuDto = skuProductDslRepository.findProductAndSkuByIds(productId, skuId);
         if (Objects.isNull(productAndSkuDto)) {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT);
@@ -75,11 +79,32 @@ public class ShoppingBasketService {
         return productAndSkuDto;
     }
 
-    public void updateItem() {
+    public void updateItem(ShoppingBasketUpdateRequest req) {
+        if (req.isNotExistSkuValue()) {
+            throw new ProductException(ProductExceptionCode.NOT_EXIST_REQUEST_PARAMS);
+        }
 
+        ShoppingBasket shoppingBasket = ShoppingBasketOutputMapper.toDomainFromEntity(
+                shoppingBasketRepository.findById(req.basketId())
+        );
+        // 기존 스큐랑 변경됐는지 안됐는지 봐야함.. 졸려서 애매해진다.
+
+        shoppingBasket.changeProductSku(
+                req.skuName(),
+                req.skuCount()
+        );
+
+        shoppingBasketRepository.update(
+                ShoppingBasketOutputMapper.toEntityFromDomain(shoppingBasket)
+        );
     }
 
-    public void deleteItem() {
+    public void deleteItem(long basketId) {
+        if (basketId == 0) {
+            throw new ProductException(ProductExceptionCode.NOT_EXIST_REQUEST_PARAMS);
+        }
+
+        shoppingBasketRepository.delete(basketId);
     }
 
     public List<ShoppingBasket> findAllItemsInUserShoppingBasket() {

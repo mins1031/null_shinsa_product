@@ -26,7 +26,19 @@ public class FakeShoppingBasketRepository implements ShoppingBasketRepository {
         return fakeShoppingBasketContext.get(idCountIncrement);
     }
 
-    public ShoppingBasketEntity findById(Long id) {
+    @Override
+    public ShoppingBasketEntity findById(long id) {
         return fakeShoppingBasketContext.get(id);
+    }
+
+    @Override
+    public void update(ShoppingBasketEntity entity) {
+        ShoppingBasketEntity shoppingBasketEntity = fakeShoppingBasketContext.get(entity.getId());
+
+    }
+
+    @Override
+    public void delete(long basketId) {
+        fakeShoppingBasketContext.remove(basketId);
     }
 }
