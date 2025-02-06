@@ -6,11 +6,14 @@ import com.example.nullshinsaproduct.brand.domain.Brand;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.product.application.output.port.SkuProductDslRepository;
+import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
+import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.dto.FindSkuWithProductDto;
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketSaveRequest;
 import com.example.nullshinsaproduct.shoppingbasket.application.outport.map.ShoppingBasketOutputMapper;
 import com.example.nullshinsaproduct.shoppingbasket.application.outport.port.ShoppingBasketRepository;
 import com.example.nullshinsaproduct.shoppingbasket.domain.ShoppingBasket;
+import com.example.nullshinsaproduct.shoppingbasket.infrastructure.entity.ShoppingBasketEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,36 +42,41 @@ public class ShoppingBasketService {
                 brandRepository.findById(req.brandId())
         );
 
-        FindSkuWithProductDto productAndSkuDto = skuProductDslRepository.findProductAndSkuByIds(req.productId(), req.skuId());
+        FindSkuWithProductDto productAndSkuDto = findSkuWithProductDto(req.productId(), req.skuId());
+
+        shoppingBasketRepository.saveShoppingBasket(
+                ShoppingBasketEntity.of(
+                        productAndSkuDto.getProductId(),
+                        productAndSkuDto.getSkuId(),
+                        req.customerId(),
+                        brand.getId(),
+                        brand.getBrandName(),
+                        productAndSkuDto.getProductName(),
+                        productAndSkuDto.getSkuName(),
+                        req.skuCount(),
+                        productAndSkuDto.getProductOriginPrice(),
+                        req.presentDiscountPricePerSku() // 이거 세일이라는 어그리거트 하나 만들긴 해야할듯..
+                )
+        );
+    }
+
+    private FindSkuWithProductDto findSkuWithProductDto(long productId, long skuId) {
+        FindSkuWithProductDto productAndSkuDto = skuProductDslRepository.findProductAndSkuByIds(productId, skuId);
         if (Objects.isNull(productAndSkuDto)) {
             throw new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT);
         }
 
-        ShoppingBasket shoppingBasket = ShoppingBasket.ofDefault(
-                productAndSkuDto.getProductId(),
-                productAndSkuDto.getSkuId(),
-                req.customerId(),
-                brand.getId(),
-                brand.getBrandName(),
-                productAndSkuDto.getProductName(),
-                productAndSkuDto.getSkuName(),
-                req.skuCount(),
-                productAndSkuDto.getProductOriginPrice(),
-                req.presentDiscountPricePerSku(), // 이거 세일이라는 어그리거트 하나 만들긴 해야할듯..
-                productAndSkuDto.getProductStatus(),
-                productAndSkuDto.getSkuProductStatus()
-        );
-
-        if (!shoppingBasket.isCanSellingStatus()) {
+        boolean isCantSellProduct = ProductStatus.SELLING.getSeq() != productAndSkuDto.getProductStatus().getSeq();
+        boolean isCantSellSku = SkuProductStatus.SELLING.getSeq() != productAndSkuDto.getSkuProductStatus().getSeq();
+        if (isCantSellProduct || isCantSellSku) {
             throw new ProductException(ProductExceptionCode.DONT_SAVE_SELL_STATUS_PRODUCT_IN_SHOPPING_BASKET);
         }
 
-        shoppingBasketRepository.saveShoppingBasket(
-                ShoppingBasketOutputMapper.toEntityFromDomain(shoppingBasket)
-        );
+        return productAndSkuDto;
     }
 
     public void updateItem() {
+
     }
 
     public void deleteItem() {

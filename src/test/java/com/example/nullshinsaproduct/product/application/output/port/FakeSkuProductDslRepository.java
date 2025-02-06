@@ -37,6 +37,9 @@ public class FakeSkuProductDslRepository implements SkuProductDslRepository {
     @Override
     public FindSkuWithProductDto findProductAndSkuByIds(long productId, long skuId) {
         SkuProductEntity skuProductEntity = fakeSkuProductContext.get(skuId);
+         if (Objects.isNull(skuProductEntity)) {
+             return null;
+         }
 
         return new FindSkuWithProductDto(
                 skuProductEntity.getProductId(),

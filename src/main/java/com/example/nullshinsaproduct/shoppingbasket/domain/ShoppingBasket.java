@@ -1,10 +1,6 @@
 package com.example.nullshinsaproduct.shoppingbasket.domain;
 
-import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
-import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import lombok.Getter;
-
-import java.util.Objects;
 
 @Getter
 public class ShoppingBasket {
@@ -31,8 +27,6 @@ public class ShoppingBasket {
     private int productPrice;
     private int discountPriceWhenSave;
     private boolean isSoldOut;
-    private ProductStatus productStatus;
-    private SkuProductStatus skuProductStatus;
 
     public ShoppingBasket(
             Long basketId,
@@ -46,9 +40,7 @@ public class ShoppingBasket {
             int skuCount,
             int productPrice,
             int discountPriceWhenSave,
-            boolean isSoldOut,
-            ProductStatus productStatus,
-            SkuProductStatus skuProductStatus
+            boolean isSoldOut
     ) {
         this.basketId = basketId;
         this.productId = productId;
@@ -62,8 +54,6 @@ public class ShoppingBasket {
         this.productPrice = productPrice;
         this.discountPriceWhenSave = discountPriceWhenSave;
         this.isSoldOut = isSoldOut;
-        this.productStatus = productStatus;
-        this.skuProductStatus = skuProductStatus;
     }
 
     public static ShoppingBasket ofDefault(
@@ -76,9 +66,7 @@ public class ShoppingBasket {
             String skuName,
             int skuCount,
             int productPrice,
-            int discountPriceWhenSave,
-            ProductStatus productStatus,
-            SkuProductStatus skuProductStatus
+            int discountPriceWhenSave
     ) {
         return new ShoppingBasket(
                 null,
@@ -92,17 +80,8 @@ public class ShoppingBasket {
                 skuCount,
                 productPrice,
                 discountPriceWhenSave,
-                false,
-                productStatus,
-                skuProductStatus
+                false
         );
-    }
-
-    public boolean isCanSellingStatus() {
-        boolean isCanSellProduct = ProductStatus.SELLING.getSeq() == this.productStatus.getSeq();
-        boolean isCanSellSku = SkuProductStatus.SELLING.getSeq() == this.skuProductStatus.getSeq();
-
-        return isCanSellProduct && isCanSellSku;
     }
 
     public void changeProductSku(

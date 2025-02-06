@@ -18,4 +18,19 @@ public class ShoppingBasketOutputMapper {
                 shoppingBasket.getDiscountPriceWhenSave()
         );
     }
+
+    public static ShoppingBasket toDomainFromEntity(final ShoppingBasketEntity entity) {
+        return ShoppingBasket.ofDefault(
+                entity.getProductId(),
+                entity.getSkuId(),
+                entity.getCustomerId(),
+                entity.getBrandId(),
+                entity.getBrandName(),
+                entity.getProductName(),
+                entity.getSkuName(),
+                entity.getSkuCount(),
+                entity.getProductPrice(),
+                entity.getDiscountPriceWhenSave()
+        );
+    }
 }
