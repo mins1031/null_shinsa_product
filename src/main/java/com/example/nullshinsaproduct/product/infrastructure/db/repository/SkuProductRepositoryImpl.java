@@ -34,4 +34,9 @@ public class SkuProductRepositoryImpl implements SkuProductRepository {
 
         skuProductJpaRepository.saveAll(entities);
     }
+
+    @Override
+    public SkuProductEntity findById(long id) {
+        return skuProductJpaRepository.findById(id).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_SKU_PRODUCT));
+    }
 }

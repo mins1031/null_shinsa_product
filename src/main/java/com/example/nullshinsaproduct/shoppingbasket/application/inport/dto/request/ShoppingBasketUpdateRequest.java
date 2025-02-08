@@ -2,6 +2,7 @@ package com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.requ
 
 public record ShoppingBasketUpdateRequest(
         long basketId,
+        long productId,
         long skuId,
         String skuName,
         int skuCount

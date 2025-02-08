@@ -6,6 +6,7 @@ import com.example.nullshinsaproduct.shoppingbasket.infrastructure.entity.Shoppi
 public class ShoppingBasketOutputMapper {
     public static ShoppingBasketEntity toEntityFromDomain(final ShoppingBasket shoppingBasket) {
         return ShoppingBasketEntity.of(
+                shoppingBasket.getBasketId(),
                 shoppingBasket.getProductId(),
                 shoppingBasket.getSkuId(),
                 shoppingBasket.getCustomerId(),
@@ -20,7 +21,8 @@ public class ShoppingBasketOutputMapper {
     }
 
     public static ShoppingBasket toDomainFromEntity(final ShoppingBasketEntity entity) {
-        return ShoppingBasket.ofDefault(
+        return ShoppingBasket.of(
+                entity.getId(),
                 entity.getProductId(),
                 entity.getSkuId(),
                 entity.getCustomerId(),

@@ -46,6 +46,7 @@ public class ShoppingBasketEntity {
     }
 
     public static ShoppingBasketEntity of(
+            Long id,
             long productId,
             long skuId,
             long customerId,
@@ -58,7 +59,7 @@ public class ShoppingBasketEntity {
             int discountPriceWhenSave
     ) {
         return new ShoppingBasketEntity(
-                null,
+                id,
                 productId,
                 skuId,
                 customerId,

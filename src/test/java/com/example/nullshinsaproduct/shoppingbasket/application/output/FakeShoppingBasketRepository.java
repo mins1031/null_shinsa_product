@@ -33,8 +33,7 @@ public class FakeShoppingBasketRepository implements ShoppingBasketRepository {
 
     @Override
     public void update(ShoppingBasketEntity entity) {
-        ShoppingBasketEntity shoppingBasketEntity = fakeShoppingBasketContext.get(entity.getId());
-
+        fakeShoppingBasketContext.put(entity.getId(), entity);
     }
 
     @Override

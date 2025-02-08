@@ -6,8 +6,10 @@ import com.example.nullshinsaproduct.brand.domain.Brand;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.product.application.output.port.SkuProductDslRepository;
+import com.example.nullshinsaproduct.product.application.output.port.SkuProductRepository;
 import com.example.nullshinsaproduct.product.domain.enumeration.ProductStatus;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.dto.FindSkuWithProductDto;
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketSaveRequest;
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketUpdateRequest;
@@ -26,6 +28,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ShoppingBasketService {
     private final SkuProductDslRepository skuProductDslRepository;
+    private final SkuProductRepository skuProductRepository;
     private final BrandRepository brandRepository;
     private final ShoppingBasketRepository shoppingBasketRepository;
 
@@ -47,6 +50,7 @@ public class ShoppingBasketService {
 
         shoppingBasketRepository.saveShoppingBasket(
                 ShoppingBasketEntity.of(
+                        null,
                         productAndSkuDto.getProductId(),
                         productAndSkuDto.getSkuId(),
                         req.customerId(),
@@ -87,10 +91,11 @@ public class ShoppingBasketService {
         ShoppingBasket shoppingBasket = ShoppingBasketOutputMapper.toDomainFromEntity(
                 shoppingBasketRepository.findById(req.basketId())
         );
-        // 기존 스큐랑 변경됐는지 안됐는지 봐야함.. 졸려서 애매해진다.
+        SkuProductEntity skuProductEntity = skuProductRepository.findById(req.skuId());
 
         shoppingBasket.changeProductSku(
-                req.skuName(),
+                skuProductEntity.getId(),
+                skuProductEntity.getName(),
                 req.skuCount()
         );
 

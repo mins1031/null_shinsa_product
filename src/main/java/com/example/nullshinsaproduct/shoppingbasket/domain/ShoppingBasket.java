@@ -1,5 +1,8 @@
 package com.example.nullshinsaproduct.shoppingbasket.domain;
 
+import com.example.nullshinsaproduct.common.exception.product.ProductException;
+import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
+import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import lombok.Getter;
 
 @Getter
@@ -17,8 +20,8 @@ public class ShoppingBasket {
 
     private Long basketId;
     private long productId;
-    private long skuId;
     private long customerId;
+    private long skuId;
     private long brandId;
     private String brandName;
     private String productName;
@@ -56,7 +59,8 @@ public class ShoppingBasket {
         this.isSoldOut = isSoldOut;
     }
 
-    public static ShoppingBasket ofDefault(
+    public static ShoppingBasket of(
+            long basketId,
             long productId,
             long skuId,
             long customerId,
@@ -69,7 +73,7 @@ public class ShoppingBasket {
             int discountPriceWhenSave
     ) {
         return new ShoppingBasket(
-                null,
+                basketId,
                 productId,
                 skuId,
                 customerId,
@@ -84,11 +88,13 @@ public class ShoppingBasket {
         );
     }
 
-    public void changeProductSku(
-            String skuName,
-            int skuCount
-    ) {
-        this.skuName = skuName;
+
+    public void changeProductSku(long updateSkuId, String updateSkuName, int skuCount) {
+        if (isNotSameSkuId(updateSkuId)) {
+            this.skuId = updateSkuId;
+            this.skuName = updateSkuName;
+        }
+
         this.skuCount = skuCount;
     }
 
@@ -103,6 +109,11 @@ public class ShoppingBasket {
     ) {
         return 0;
     }
+
+    private boolean isNotSameSkuId(long skuId) {
+        return this.skuId != skuId;
+    }
+
 
     // 쿠폰 적용 -> 일단 쿠폰기능 주문쪽인데 재대로 개발 안됐으니 스킵
 //    public void applyCoupon(

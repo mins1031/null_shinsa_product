@@ -96,7 +96,7 @@ public class ProductTestHelper {
         return List.of(
                 SkuProductEntity.createSkuProduct(
                         entity,
-                        "상품1 - 사이즈1",
+                        "상품1 - 사이즈1-일반",
                         0,
                         5000,
                         SkuProductStatus.TEMP
@@ -114,7 +114,7 @@ public class ProductTestHelper {
     public static SkuProductEntity makeSkuProductEntityInSelling(ProductEntity entity) {
         return SkuProductEntity.createSkuProduct(
                         entity,
-                        "상품1 - 사이즈1",
+                        "상품1 - 사이즈1-셀링상태",
                         0,
                         5000,
                         SkuProductStatus.SELLING
