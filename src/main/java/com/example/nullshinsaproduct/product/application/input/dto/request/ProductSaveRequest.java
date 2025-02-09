@@ -17,6 +17,7 @@ public record ProductSaveRequest (
     @NotNull(message = "상품생성시 카테고리 정보는 필수 입니다") CategoryInfoRequest categoryInfoRequest,
     CouponApplyPossible couponApplyPossible,
     DiscountApplyPossible discountApplyPossible,
+    int discountRate,
     int discountMinRate,
     int discountMaxRate,
     int outboundPossibleDay,

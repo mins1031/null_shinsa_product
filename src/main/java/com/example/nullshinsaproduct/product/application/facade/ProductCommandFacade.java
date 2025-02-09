@@ -24,11 +24,11 @@ public class ProductCommandFacade {
         productCommandService.saveProductSize(productEntity, request.productSizeRequests());
         productCommandService.saveProductImages(productEntity, request);
 
-        publishEvent(productEntity);
+        publishProductSaveEvent(productEntity);
     }
 
     // 연관 이벤트가 추가될경우 해당 메서드에 작성 필요
-    private void publishEvent(ProductEntity productEntity) {
+    private void publishProductSaveEvent(ProductEntity productEntity) {
         eventPublisher.publishEvent(ProductSaveEvent.of(
                 productEntity.getId(),
                 productEntity.getName(),

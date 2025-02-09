@@ -21,6 +21,7 @@ public record ProductSaveVo(
         ThirdLayerCategory thirdLayerCategory,
         CouponApplyPossible couponApplyPossible,
         DiscountApplyPossible discountApplyPossible,
+        int discountRate,
         int discountMinRate,
         int discountMaxRate,
         int outboundPossibleDay,

@@ -1,5 +1,6 @@
 package com.example.nullshinsaproduct.product.application.output.port;
 
+import com.example.nullshinsaproduct.common.CommonTestHelper;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
 import org.springframework.util.CollectionUtils;
 
@@ -13,7 +14,6 @@ public class FakeSkuProductRepository implements SkuProductRepository{
     private long idCountIncrement = 0;
     private Map<Long, SkuProductEntity> fakeSkuProductContext = Collections.synchronizedMap(new HashMap<>());
 
-
     @Override
     public SkuProductEntity save(SkuProductEntity entity) {
         if (Objects.isNull(entity)) {
@@ -22,6 +22,8 @@ public class FakeSkuProductRepository implements SkuProductRepository{
 
         idCountIncrement++;
         fakeSkuProductContext.put(idCountIncrement, entity);
+        CommonTestHelper.injectIdInEntity(entity, "id", idCountIncrement);
+
         return fakeSkuProductContext.get(idCountIncrement);
     }
 
@@ -32,6 +34,11 @@ public class FakeSkuProductRepository implements SkuProductRepository{
         }
 
         entities.forEach(this::save);
+    }
+
+    @Override
+    public SkuProductEntity findById(long id) {
+        return fakeSkuProductContext.get(id);
     }
 
     public List<SkuProductEntity> findAll() {

@@ -24,7 +24,7 @@ public class ClothesProductService {
     @Transactional
     public void saveClothesProduct(ProductSaveRequest req) {
         // TODO 시큐리티 설정을 통해 요청자의 데이터를 조회하는 과정이 필요하긴 하지만.. 일단 이렇게 해놓고 추후 개선 필요
-        BrandEntity brandEntity = brandJpaRepository.findById(req.brandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_PRODUCT_OPTION));
+        BrandEntity brandEntity = brandJpaRepository.findById(req.brandId()).orElseThrow(() -> new ProductException(ProductExceptionCode.NOT_EXIST_SKU_PRODUCT));
         ProductBrandInfoEmbeddable productBrandInfoEmbeddable = new ProductBrandInfoEmbeddable(
                 brandEntity.getId(),
                 brandEntity.getBrandName(),

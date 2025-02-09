@@ -37,6 +37,7 @@ public class ProductTestHelper {
                 ),
                 CouponApplyPossible.POSSIBLE,
                 DiscountApplyPossible.POSSIBLE,
+                10,
                 3,
                 20,
                 3,
@@ -82,6 +83,7 @@ public class ProductTestHelper {
                 ThirdLayerCategory.CARDIGAN,
                 CouponApplyPossible.POSSIBLE,
                 DiscountApplyPossible.POSSIBLE,
+                10,
                 3,
                 20,
                 3,
@@ -94,7 +96,7 @@ public class ProductTestHelper {
         return List.of(
                 SkuProductEntity.createSkuProduct(
                         entity,
-                        "상품1 - 사이즈1",
+                        "상품1 - 사이즈1-일반",
                         0,
                         5000,
                         SkuProductStatus.TEMP
@@ -106,6 +108,16 @@ public class ProductTestHelper {
                         3000,
                         SkuProductStatus.TEMP
                 )
+        );
+    }
+
+    public static SkuProductEntity makeSkuProductEntityInSelling(ProductEntity entity) {
+        return SkuProductEntity.createSkuProduct(
+                        entity,
+                        "상품1 - 사이즈1-셀링상태",
+                        0,
+                        5000,
+                        SkuProductStatus.SELLING
         );
     }
 
@@ -143,6 +155,7 @@ public class ProductTestHelper {
                 null,
                 null,
                 null,
+                req.discountRate(),
                 req.discountMinRate(),
                 req.discountMaxRate(),
                 req.outboundPossibleDay(),
@@ -169,6 +182,7 @@ public class ProductTestHelper {
                 null,
                 null,
                 null,
+                req.discountRate(),
                 req.discountMinRate(),
                 req.discountMaxRate(),
                 req.outboundPossibleDay(),
@@ -176,6 +190,33 @@ public class ProductTestHelper {
                 req.discountApplyPossible(),
                 req.couponApplyPossible(),
                 ProductStatus.APPROVE,
+                true,
+                req.categoryInfoRequest().firstLayerCategory(),
+                req.categoryInfoRequest().secondLayerCategory(),
+                req.categoryInfoRequest().thirdLayerCategory(),
+                null
+        );
+    }
+
+    public static ProductEntity makeProductEntityInSelling() {
+        ProductSaveRequest req = makeOuterProductSaveReq();
+        return ProductEntity.createDefault(
+                req.name(),
+                req.price(),
+                req.brandId(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                req.discountRate(),
+                req.discountMinRate(),
+                req.discountMaxRate(),
+                req.outboundPossibleDay(),
+                DeliveryFee.findByIsFree(req.isDeliveryFree()),
+                req.discountApplyPossible(),
+                req.couponApplyPossible(),
+                ProductStatus.SELLING,
                 true,
                 req.categoryInfoRequest().firstLayerCategory(),
                 req.categoryInfoRequest().secondLayerCategory(),
@@ -195,6 +236,7 @@ public class ProductTestHelper {
                 null,
                 null,
                 null,
+                req.discountRate(),
                 req.discountMinRate(),
                 req.discountMaxRate(),
                 req.outboundPossibleDay(),

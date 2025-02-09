@@ -42,6 +42,7 @@ class ProductOutputStructMapperTest {
         Assertions.assertEquals(product.getDiscountDetail().getDiscountApplyPossible(), productEntity.getDiscountApplyPossible());
         Assertions.assertEquals(product.getDiscountDetail().getDiscountMinRate(), productEntity.getDiscountMinRate());
         Assertions.assertEquals(product.getDiscountDetail().getDiscountMaxRate(), productEntity.getDiscountMaxRate());
+        Assertions.assertEquals(product.getDiscountDetail().getDiscountRate(), productEntity.getDiscountRate());
         Assertions.assertEquals(product.getProductDeliveryVo().getOutboundPossibleDay(), productEntity.getOutboundPossibleDay());
         Assertions.assertEquals(product.getProductDeliveryVo().getDeliveryFee(), productEntity.getDeliveryFee());
         Assertions.assertEquals(product.getProductStatus(), ProductStatus.TEMP);
@@ -65,60 +66,11 @@ class ProductOutputStructMapperTest {
                 ThirdLayerCategory.CARDIGAN,
                 CouponApplyPossible.POSSIBLE,
                 DiscountApplyPossible.POSSIBLE,
+                8,
                 3,
                 20,
                 3,
                 true,
-                ProductType.CLOTHES
-        );
-    }
-
-    private ProductSaveRequest makeOuterProductSaveReq() {
-        return new ProductSaveRequest(
-                "test 상품",
-                1L,
-                100000,
-                new CategoryInfoRequest(
-                        FirstLayerCategory.MEN,
-                        SecondLayerCategory.OUTER,
-                        ThirdLayerCategory.CARDIGAN,
-                        null
-                ),
-                CouponApplyPossible.POSSIBLE,
-                DiscountApplyPossible.POSSIBLE,
-                3,
-                20,
-                3,
-                true,
-                List.of(
-                        new ProductSizeRequest(
-                                "L",
-                                "80",
-                                "60",
-                                "50",
-                                "70",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                "",
-                                ProductSizeType.OUTER
-                        )
-                ),
-                "https://thumbnailLink",
-                List.of("https://profileLink", "https://profileLink"),
-                List.of("https://detailLink", "https://detailLink"),
-                List.of(
-                        new SkuProductRequest(
-                                "상품1 - 사이즈1",
-                                0,
-                                5000,
-                                SkuProductStatus.TEMP
-                        )
-                ),
                 ProductType.CLOTHES
         );
     }

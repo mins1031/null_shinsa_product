@@ -3,6 +3,7 @@ package com.example.nullshinsaproduct.product.application.output.port;
 import com.example.nullshinsaproduct.common.CommonTestHelper;
 import com.example.nullshinsaproduct.product.domain.enumeration.SkuProductStatus;
 import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProductEntity;
+import com.example.nullshinsaproduct.product.infrastructure.db.repository.dto.FindSkuWithProductDto;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class FakeSkuProductDslRepository implements SkuProductDslRepository{
+public class FakeSkuProductDslRepository implements SkuProductDslRepository {
     private long idCountIncrement = 0;
     private Map<Long, SkuProductEntity> fakeSkuProductContext = Collections.synchronizedMap(new HashMap<>());
 
@@ -31,6 +32,25 @@ public class FakeSkuProductDslRepository implements SkuProductDslRepository{
 
             injectStatusInEntity(skuProductEntity, skuProductStatus);
         }
+    }
+
+    @Override
+    public FindSkuWithProductDto findProductAndSkuByIds(long productId, long skuId) {
+        SkuProductEntity skuProductEntity = fakeSkuProductContext.get(skuId);
+         if (Objects.isNull(skuProductEntity)) {
+             return null;
+         }
+
+        return new FindSkuWithProductDto(
+                skuProductEntity.getProductId(),
+                skuProductEntity.getId(),
+                skuProductEntity.getProduct().getName(),
+                skuProductEntity.getName(),
+                skuProductEntity.getProduct().getPrice(),
+                skuProductEntity.getPlusPrice(),
+                skuProductEntity.getProduct().getProductStatus(),
+                skuProductEntity.getSkuProductStatus()
+        );
     }
 
 

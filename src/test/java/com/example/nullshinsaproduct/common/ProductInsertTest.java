@@ -1,9 +1,7 @@
-package com.example.nullshinsaproduct;
+package com.example.nullshinsaproduct.common;
 
 import com.example.nullshinsaproduct.brand.infrastructure.BrandEntity;
 import com.example.nullshinsaproduct.brand.infrastructure.BrandJpaRepository;
-import com.example.nullshinsaproduct.product.domain.ProductImage;
-import com.example.nullshinsaproduct.product.domain.ProductSize;
 import com.example.nullshinsaproduct.product.domain.enumeration.CouponApplyPossible;
 import com.example.nullshinsaproduct.product.domain.enumeration.DeliveryFee;
 import com.example.nullshinsaproduct.product.domain.enumeration.DiscountApplyPossible;
@@ -21,8 +19,6 @@ import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.Pr
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductJpaRepository;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.ProductSizeJpaRepository;
 import com.example.nullshinsaproduct.product.infrastructure.db.repository.jpa.SkuProductJpaRepository;
-import com.example.nullshinsaproduct.review.domain.Review;
-import com.example.nullshinsaproduct.review.domain.ReviewImage;
 import com.example.nullshinsaproduct.review.infrestructure.db.enttiy.ReviewEntity;
 import com.example.nullshinsaproduct.review.infrestructure.db.repository.jpa.ReviewImageJpaRepository;
 import com.example.nullshinsaproduct.review.infrestructure.db.repository.jpa.ReviewJpaRepository;
@@ -32,7 +28,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,8 +37,8 @@ import java.util.Random;
 
 @SpringBootTest
 @ActiveProfiles("local")
-//@Disabled
-//@Transactional
+@Disabled
+@Transactional
 public class ProductInsertTest {
 
     @Autowired
@@ -63,9 +58,10 @@ public class ProductInsertTest {
 
 
     @Test
+    @Disabled
     void 상품_및_상품_연관관계_데이터_INSERT() {
         Random random = new Random(700000);
-        List<BrandEntity> all = brandJpaRepository.findAll();
+        List< BrandEntity> all = brandJpaRepository.findAll();
         for (BrandEntity brandEntity : all) {
             for (int i = 1; i <= 100000; i++) {
                 SecondLayerCategory secondLayerCategory = SecondLayerCategory.OUTER;
@@ -109,6 +105,7 @@ public class ProductInsertTest {
                         brandEntity.getCommunicationSellingNumber(),
                         brandEntity.getRepresentative(),
                         brandEntity.getLocation(),
+                        10,
                         0,
                         random.nextInt(70),
                         3,
@@ -234,6 +231,7 @@ public class ProductInsertTest {
     }
 
     @Test
+    @Disabled
     void 리뷰_및_리뷰_연관관계_데이터_INSERT() {
         int chunk = 2000;
         Random pointRandom = new Random(5);

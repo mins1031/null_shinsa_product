@@ -9,5 +9,5 @@ public interface SkuProductRepository {
 
     void saveAll(List<SkuProductEntity> entities);
 
-
+    SkuProductEntity findById(long id);
 }

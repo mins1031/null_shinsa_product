@@ -82,6 +82,7 @@ public class Product {
             String communicationSellingNumber,
             String representative,
             String location,
+            int discountRate,
             int discountMinRate,
             int discountMaxRate,
             int outboundPossibleDay,
@@ -125,7 +126,8 @@ public class Product {
                 DiscountDetail.of(
                         discountApplyPossible,
                         discountMinRate,
-                        discountMaxRate
+                        discountMaxRate,
+                        discountRate
                 ),
                 couponApplyPossible,
                 createdDate,
@@ -160,7 +162,8 @@ public class Product {
                 DiscountDetail.of(
                         saveVo.discountApplyPossible(),
                         saveVo.discountMinRate(),
-                        saveVo.discountMaxRate()
+                        saveVo.discountMaxRate(),
+                        saveVo.discountRate()
                 ),
                 saveVo.couponApplyPossible(),
                 null,
@@ -193,14 +196,11 @@ public class Product {
     public void updateRelatedSkus(final List<SkuProduct> skuProductList) {
         this.skuProductList = skuProductList;
     }
-//
-//    public void updateRelatedImages(final List<ProductImage> productImageList) {
-//        this.productImageList = productImageList;
-//    }
-//
-//    public void updateSize(final List<ProductSize> productSizes) {
-//        this.productSizes = productSizes;
-//    }
+
+
+
+    // TODO 조회시 할인 정보 계산 도메인 로직 필요. 다만 별도의 도메인 서비스 객체로 나눌지 도메일 객체 내에서 처리할지는 미지수.
+
 
 
 }
