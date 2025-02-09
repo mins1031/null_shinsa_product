@@ -13,7 +13,6 @@ import com.example.nullshinsaproduct.product.infrastructure.db.entity.SkuProduct
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketSaveRequest;
 import com.example.nullshinsaproduct.shoppingbasket.application.inport.dto.request.ShoppingBasketUpdateRequest;
 import com.example.nullshinsaproduct.shoppingbasket.application.output.FakeShoppingBasketRepository;
-import com.example.nullshinsaproduct.shoppingbasket.infrastructure.entity.QShoppingBasketEntity;
 import com.example.nullshinsaproduct.shoppingbasket.infrastructure.entity.ShoppingBasketEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
