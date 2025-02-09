@@ -1,11 +1,13 @@
 package com.example.nullshinsaproduct.sale.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
+@EqualsAndHashCode
 public class Sale {
     private Long id;
     private String name;
@@ -79,7 +81,7 @@ public class Sale {
 
     public void startSale(LocalDateTime nowTime) {
         if (SaleStatus.FINISH.equals(this.saleStatus)
-                || SaleStatus.IN_PROGRESSING.equals(this.saleStatus)
+                || SaleStatus.ON_SALE.equals(this.saleStatus)
         ) {
             return;
         }
@@ -92,6 +94,6 @@ public class Sale {
             return;
         }
 
-        this.saleStatus = SaleStatus.IN_PROGRESSING;
+        this.saleStatus = SaleStatus.ON_SALE;
     }
 }

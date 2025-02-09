@@ -3,10 +3,12 @@ package com.example.nullshinsaproduct.sale.infrastructure.repository;
 import com.example.nullshinsaproduct.common.exception.product.ProductException;
 import com.example.nullshinsaproduct.common.exception.product.ProductExceptionCode;
 import com.example.nullshinsaproduct.sale.application.output.port.SaleRepository;
+import com.example.nullshinsaproduct.sale.domain.SaleStatus;
 import com.example.nullshinsaproduct.sale.infrastructure.entity.SaleEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Objects;
 
 @Repository
@@ -31,5 +33,10 @@ public class SaleRepositoryImpl implements SaleRepository {
     @Override
     public void deleteById(long id) {
         saleJpaRepository.deleteById(id);
+    }
+
+    @Override
+    public List<SaleEntity> findAllSaleByOnSale() {
+        return saleJpaRepository.findAllBySaleStatus(SaleStatus.ON_SALE);
     }
 }
