@@ -42,4 +42,10 @@ public class SaleInMemoryCache {
         PriorityQueue<Sale> values = saleCacheMap.getOrDefault(key, new PriorityQueue<>());
         values.remove(sale);
     }
+
+//    public Sale findSale(Sale sale) {
+//        SaleCacheKey key = SaleCacheKey.of(sale.getSalePercent(), sale.getStartDateTime(), sale.getId());
+//        PriorityQueue<Sale> sales = saleCacheMap.get(key);
+//
+//    }
 }

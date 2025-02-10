@@ -1,6 +1,7 @@
 package com.example.nullshinsaproduct.sale.application;
 
 import com.example.nullshinsaproduct.sale.application.input.dto.request.SaleCommandRequest;
+import com.example.nullshinsaproduct.sale.application.input.dto.request.SaleResponse;
 import com.example.nullshinsaproduct.sale.application.output.map.SaleOutputMapper;
 import com.example.nullshinsaproduct.sale.application.output.port.SaleRepository;
 import com.example.nullshinsaproduct.sale.domain.Sale;
@@ -9,6 +10,8 @@ import com.example.nullshinsaproduct.sale.infrastructure.entity.SaleEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -65,7 +68,16 @@ public class SaleService {
     }
 
     @Transactional(readOnly = true)
-    public void fineSale() {
+    public SaleResponse findSale(long id) {
+        SaleEntity entity = saleRepository.findById(id);
 
+        return new SaleResponse(
+                entity.getId(),
+                entity.getName(),
+                entity.getSalePercent(),
+                entity.getSaleStatus(),
+                entity.getStartDateTime(),
+                entity.getEndDateTime()
+        );
     }
 }
