@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ProductExceptionCode {
-    NOT_EXIST_PARAMETER(HttpStatus.INTERNAL_SERVER_ERROR, 0001, "메서드의 파라미터가 잘못되었습니다"),
+    NOT_EXIST_PARAMETER(HttpStatus.INTERNAL_SERVER_ERROR, 0001, "파라미터가 존재하지 않습니다. 잘못된 요청입니다."),
     FAIL_MEMBER_REQUEST(HttpStatus.INTERNAL_SERVER_ERROR, 0002, "회원서버 API 호출이 실패했습니다"),
     FAIl_ORDER_REQUEST(HttpStatus.INTERNAL_SERVER_ERROR, 0003, "주문서버 API 호출이 실패했습니다"),
 
@@ -27,6 +27,8 @@ public enum ProductExceptionCode {
     DONT_SAVE_EMPTY_SHOPPING_BASKET(HttpStatus.INTERNAL_SERVER_ERROR, 3001, "저장하려는 장바구니 아이템이 존재하지 않습니다."),
     DONT_SAVE_SELL_STATUS_PRODUCT_IN_SHOPPING_BASKET(HttpStatus.BAD_REQUEST, 3002, "장바구니에 저장하려는 상품의 상태가 판매가능한 상태가 아닙니다."),
     WRONG_REQUEST_UPDATE_SKU_IN_SHOPPING_BASKET(HttpStatus.BAD_REQUEST, 3002, "변경한 sku가 장바구니에 저장된 sku 가 아닙니다. 잘못된 요청입니다."),
+
+    NOT_EXIST_SALE(HttpStatus.NOT_FOUND, 4001, "요청한 세일데이터는 없는 정보 입니다."),
     ;
 
     private final HttpStatus httpStatus;
